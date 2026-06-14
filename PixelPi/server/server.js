@@ -11,6 +11,7 @@ const rateLimit = require('express-rate-limit');
 const session = require('express-session');
 const MySQLStore = require('express-mysql-session')(session);
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 require('dotenv').config();
 
 const app = express();
@@ -487,8 +488,10 @@ async function initializeDatabase() {
     );
     
     if (adminExists.length === 0) {
-      // Simple hashed password for demo (in production, use bcrypt)
-      const defaultPassword = Buffer.from(process.env.ADMIN_PASSWORD || 'admin123').toString('base64');
+      const defaultPassword = await bcrypt.hash(
+        process.env.ADMIN_PASSWORD || 'admin123',
+        12
+      );
       await connection.execute(
         'INSERT INTO admin_users (username, password_hash, email, role) VALUES (?, ?, ?, ?)',
         [
@@ -657,8 +660,12 @@ app.post('/api/admin/login', async (req, res) => {
         
         if (users.length > 0) {
           const dbUser = users[0];
-          const inputPasswordHash = Buffer.from(password).toString('base64');
-          if (inputPasswordHash === dbUser.password_hash) {
+          const passwordMatch = await bcrypt.compare(
+            password,
+            dbUser.password_hash
+          );
+
+          if (passwordMatch) {
             user = { id: dbUser.id, username: dbUser.username, role: dbUser.role, email: dbUser.email };
             // Update last login
             try {
