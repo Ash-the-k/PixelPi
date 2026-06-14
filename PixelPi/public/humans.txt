@@ -1,0 +1,19 @@
+/* TEAM */
+Founder: Pixel Pi Technologies
+Site: https://pixelpitechnologies.in
+Contact: info@pixelpitechnologies.in
+Phone: +91 8088959143
+Location: Bangalore, India
+
+/* TECHNOLOGY */
+Frontend: HTML5, CSS3, JavaScript
+Backend: Node.js, Express.js
+Libraries: Particles.js, Font Awesome
+Design: Custom CSS
+
+/* THANKS */
+Thanks to our clients and partners
+
+/* LAST UPDATE */
+Last update: 2025-01-30
+Standards: HTML5, CSS3, Responsive Design

@@ -1,0 +1,1897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Join Pixel Pi Technologies - Build your career in cutting-edge technology">
+    <meta name="keywords" content="careers, jobs, internships, embedded systems, application development, technology jobs">
+    <meta name="author" content="Pixel Pi Technologies">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Careers at Pixel Pi Technologies | Build the Future with Us">
+    <meta property="og:description" content="Join our team of innovators in IoT, Embedded Systems, and Software Development">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pixelpi.com/careers">
+    <meta property="og:image" content="https://pixelpi.com/images/careers-og.jpg">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Careers at Pixel Pi Technologies | Build the Future with Us">
+    <meta name="twitter:description" content="Join our team of innovators in IoT, Embedded Systems, and Software Development">
+    <meta name="twitter:image" content="https://pixelpi.com/images/careers-twitter.jpg">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "JobPosting",
+      "title": "Embedded Systems Intern",
+      "description": "Join Pixel Pi Technologies as an Embedded Systems Intern and work on cutting-edge IoT and electronics projects.",
+      "hiringOrganization": {
+        "@type": "Organization",
+        "name": "Pixel Pi Technologies",
+        "sameAs": "https://pixelpi.com"
+      },
+      "employmentType": "INTERN",
+      "datePosted": "2025-01-15",
+      "jobLocation": {
+        "@type": "Place",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Bangalore",
+          "addressRegion": "Karnataka",
+          "addressCountry": "IN"
+        }
+      },
+      "baseSalary": {
+        "@type": "MonetaryAmount",
+        "currency": "INR",
+        "value": {
+          "@type": "QuantitativeValue",
+          "minValue": 10000,
+          "maxValue": 20000,
+          "unitText": "MONTH"
+        }
+      }
+    }
+    </script>
+    
+    <title>Careers at Pixel Pi Technologies | Build the Future with Us</title>
+    <link rel="icon" href="/images/logo.jpg" type="image/jpeg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Reuse existing CSS variables and base styles from index.html */
+        :root {
+            --primary: #0066ff;
+            --primary-dark: #0055dd;
+            --secondary: #6e44ff;
+            --accent: #ff4d8d;
+            --success: #4caf50;
+            --warning: #ff9800;
+            --dark: #1a1a1a;
+            --darker: #101010;
+            --light: #f5f5f7;
+            --gray: #86868b;
+            --transition: all 0.3s ease;
+            --card-bg: #ffffff;
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--dark);
+            background-color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+        
+        header.scrolled {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        
+        .logo-img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+            object-fit: contain;
+        }
+        
+        .logo span {
+            color: var(--primary);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin: 0 15px;
+        }
+        
+        .nav-links a {
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--dark);
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .nav-links a.active {
+            color: var(--primary);
+        }
+        
+        .nav-links a.active::after {
+            width: 100%;
+        }
+        
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            cursor: pointer;
+        }
+        
+        .hamburger span {
+            height: 3px;
+            width: 100%;
+            background-color: var(--dark);
+            border-radius: 3px;
+            transition: var(--transition);
+        }
+        
+        .hamburger.active span:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+        
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger.active span:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+        
+        .cta-button {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Careers Hero */
+        .careers-hero {
+            height: 70vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+            background: linear-gradient(135deg, rgba(110, 68, 255, 0.1) 0%, rgba(0, 102, 255, 0.1) 100%);
+        }
+        
+        .careers-hero-content {
+            max-width: 800px;
+            text-align: center;
+            margin: 0 auto;
+        }
+        
+        .careers-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .careers-hero p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            margin-bottom: 30px;
+        }
+        
+        /* Sections */
+        section {
+            padding: 80px 0;
+            position: relative;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+        
+        .section-title p {
+            font-size: 1.1rem;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Job Openings */
+        .job-openings {
+            background-color: #f8f9fa;
+        }
+        
+        .job-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        @media (max-width: 768px) {
+            .job-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .job-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .job-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+        
+        .job-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(90deg, var(--accent), #ff6b9d);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .job-header {
+            margin-bottom: 20px;
+        }
+        
+        .job-header h3 {
+            font-size: 1.8rem;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+        
+        .job-meta {
+            display: flex;
+            gap: 20px;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        .job-meta span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .job-description {
+            margin-bottom: 25px;
+            color: var(--dark);
+        }
+        
+        .requirements {
+            margin-bottom: 25px;
+        }
+        
+        .requirements h4 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+        
+        .requirements ul {
+            list-style: none;
+            padding-left: 20px;
+        }
+        
+        .requirements li {
+            margin-bottom: 8px;
+            color: var(--gray);
+            position: relative;
+        }
+        
+        .requirements li::before {
+            content: '✓';
+            position: absolute;
+            left: -20px;
+            color: var(--success);
+            font-weight: bold;
+        }
+        
+        .benefits {
+            margin-bottom: 25px;
+        }
+        
+        .benefits h4 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+        
+        .benefits ul {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            list-style: none;
+        }
+        
+        .benefits li {
+            background: rgba(0, 102, 255, 0.1);
+            color: var(--primary);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .apply-button {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 100%;
+            font-size: 1rem;
+        }
+        
+        .apply-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Why Work With Us */
+        .culture-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .culture-item {
+            text-align: center;
+            padding: 30px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+        }
+        
+        .culture-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+        
+        .culture-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .culture-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        .culture-item p {
+            color: var(--gray);
+        }
+        
+        /* Application Form */
+        .application-form-section {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+            color: white;
+        }
+        
+        .application-form-section .section-title h2 {
+            color: white;
+        }
+        
+        .form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--dark);
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(0, 102, 255, 0.2);
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .file-upload {
+            border: 2px dashed #ddd;
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .file-upload:hover {
+            border-color: var(--primary);
+        }
+        
+        .file-upload input {
+            display: none;
+        }
+        
+        .file-upload-label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            color: var(--gray);
+        }
+        
+        .file-upload-label i {
+            font-size: 2rem;
+            color: var(--primary);
+        }
+        
+        .file-name {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: var(--dark);
+        }
+        
+        .submit-button {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 100%;
+            font-size: 1.1rem;
+        }
+        
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--darker);
+            color: white;
+            padding: 80px 0 30px;
+            position: relative;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 20px;
+            display: block;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .footer-logo span {
+            color: var(--primary);
+        }
+        
+        .footer-about p {
+            color: #ccc;
+            margin-bottom: 20px;
+        }
+        
+        .footer-heading {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-links i {
+            margin-right: 10px;
+            color: var(--primary);
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+        
+        .footer-social {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .footer-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            transition: var(--transition);
+        }
+        
+        .footer-social a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #999;
+            font-size: 0.9rem;
+        }
+        
+        /* Modal */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+        
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 500px;
+            width: 90%;
+            transform: translateY(50px);
+            transition: transform 0.5s ease;
+            position: relative;
+        }
+        
+        .modal.active .modal-content {
+            transform: translateY(0);
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gray);
+        }
+        
+        .modal-title {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+        
+        .modal-message {
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+        
+        .modal-success .modal-title {
+            color: var(--success);
+        }
+        
+        .modal-error .modal-title {
+            color: #f44336;
+        }
+        
+        /* Loading Spinner */
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-left-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+            display: none;
+        }
+        
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .careers-hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: white;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: left 0.3s ease;
+                gap: 30px;
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .careers-hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .job-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-container {
+                padding: 20px;
+            }
+        }
+        
+        /* Breadcrumb */
+        .breadcrumb {
+            padding: 20px 0;
+            background: #f8f9fa;
+        }
+        
+        .breadcrumb-links {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        .breadcrumb-links a {
+            transition: var(--transition);
+        }
+        
+        .breadcrumb-links a:hover {
+            color: var(--primary);
+        }
+        
+        .breadcrumb-links i {
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header id="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="/" class="logo">
+                    <img src="/images/logo.jpg" alt="Pixel Pi Technologies Logo" class="logo-img">
+                    Pixel <span>Pi</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="/#services">Services</a></li>
+                    <li><a href="/#collaboration">Collaborate</a></li>
+                    <li><a href="/#vision">Vision</a></li>
+                    <li><a href="/#why-us">Why Us</a></li>
+                    <li><a href="/#gallery">Gallery</a></li>
+                    <li><a href="/blog">Blog</a></li>
+                    <li><a href="/career" class="active">Career</a></li>
+                    <li><a href="/#contact">Contact</a></li>
+                </ul>
+                <a href="/#collaboration" class="cta-button">Partner With Us</a>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-links">
+                <a href="/">Home</a>
+                <i class="fas fa-chevron-right"></i>
+                <span>Careers</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Careers Hero -->
+    <section class="careers-hero">
+        <div class="container">
+            <div class="careers-hero-content">
+                <h1>Build the Future with Us</h1>
+                <p>Join our team of innovators and help shape the future of technology. At Pixel Pi Technologies, we're creating cutting-edge solutions in IoT, Embedded Systems, and Software Development.</p>
+                <a href="#openings" class="cta-button">View Open Positions</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Job Openings -->
+    <section id="openings" class="job-openings">
+        <div class="container">
+            <div class="section-title">
+                <h2>Current Openings</h2>
+                <p>Explore exciting internship opportunities to kickstart your career</p>
+            </div>
+            <div class="job-grid">
+                <!-- Embedded Systems Intern -->
+                <div class="job-card">
+                    <div class="job-badge">Internship</div>
+                    <div class="job-header">
+                        <h3>Embedded Systems Intern</h3>
+                        <div class="job-meta">
+                            <span><i class="fas fa-map-marker-alt"></i> Bangalore / Remote</span>
+                            <span><i class="fas fa-clock"></i> 6 Months</span>
+                            <span><i class="fas fa-users"></i> 2 Positions</span>
+                        </div>
+                    </div>
+                    <div class="job-description">
+                        <p>Work on cutting-edge IoT and electronics projects, developing firmware for ESP32, Arduino, STM32, and Raspberry Pi platforms. Contribute to real-world projects in smart devices, automation, and embedded solutions.</p>
+                    </div>
+                    <div class="requirements">
+                        <h4>Requirements:</h4>
+                        <ul>
+                            <li>Currently pursuing Bachelor's/Master's in ECE, EEE, CS or related field</li>
+                            <li>Basic knowledge of C/C++ programming</li>
+                            <li>Understanding of microcontrollers and electronics</li>
+                            <li>Familiarity with Arduino/Raspberry Pi is a plus</li>
+                            <li>Passion for embedded systems and IoT</li>
+                        </ul>
+                    </div>
+                    <div class="benefits">
+                        <h4>What You'll Get:</h4>
+                        <ul>
+                            <li>Hands-on experience</li>
+                            <li>Mentorship</li>
+                            <li>Certificate</li>
+                            <li>Job opportunity</li>
+                        </ul>
+                    </div>
+                    <button class="apply-button" data-job="Embedded Systems Intern">Apply Now</button>
+                </div>
+
+                <!-- Application Developer Intern -->
+                <div class="job-card">
+                    <div class="job-badge">Internship</div>
+                    <div class="job-header">
+                        <h3>Application Developer Intern</h3>
+                        <div class="job-meta">
+                            <span><i class="fas fa-map-marker-alt"></i> Bangalore / Remote</span>
+                            <span><i class="fas fa-clock"></i> 6 Months</span>
+                            <span><i class="fas fa-users"></i> 2 Positions</span>
+                        </div>
+                    </div>
+                    <div class="job-description">
+                        <p>Develop web and cloud applications for IoT dashboards, automation systems, and internal tools. Work with modern technologies to create user-friendly interfaces and robust backend systems.</p>
+                    </div>
+                    <div class="requirements">
+                        <h4>Requirements:</h4>
+                        <ul>
+                            <li>Currently pursuing Bachelor's/Master's in CS, IT or related field</li>
+                            <li>Knowledge of HTML, CSS, JavaScript</li>
+                            <li>Basic understanding of databases</li>
+                            <li>Familiarity with React/Node.js is a plus</li>
+                            <li>Problem-solving skills and creativity</li>
+                        </ul>
+                    </div>
+                    <div class="benefits">
+                        <h4>What You'll Get:</h4>
+                        <ul>
+                            <li>Real project experience</li>
+                            <li>Code reviews</li>
+                            <li>Certificate</li>
+                            <li>Job opportunity</li>
+                        </ul>
+                    </div>
+                    <button class="apply-button" data-job="Application Developer Intern">Apply Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Work With Us -->
+    <section class="why-work">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Work With Us?</h2>
+                <p>Join a culture of innovation and growth</p>
+            </div>
+            <div class="culture-grid">
+                <div class="culture-item">
+                    <div class="culture-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Innovative Projects</h3>
+                    <p>Work on cutting-edge technology projects that solve real-world problems</p>
+                </div>
+                <div class="culture-item">
+                    <div class="culture-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Learning & Growth</h3>
+                    <p>Continuous learning opportunities with mentorship from industry experts</p>
+                </div>
+                <div class="culture-item">
+                    <div class="culture-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Collaborative Culture</h3>
+                    <p>Work in a supportive team environment that values every contribution</p>
+                </div>
+                <div class="culture-item">
+                    <div class="culture-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h3>Career Opportunities</h3>
+                    <p>Potential for full-time employment and career advancement</p>
+                </div>
+
+                <div class="culture-item">
+                    <div class="culture-icon">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <h3>Recognition</h3>
+                    <p>Your work gets recognized and valued in the tech community</p>
+                </div>
+                <div class="culture-item">
+                    <div class="culture-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>Creative Freedom</h3>
+                    <p>We encourage out-of-the-box thinking and provide the resources to bring your ideas to life</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Application Form Section -->
+    <section id="applicationForm" class="application-form-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Apply Now</h2>
+                <p>Fill out the form below to submit your application</p>
+            </div>
+            <div class="form-container">
+                <form id="careerApplicationForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="applicantName">Full Name *</label>
+                            <input type="text" id="applicantName" name="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="applicantEmail">Email Address *</label>
+                            <input type="email" id="applicantEmail" name="email" class="form-control" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="applicantPhone">Phone Number *</label>
+                            <input type="tel" id="applicantPhone" name="phone" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="applicantPosition">Position Applied For *</label>
+                            <select id="applicantPosition" name="position" class="form-control" required>
+                                <option value="">Select a position</option>
+                                <option value="Embedded Systems Intern">Embedded Systems Intern</option>
+                                <option value="Application Developer Intern">Application Developer Intern</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="applicantEducation">Current Education *</label>
+                            <input type="text" id="applicantEducation" name="education" class="form-control" required placeholder="e.g., B.Tech CSE 3rd Year">
+                        </div>
+                        <div class="form-group">
+                            <label for="applicantUniversity">University/College *</label>
+                            <input type="text" id="applicantUniversity" name="university" class="form-control" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="applicantSkills">Technical Skills *</label>
+                        <textarea id="applicantSkills" name="skills" class="form-control" rows="3" required placeholder="List your technical skills (e.g., C++, Python, Embedded Systems, Web Development, etc.)"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="applicantExperience">Previous Experience/Projects</label>
+                        <textarea id="applicantExperience" name="experience" class="form-control" rows="3" placeholder="Describe any relevant projects, internships, or work experience"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="applicantPortfolio">Portfolio/GitHub Profile (Optional)</label>
+                        <input type="url" id="applicantPortfolio" name="portfolio" class="form-control" placeholder="https://github.com/yourusername">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Upload Resume *</label>
+                        <div class="file-upload" id="resumeUpload">
+                            <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required>
+                            <label for="resume" class="file-upload-label">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <span>Click to upload resume (PDF, DOC, DOCX)</span>
+                                <span>Max file size: 5MB</span>
+                            </label>
+                            <div class="file-name" id="resumeFileName"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="applicantMessage">Cover Letter (Optional)</label>
+                        <textarea id="applicantMessage" name="message" class="form-control" rows="4" placeholder="Tell us why you're interested in this position and why you'd be a good fit..."></textarea>
+                    </div>
+                    
+                    <div class="spinner" id="applicationSpinner"></div>
+                    <button type="submit" class="submit-button">Submit Application</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <a href="/" class="footer-logo">Pixel <span>Pi</span></a>
+                    <p>Innovating the Future of Electronics, IoT, Space Technologies, and Building a Sustainable
+                        Electronics Ecosystem in India.</p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Facebook page of Pixel Pi Technologies"><i class="fab fa-facebook-f"
+                                aria-hidden="true"></i></a>
+                        <a href="#" aria-label="Twitter profile of Pixel Pi Technologies"><i class="fab fa-twitter"
+                                aria-hidden="true"></i></a>
+                        <a href="https://www.instagram.com/pixel_pi_technologies?utm_source=ig_web_button_share_sheet&igsh=MWhsYzZwandwOGJtYQ=="
+                            aria-label="Instagram profile of Pixel Pi Technologies"><i class="fab fa-instagram"
+                                aria-hidden="true"></i></a>
+                        <a href="https://www.linkedin.com/company/pixelpi-lab-s-electronics/ "
+                            aria-label="LinkedIn page of Pixel Pi Technologies"><i class="fab fa-linkedin-in"
+                                aria-hidden="true"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3 class="footer-heading">Quick Links</h3>
+                    <ul>
+                        <li><a href="/#services">Services</a></li>
+                        <li><a href="/#collaboration">Collaboration</a></li>
+                        <li><a href="/#vision">Vision & Mission</a></li>
+                        <li><a href="/#industries">Industries</a></li>
+                        <li><a href="/career">Career</a></li>
+                        <li><a href="/blog">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3 class="footer-heading">Services</h3>
+                    <ul>
+                        <li><a href="/#services">IoT & Embedded Systems</a></li>
+                        <li><a href="/#services">Space Technology</a></li>
+                        <li><a href="/#services">PCB Prototyping</a></li>
+                        <li><a href="/#services">Drone Development</a></li>
+                        <li><a href="/#services">AI Solutions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3 class="footer-heading">Contact Us</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt" aria-hidden="true"></i>Bangalore Karnataka India</li>
+                        <li><i class="fas fa-phone" aria-hidden="true"></i> +91 8088959143</li>
+                        <li><i class="fas fa-envelope" aria-hidden="true"></i> info@pixelpitechnologies.in</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 Pixel Pi Technologies. All rights reserved. | <a href="/admin" style="color:var(--primary);text-decoration:none">Admin</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Application Modal -->
+    <div class="modal" id="applicationModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <h2 class="modal-title" id="modalTitle">Application Submitted</h2>
+            <div class="modal-message" id="modalMessage">
+                Your application has been submitted successfully! We will review your application and get back to you soon.
+            </div>
+            <button class="submit-button" id="modalOkButton">OK</button>
+        </div>
+    </div>
+
+<script>
+    // Mobile menu toggle
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    
+    hamburger.addEventListener('click', function() {
+        hamburger.classList.toggle('active');
+        navLinks.classList.toggle('active');
+        
+        if (navLinks.classList.contains('active')) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'auto';
+        }
+    });
+    
+    // Close mobile menu when clicking on links
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navLinks.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+    });
+    
+    // Header scroll effect
+    window.addEventListener('scroll', function() {
+        const header = document.getElementById('header');
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+    
+    // File upload handling
+    const resumeInput = document.getElementById('resume');
+    const resumeFileName = document.getElementById('resumeFileName');
+    const resumeUpload = document.getElementById('resumeUpload');
+    
+    resumeInput.addEventListener('change', function() {
+        if (this.files.length > 0) {
+            const file = this.files[0];
+            
+            // Validate file size
+            if (file.size > 5 * 1024 * 1024) {
+                showErrorModal('File size must be less than 5MB');
+                this.value = '';
+                resumeFileName.textContent = '';
+                resumeUpload.style.borderColor = '#ff4444';
+                setTimeout(() => {
+                    resumeUpload.style.borderColor = '#ddd';
+                }, 3000);
+                return;
+            }
+            
+            // Validate file type
+            const allowedTypes = ['application/pdf', 
+                                 'application/msword', 
+                                 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                                 'image/jpeg',
+                                 'image/jpg',
+                                 'image/png'];
+            
+            if (!allowedTypes.includes(file.type)) {
+                showErrorModal('Only PDF, DOC, DOCX, JPG, and PNG files are allowed');
+                this.value = '';
+                resumeFileName.textContent = '';
+                resumeUpload.style.borderColor = '#ff4444';
+                setTimeout(() => {
+                    resumeUpload.style.borderColor = '#ddd';
+                }, 3000);
+                return;
+            }
+            
+            // Show file name with success styling
+            resumeFileName.textContent = `✅ Selected: ${file.name} (${formatFileSize(file.size)})`;
+            resumeFileName.style.color = '#4caf50';
+            resumeUpload.style.borderColor = '#4caf50';
+            resumeUpload.style.backgroundColor = 'rgba(76, 175, 80, 0.05)';
+        } else {
+            resumeFileName.textContent = '';
+            resumeUpload.style.borderColor = '#ddd';
+            resumeUpload.style.backgroundColor = 'transparent';
+        }
+    });
+    
+    // Apply button click to auto-select position
+    document.querySelectorAll('.apply-button').forEach(button => {
+        button.addEventListener('click', function() {
+            const position = this.getAttribute('data-job');
+            document.getElementById('applicantPosition').value = position;
+            
+            // Scroll to application form
+            document.getElementById('applicationForm').scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+            
+            // Highlight the position field
+            const positionField = document.getElementById('applicantPosition');
+            positionField.style.borderColor = '#0066ff';
+            positionField.style.boxShadow = '0 0 0 2px rgba(0, 102, 255, 0.2)';
+            
+            setTimeout(() => {
+                positionField.style.borderColor = '#ddd';
+                positionField.style.boxShadow = 'none';
+            }, 2000);
+        });
+    });
+    
+    // Form validation helper
+    function validateForm(formData) {
+        const errors = [];
+        
+        // Name validation
+        if (!formData.get('name') || formData.get('name').trim().length < 2) {
+            errors.push('Please enter a valid name (minimum 2 characters)');
+        }
+        
+        // Email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!formData.get('email') || !emailRegex.test(formData.get('email'))) {
+            errors.push('Please enter a valid email address');
+        }
+        
+        // Phone validation
+        const phone = formData.get('phone') || '';
+        const cleanPhone = phone.replace(/\D/g, '');
+        if (cleanPhone.length < 10) {
+            errors.push('Please enter a valid phone number with at least 10 digits');
+        }
+        
+        // Position validation
+        if (!formData.get('position')) {
+            errors.push('Please select a position to apply for');
+        }
+        
+        // Education validation
+        if (!formData.get('education') || formData.get('education').trim().length < 3) {
+            errors.push('Please enter your current education');
+        }
+        
+        // University validation
+        if (!formData.get('university') || formData.get('university').trim().length < 3) {
+            errors.push('Please enter your university/college name');
+        }
+        
+        // Skills validation
+        if (!formData.get('skills') || formData.get('skills').trim().length < 5) {
+            errors.push('Please list your technical skills');
+        }
+        
+        // Resume validation
+        const resumeFile = document.getElementById('resume').files[0];
+        if (!resumeFile) {
+            errors.push('Please upload your resume');
+        }
+        
+        return errors;
+    }
+    
+    // Format file size for display
+    function formatFileSize(bytes) {
+        if (bytes === 0) return '0 Bytes';
+        const k = 1024;
+        const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+        return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+    }
+    
+    // Show success modal
+    function showSuccessModal(title, message, applicationId) {
+        const modal = document.getElementById('applicationModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalMessage = document.getElementById('modalMessage');
+        
+        modalTitle.textContent = title;
+        modalMessage.innerHTML = `
+            <div style="text-align: center; margin-bottom: 20px;">
+                <i class="fas fa-check-circle" style="font-size: 3rem; color: #4caf50; margin-bottom: 15px;"></i>
+                <p style="font-size: 1.1rem; color: #666; margin-bottom: 10px;">${message}</p>
+                ${applicationId ? `
+                    <div style="background: #f5f5f7; padding: 15px; border-radius: 8px; margin: 15px 0;">
+                        <p style="margin: 5px 0; color: #333;"><strong>Application ID:</strong></p>
+                        <p style="font-family: monospace; background: white; padding: 10px; border-radius: 5px; margin: 0;">${applicationId}</p>
+                    </div>
+                ` : ''}
+                <p style="color: #666; font-size: 0.9rem; margin-top: 20px;">
+                    We will contact you at the email you provided within 5-7 business days.
+                </p>
+            </div>
+        `;
+        
+        modal.classList.add('active');
+        modal.classList.remove('modal-error');
+        modal.classList.add('modal-success');
+        
+        // Clear form after successful submission
+        document.getElementById('careerApplicationForm').reset();
+        resumeFileName.textContent = '';
+        resumeUpload.style.borderColor = '#ddd';
+        resumeUpload.style.backgroundColor = 'transparent';
+    }
+    
+    // Show error modal
+    function showErrorModal(message) {
+        const modal = document.getElementById('applicationModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalMessage = document.getElementById('modalMessage');
+        
+        modalTitle.textContent = 'Submission Failed';
+        modalMessage.innerHTML = `
+            <div style="text-align: center;">
+                <i class="fas fa-exclamation-triangle" style="font-size: 3rem; color: #ff4444; margin-bottom: 15px;"></i>
+                <p style="color: #666; font-size: 1.1rem;">${message}</p>
+                <div style="margin-top: 20px; padding: 15px; background: #fff8f8; border-radius: 8px; border-left: 4px solid #ff4444;">
+                    <p style="margin: 0; color: #666; font-size: 0.9rem;">
+                        <strong>Need help?</strong> Contact us at careers@pixelpitechnologies.in
+                    </p>
+                </div>
+            </div>
+        `;
+        
+        modal.classList.add('active');
+        modal.classList.remove('modal-success');
+        modal.classList.add('modal-error');
+    }
+    
+    // Show loading state
+    function showLoading(show) {
+        const spinner = document.getElementById('applicationSpinner');
+        const submitButton = document.querySelector('#careerApplicationForm button[type="submit"]');
+        
+        if (show) {
+            spinner.style.display = 'block';
+            submitButton.disabled = true;
+            submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+            submitButton.style.opacity = '0.7';
+        } else {
+            spinner.style.display = 'none';
+            submitButton.disabled = false;
+            submitButton.innerHTML = 'Submit Application';
+            submitButton.style.opacity = '1';
+        }
+    }
+    
+    // Form submission with improved error handling
+    document.getElementById('careerApplicationForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        console.log('📤 Starting form submission...');
+        
+        // Get form data
+        const formData = new FormData(this);
+        
+        // Validate form
+        const validationErrors = validateForm(formData);
+        if (validationErrors.length > 0) {
+            showErrorModal(validationErrors[0]);
+            return;
+        }
+        
+        // Show loading state
+        showLoading(true);
+        
+        try {
+            console.log('📡 Sending request to server...');
+            
+            // Get the current hostname to determine the API endpoint
+            const isLocalhost = window.location.hostname === 'localhost' || 
+                               window.location.hostname === '127.0.0.1';
+            const baseUrl = isLocalhost ? 'http://localhost:3000' : window.location.origin;
+            const apiUrl = `${baseUrl}/api/careers/apply`;
+            
+            console.log('🌐 API URL:', apiUrl);
+            
+            // Send the request
+            const response = await fetch(apiUrl, {
+                method: 'POST',
+                body: formData
+                // Note: Do NOT set Content-Type header for FormData
+                // The browser will set it automatically with boundary
+            });
+            
+            console.log('📨 Response received:', response.status, response.statusText);
+            
+            // Parse response
+            let result;
+            try {
+                result = await response.json();
+                console.log('📄 Response data:', result);
+            } catch (parseError) {
+                console.error('❌ Failed to parse response:', parseError);
+                throw new Error('Server returned an invalid response');
+            }
+            
+            if (response.ok) {
+                // Success
+                console.log('✅ Application submitted successfully:', result.id);
+                showSuccessModal('Application Submitted', 
+                    'Your application has been submitted successfully! Our HR team will review it and contact you soon.',
+                    result.id);
+                
+            } else {
+                // Server returned an error
+                console.error('❌ Server error:', result.error);
+                showErrorModal(result.error || `Server error: ${response.status} ${response.statusText}`);
+            }
+            
+        } catch (error) {
+            console.error('❌ Network or unexpected error:', error);
+            
+            // Check if it's a network error
+            if (error.name === 'TypeError' && error.message.includes('Failed to fetch')) {
+                showErrorModal('Network error. Please check your internet connection and try again.');
+            } else if (error.name === 'SyntaxError') {
+                showErrorModal('Server returned an invalid response. Please try again later.');
+            } else {
+                showErrorModal(`An unexpected error occurred: ${error.message}`);
+            }
+            
+        } finally {
+            // Hide loading state
+            showLoading(false);
+        }
+    });
+    
+    // Modal close handling
+    document.getElementById('modalClose').addEventListener('click', function() {
+        document.getElementById('applicationModal').classList.remove('active');
+    });
+    
+    document.getElementById('modalOkButton').addEventListener('click', function() {
+        document.getElementById('applicationModal').classList.remove('active');
+    });
+    
+    // Close modal when clicking outside
+    document.getElementById('applicationModal').addEventListener('click', function(e) {
+        if (e.target === this) {
+            this.classList.remove('active');
+        }
+    });
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            // Skip if it's a modal close button or similar
+            if (this.classList.contains('modal-close') || 
+                this.classList.contains('modal-ok-button')) {
+                return;
+            }
+            
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            
+            e.preventDefault();
+            
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                // Close mobile menu if open
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+                document.body.style.overflow = 'auto';
+                
+                // Scroll to element
+                targetElement.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+    
+    // Form input validation styling
+    const formInputs = document.querySelectorAll('.form-control, textarea');
+    formInputs.forEach(input => {
+        // Add focus styling
+        input.addEventListener('focus', function() {
+            this.style.borderColor = '#0066ff';
+            this.style.boxShadow = '0 0 0 2px rgba(0, 102, 255, 0.1)';
+        });
+        
+        // Remove focus styling
+        input.addEventListener('blur', function() {
+            this.style.borderColor = '#ddd';
+            this.style.boxShadow = 'none';
+            
+            // Validate on blur
+            if (this.required && !this.value.trim()) {
+                this.style.borderColor = '#ff4444';
+            }
+        });
+        
+        // Real-time validation
+        input.addEventListener('input', function() {
+            if (this.value.trim()) {
+                this.style.borderColor = '#4caf50';
+            } else if (this.required) {
+                this.style.borderColor = '#ff4444';
+            }
+        });
+    });
+    
+    // Auto-save form data to localStorage (prevent data loss)
+    const formFields = document.querySelectorAll('#careerApplicationForm input, #careerApplicationForm select, #careerApplicationForm textarea');
+    
+    // Load saved data
+    window.addEventListener('load', function() {
+        const savedData = localStorage.getItem('careerFormData');
+        if (savedData) {
+            try {
+                const data = JSON.parse(savedData);
+                formFields.forEach(field => {
+                    if (data[field.name] && field.type !== 'file') {
+                        field.value = data[field.name];
+                    }
+                });
+                
+                // Show notification
+                if (Object.keys(data).length > 0) {
+                    showAutoSaveNotification('Previous form data has been restored.');
+                }
+            } catch (e) {
+                console.log('No saved form data found');
+            }
+        }
+    });
+    
+    // Save form data on change
+    formFields.forEach(field => {
+        field.addEventListener('input', saveFormData);
+        field.addEventListener('change', saveFormData);
+    });
+    
+    function saveFormData() {
+        const formData = {};
+        formFields.forEach(field => {
+            if (field.type !== 'file' && field.name) {
+                formData[field.name] = field.value;
+            }
+        });
+        localStorage.setItem('careerFormData', JSON.stringify(formData));
+    }
+    
+    // Clear saved data on successful submission
+    function clearSavedFormData() {
+        localStorage.removeItem('careerFormData');
+    }
+    
+    // Update the success modal function to clear saved data
+    const originalShowSuccessModal = showSuccessModal;
+    showSuccessModal = function(title, message, applicationId) {
+        clearSavedFormData();
+        originalShowSuccessModal(title, message, applicationId);
+    };
+    
+    // Auto-save notification
+    function showAutoSaveNotification(message) {
+        const notification = document.createElement('div');
+        notification.style.cssText = `
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: #0066ff;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 9999;
+            font-size: 0.9rem;
+            animation: slideIn 0.3s ease, fadeOut 0.3s ease 3s forwards;
+        `;
+        
+        notification.innerHTML = `
+            <i class="fas fa-info-circle" style="margin-right: 8px;"></i>
+            ${message}
+        `;
+        
+        document.body.appendChild(notification);
+        
+        // Add animations
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+            @keyframes fadeOut {
+                from {
+                    opacity: 1;
+                }
+                to {
+                    opacity: 0;
+                    transform: translateX(100%);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // Remove after animation
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.parentNode.removeChild(notification);
+            }
+            if (style.parentNode) {
+                style.parentNode.removeChild(style);
+            }
+        }, 4000);
+    }
+    
+    // Detect if user is about to leave page with unsaved data
+    window.addEventListener('beforeunload', function(e) {
+        const formData = localStorage.getItem('careerFormData');
+        if (formData && JSON.parse(formData).name) {
+            e.preventDefault();
+            e.returnValue = 'You have unsaved form data. Are you sure you want to leave?';
+            return e.returnValue;
+        }
+    });
+    
+    // Keyboard shortcuts
+    document.addEventListener('keydown', function(e) {
+        // Ctrl/Cmd + Enter to submit form
+        if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+            const form = document.getElementById('careerApplicationForm');
+            if (form) {
+                const submitEvent = new Event('submit', { cancelable: true });
+                form.dispatchEvent(submitEvent);
+            }
+        }
+        
+        // Escape to close modal
+        if (e.key === 'Escape') {
+            const modal = document.getElementById('applicationModal');
+            if (modal.classList.contains('active')) {
+                modal.classList.remove('active');
+            }
+        }
+    });
+    
+    // Form analytics (track form interactions)
+    let formInteractionStart = null;
+    let fieldInteractions = new Set();
+    
+    document.getElementById('careerApplicationForm').addEventListener('focusin', function(e) {
+        if (!formInteractionStart) {
+            formInteractionStart = Date.now();
+        }
+        
+        if (e.target.name) {
+            fieldInteractions.add(e.target.name);
+        }
+    });
+    
+    // Log form completion metrics on submit
+    const originalFormSubmit = document.getElementById('careerApplicationForm').onsubmit;
+    document.getElementById('careerApplicationForm').addEventListener('submit', function() {
+        if (formInteractionStart) {
+            const timeSpent = Math.round((Date.now() - formInteractionStart) / 1000);
+            const fieldsFilled = fieldInteractions.size;
+            
+            console.log('📊 Form completion metrics:', {
+                timeSpentSeconds: timeSpent,
+                fieldsInteracted: fieldsFilled,
+                totalFields: formFields.length
+            });
+            
+            // Reset metrics
+            formInteractionStart = null;
+            fieldInteractions.clear();
+        }
+    });
+    
+    // Initialize tooltips for form fields
+    const tooltipData = {
+        'applicantName': 'Enter your full name as per official documents',
+        'applicantEmail': 'We will contact you at this email address',
+        'applicantPhone': 'Enter your 10-digit mobile number',
+        'applicantPosition': 'Select the position you are applying for',
+        'applicantEducation': 'e.g., B.Tech CSE 3rd Year, M.Tech ECE 2nd Year',
+        'applicantUniversity': 'Your current or most recent educational institution',
+        'applicantSkills': 'List your technical skills separated by commas',
+        'applicantExperience': 'Describe any relevant projects, internships, or work experience',
+        'applicantPortfolio': 'Link to your GitHub, LinkedIn, or personal website',
+        'applicantMessage': 'Tell us why you are interested in this position',
+        'resume': 'Upload your resume (PDF, DOC, DOCX, JPG, PNG up to 5MB)'
+    };
+    
+    // Add tooltip icons and functionality
+    formFields.forEach(field => {
+        if (tooltipData[field.id]) {
+            const formGroup = field.closest('.form-group');
+            if (formGroup) {
+                const label = formGroup.querySelector('label');
+                if (label) {
+                    const tooltipIcon = document.createElement('span');
+                    tooltipIcon.innerHTML = '<i class="fas fa-info-circle" style="margin-left: 5px; color: #666; cursor: help; font-size: 0.9rem;"></i>';
+                    tooltipIcon.title = tooltipData[field.id];
+                    
+                    // Add tooltip on hover
+                    tooltipIcon.addEventListener('mouseenter', function(e) {
+                        showTooltip(tooltipData[field.id], e.clientX, e.clientY);
+                    });
+                    
+                    tooltipIcon.addEventListener('mouseleave', function() {
+                        hideTooltip();
+                    });
+                    
+                    label.appendChild(tooltipIcon);
+                }
+            }
+        }
+    });
+    
+    // Tooltip functions
+    let currentTooltip = null;
+    
+    function showTooltip(text, x, y) {
+        hideTooltip();
+        
+        currentTooltip = document.createElement('div');
+        currentTooltip.style.cssText = `
+            position: fixed;
+            left: ${x + 10}px;
+            top: ${y + 10}px;
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            max-width: 300px;
+            z-index: 10000;
+            pointer-events: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        `;
+        currentTooltip.textContent = text;
+        document.body.appendChild(currentTooltip);
+    }
+    
+    function hideTooltip() {
+        if (currentTooltip && currentTooltip.parentNode) {
+            currentTooltip.parentNode.removeChild(currentTooltip);
+            currentTooltip = null;
+        }
+    }
+    
+    // Hide tooltip on scroll
+    window.addEventListener('scroll', hideTooltip);
+    
+    // Initialize the page
+    console.log('🚀 Careers page initialized');
+    
+    // Check server health on load
+    async function checkServerHealth() {
+        try {
+            const isLocalhost = window.location.hostname === 'localhost' || 
+                               window.location.hostname === '127.0.0.1';
+            const baseUrl = isLocalhost ? 'http://localhost:3000' : window.location.origin;
+            const response = await fetch(`${baseUrl}/api/health`, { timeout: 5000 });
+            
+            if (response.ok) {
+                console.log('✅ Server is healthy');
+            } else {
+                console.warn('⚠️ Server health check failed:', response.status);
+            }
+        } catch (error) {
+            console.warn('⚠️ Server health check failed:', error.message);
+        }
+    }
+    
+    // Run health check after a delay
+    setTimeout(checkServerHealth, 1000);
+</script>
+</body>
+</html>

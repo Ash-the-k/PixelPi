@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Pixel Pi Admin Panel — Dashboard</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="/images/logo.jpg" type="image/jpeg">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0b10;--surface:#12141d;--surface2:#1a1d2b;--surface3:#222639;--border:#262a3d;--border-hover:#3a3f5c;--primary:#7c5cfc;--primary-light:#9b82fc;--primary-dark:#5b3fd9;--primary-glow:rgba(124,92,252,.15);--accent:#f472b6;--accent-glow:rgba(244,114,182,.15);--success:#34d399;--success-glow:rgba(52,211,153,.12);--warning:#fbbf24;--warning-glow:rgba(251,191,36,.12);--danger:#f87171;--danger-glow:rgba(248,113,113,.12);--text:#f1f5f9;--text2:#94a3b8;--text3:#64748b;--radius:14px;--radius-sm:10px;--shadow:0 8px 32px rgba(0,0,0,.35);--shadow-lg:0 20px 60px rgba(0,0,0,.5)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+/* === LOGIN SCREEN === */
+.login-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--bg);position:relative;overflow:hidden}
+.login-wrap::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:conic-gradient(from 0deg at 50% 50%,transparent 0deg,var(--primary-glow) 60deg,transparent 120deg,var(--accent-glow) 180deg,transparent 240deg,var(--primary-glow) 300deg,transparent 360deg);animation:loginBgSpin 20s linear infinite}
+.login-wrap::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 0%,var(--bg) 70%)}
+@keyframes loginBgSpin{to{transform:rotate(360deg)}}
+
+.login-card{background:var(--surface);border:1px solid var(--border);border-radius:24px;padding:48px 40px;width:100%;max-width:420px;position:relative;z-index:1;box-shadow:var(--shadow-lg);backdrop-filter:blur(20px)}
+.login-card::before{content:'';position:absolute;inset:-1px;border-radius:25px;padding:1px;background:linear-gradient(135deg,var(--primary) 0%,transparent 40%,transparent 60%,var(--accent) 100%);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;opacity:.5}
+.login-logo{text-align:center;margin-bottom:8px}
+.login-logo img{width:52px;height:52px;margin-bottom:12px;filter:drop-shadow(0 0 20px var(--primary-glow))}
+.login-card h1{text-align:center;font-size:26px;font-weight:800;margin-bottom:6px;letter-spacing:-.3px;font-family:'Montserrat',sans-serif}.login-card h1 span{background:linear-gradient(135deg,var(--primary),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.login-card p{text-align:center;color:var(--text3);margin-bottom:32px;font-size:13px;letter-spacing:.3px;text-transform:uppercase}
+.fg{margin-bottom:20px}.fg label{display:block;font-size:12px;font-weight:600;margin-bottom:8px;color:var(--text2);letter-spacing:.5px;text-transform:uppercase}
+.fi{width:100%;padding:13px 16px;background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);font-size:14px;font-family:inherit;outline:none;transition:all .25s ease}
+.fi:focus{border-color:var(--primary);box-shadow:0 0 0 3px var(--primary-glow);background:var(--surface3)}
+.fi::placeholder{color:var(--text3)}
+select.fi{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%2394a3b8' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center}
+textarea.fi{resize:vertical;min-height:80px;font-family:inherit}
+.btn{padding:12px 22px;border:none;border-radius:var(--radius-sm);font-size:14px;font-weight:600;cursor:pointer;transition:all .25s ease;display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:inherit;letter-spacing:.2px}
+.btn-p{background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:#fff;width:100%;position:relative;overflow:hidden}
+.btn-p::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--primary-light),var(--primary));opacity:0;transition:opacity .3s}
+.btn-p:hover::before{opacity:1}
+.btn-p:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(124,92,252,.35)}
+.btn-p:active{transform:translateY(0);box-shadow:none}
+.btn-p span,.btn-p i{position:relative;z-index:1}
+.btn-s{background:var(--surface2);color:var(--text);border:1px solid var(--border)}.btn-s:hover{border-color:var(--primary);background:var(--surface3)}
+.btn-d{background:var(--danger-glow);color:var(--danger);border:1px solid transparent}.btn-d:hover{background:rgba(248,113,113,.2);border-color:rgba(248,113,113,.3)}
+.btn-sm{padding:7px 14px;font-size:12px;border-radius:8px}
+.alert{padding:12px 16px;border-radius:var(--radius-sm);margin-bottom:20px;font-size:13px;display:none;font-weight:500}
+.alert-err{background:var(--danger-glow);color:var(--danger);border:1px solid rgba(248,113,113,.2)}
+.alert-ok{background:var(--success-glow);color:var(--success);border:1px solid rgba(52,211,153,.2)}
+
+/* === DASHBOARD SHELL === */
+.dash{display:none}
+.topbar{height:64px;background:rgba(18,20,29,.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 28px;position:fixed;top:0;left:260px;right:0;z-index:90;transition:left .3s}
+.topbar h2{font-size:15px;font-weight:800;letter-spacing:.2px;font-family:'Montserrat',sans-serif}.topbar h2 span{background:linear-gradient(135deg,var(--primary),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.topbar-r{display:flex;align-items:center;gap:14px}
+.topbar-r span{font-size:12px;color:var(--text3);padding:6px 14px;background:var(--surface2);border-radius:20px;border:1px solid var(--border)}
+
+/* === SIDEBAR === */
+.sidebar{width:260px;height:100vh;background:var(--surface);border-right:1px solid var(--border);position:fixed;top:0;left:0;z-index:100;padding:0;overflow-y:auto;overflow-x:hidden;transition:transform .3s;scrollbar-width:thin;scrollbar-color:var(--surface3) transparent}
+.sb-header{padding:24px 24px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px}
+.sb-header img{width:36px;height:36px}
+.sb-logo{font-size:20px;font-weight:800;letter-spacing:-.5px;font-family:'Montserrat',sans-serif}.sb-logo span{background:linear-gradient(135deg,var(--primary),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.sb-section{padding:0 24px;margin:20px 0 8px;font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:var(--text3);font-weight:700}
+.sb-nav{list-style:none;padding:0 12px}
+.sb-nav li a{display:flex;align-items:center;gap:12px;padding:11px 16px;color:var(--text2);text-decoration:none;border-radius:var(--radius-sm);font-size:13px;font-weight:500;transition:all .2s;margin-bottom:2px;position:relative}
+.sb-nav li a:hover{background:var(--surface2);color:var(--text)}
+.sb-nav li a.active{background:var(--primary-glow);color:var(--primary-light)}
+.sb-nav li a.active::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:3px;height:20px;background:var(--primary);border-radius:0 3px 3px 0}
+.sb-nav li a i{width:18px;text-align:center;font-size:14px;opacity:.8}
+.sb-nav li a.active i{opacity:1}
+
+/* === MAIN CONTENT === */
+.main{margin-left:260px;margin-top:64px;padding:28px;min-height:calc(100vh - 64px);transition:margin-left .3s}
+.page{display:none;animation:fadeIn .35s ease}.page.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.page-title{font-size:24px;font-weight:700;margin-bottom:24px;letter-spacing:-.3px}
+
+/* === STAT CARDS === */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px;margin-bottom:28px}
+.stat{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px;transition:all .3s ease;position:relative;overflow:hidden}
+.stat::after{content:'';position:absolute;top:0;right:0;width:80px;height:80px;border-radius:50%;opacity:.05;transform:translate(20px,-20px)}
+.stat:hover{border-color:var(--border-hover);transform:translateY(-3px);box-shadow:var(--shadow)}
+.stat-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:16px;margin-bottom:14px}
+.stat-val{font-size:30px;font-weight:800;margin-bottom:4px;letter-spacing:-.5px}
+.stat-lbl{font-size:12px;color:var(--text3);font-weight:500;letter-spacing:.3px}
+
+/* === CARDS & TABLES === */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;margin-bottom:20px;transition:border-color .3s}
+.card:hover{border-color:var(--border-hover)}
+.card-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+.card-t{font-size:16px;font-weight:600;letter-spacing:-.2px}
+.tbl{width:100%;border-collapse:collapse}
+.tbl th{text-align:left;padding:12px 14px;font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.8px;border-bottom:1px solid var(--border)}
+.tbl td{padding:12px 14px;font-size:13px;border-bottom:1px solid rgba(38,42,61,.5)}
+.tbl tr{transition:background .2s}.tbl tr:hover{background:var(--surface2)}
+.badge{padding:5px 12px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase}
+.badge-g{background:var(--success-glow);color:var(--success)}
+.badge-y{background:var(--warning-glow);color:var(--warning)}
+.badge-r{background:var(--danger-glow);color:var(--danger)}
+.badge-b{background:var(--primary-glow);color:var(--primary-light)}
+.badge-p{background:var(--accent-glow);color:var(--accent)}
+
+/* === MODALS === */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);display:none;align-items:center;justify-content:center;z-index:200;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.modal-overlay.show{display:flex}
+.modal-box{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:28px;width:90%;max-width:660px;max-height:85vh;overflow-y:auto;box-shadow:var(--shadow-lg);animation:modalIn .3s ease}
+@keyframes modalIn{from{opacity:0;transform:scale(.95) translateY(10px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.modal-box h3{font-size:18px;font-weight:700;margin-bottom:20px;display:flex;justify-content:space-between;align-items:center}
+.modal-box h3 button{background:var(--surface2);border:1px solid var(--border);color:var(--text2);font-size:18px;cursor:pointer;width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.modal-box h3 button:hover{background:var(--danger-glow);color:var(--danger);border-color:rgba(248,113,113,.3)}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+
+/* === GALLERY === */
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:16px}
+.gal-item{position:relative;border-radius:var(--radius-sm);overflow:hidden;background:var(--surface2);border:1px solid var(--border);transition:all .3s;display:flex;flex-direction:column}
+.gal-item:hover{border-color:var(--primary);transform:translateY(-2px);box-shadow:var(--shadow)}
+.gal-img-wrap{position:relative;aspect-ratio:16/10;width:100%;overflow:hidden;background:var(--bg)}
+.gal-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.gal-item:hover .gal-img-wrap img{transform:scale(1.04)}
+.gal-details{padding:12px;flex:1;display:flex;flex-direction:column;justify-content:space-between;gap:8px}
+.gal-title{font-size:13px;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gal-desc{font-size:11px;color:var(--text3);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;line-height:1.4;height:30px}
+.gal-actions{display:flex;gap:6px}
+.gal-actions .btn{flex:1;padding:6px;font-size:11px;border-radius:6px}
+
+/* === MISC === */
+.chart-wrap{height:260px;position:relative}
+.score-ring{width:130px;height:130px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:800;margin:0 auto 14px}
+.empty{text-align:center;padding:48px;color:var(--text3)}.empty i{font-size:28px;margin-bottom:12px;display:block;opacity:.3}
+
+/* === RESPONSIVE === */
+@media(max-width:768px){
+  .sidebar{transform:translateX(-100%)}
+  .sidebar.mobile-open{transform:translateX(0);box-shadow:var(--shadow-lg)}
+  .topbar{left:0}
+  .main{margin-left:0}
+  .grid-2{grid-template-columns:1fr}
+  .stats{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:480px){
+  .stats{grid-template-columns:1fr}
+  .main{padding:16px}
+}
+</style>
+</head>
+<body>
+<!-- Login -->
+<div id="loginScreen" class="login-wrap">
+<div class="login-card">
+<div class="login-logo"><img src="/images/logo.jpg" alt="Pixel Pi Technologies Logo"></div>
+<h1>Pixel <span>Pi</span></h1><p>Admin Dashboard</p>
+<div class="alert alert-err" id="loginAlert"></div>
+<form id="loginForm">
+<div class="fg"><label>Username</label><input class="fi" id="username" placeholder="Enter your username" required autocomplete="username"></div>
+<div class="fg"><label>Password</label><input type="password" class="fi" id="password" placeholder="Enter your password" required autocomplete="current-password"></div>
+<button type="submit" class="btn btn-p"><i class="fas fa-sign-in-alt"></i> <span>Sign In</span></button>
+</form>
+</div>
+</div>
+
+<!-- Dashboard Shell -->
+<div id="dashShell" class="dash">
+<aside class="sidebar">
+<div class="sb-header"><img src="/images/logo.jpg" alt="Logo"><div class="sb-logo">Pixel <span>Pi</span></div></div>
+<div class="sb-section">Main</div>
+<ul class="sb-nav">
+<li><a href="#" class="active" data-page="pgDash"><i class="fas fa-th-large"></i>Dashboard</a></li>
+<li><a href="#" data-page="pgAnalytics"><i class="fas fa-chart-area"></i>Analytics</a></li>
+<li><a href="#" data-page="pgSecurity"><i class="fas fa-shield-alt"></i>Security</a></li>
+</ul>
+<div class="sb-section">Content</div>
+<ul class="sb-nav">
+<li><a href="#" data-page="pgBlog"><i class="fas fa-pen-fancy"></i>Blog Manager</a></li>
+<li><a href="#" data-page="pgGallery"><i class="fas fa-images"></i>Gallery</a></li>
+<li><a href="#" data-page="pgCareers"><i class="fas fa-briefcase"></i>Career Openings</a></li>
+</ul>
+<div class="sb-section">Inbox</div>
+<ul class="sb-nav">
+<li><a href="#" data-page="pgApps"><i class="fas fa-file-alt"></i>Applications</a></li>
+<li><a href="#" data-page="pgContacts"><i class="fas fa-envelope"></i>Contacts</a></li>
+<li><a href="#" data-page="pgCollabs"><i class="fas fa-handshake"></i>Collaborations</a></li>
+</ul>
+<div class="sb-section">System</div>
+<ul class="sb-nav">
+<li><a href="#" data-page="pgAudit"><i class="fas fa-history"></i>Audit Log</a></li>
+<li><a href="#" data-page="pgSettings"><i class="fas fa-cog"></i>Settings</a></li>
+</ul>
+</aside>
+<header class="topbar"><h2>Pixel <span>Pi</span> Admin</h2><div class="topbar-r"><span id="uName"></span><button class="btn btn-sm btn-s" onclick="logout()" title="Sign Out"><i class="fas fa-sign-out-alt"></i></button></div></header>
+<main class="main">
+
+<!-- DASHBOARD -->
+<div id="pgDash" class="page active">
+<h1 class="page-title">Dashboard</h1>
+<div class="stats" id="dStats"></div>
+<div id="dDbWarn"></div>
+<div class="stats" id="dDbStats"></div>
+<div style="display:grid;grid-template-columns:2fr 1fr;gap:16px">
+<div class="card"><div class="card-h"><span class="card-t">Traffic Overview</span></div><div class="chart-wrap"><canvas id="trafficChart"></canvas></div></div>
+<div class="card"><div class="card-h"><span class="card-t">Security Score</span></div><div id="secScore" style="text-align:center;padding:20px"></div></div>
+</div>
+<div class="card"><div class="card-h"><span class="card-t">Recent Activity</span></div><table class="tbl"><thead><tr><th>Action</th><th>User</th><th>Resource</th><th>Time</th></tr></thead><tbody id="dActivity"></tbody></table></div>
+</div>
+
+<!-- ANALYTICS -->
+<div id="pgAnalytics" class="page">
+<h1 class="page-title">Analytics & Traffic</h1>
+<div class="stats" id="aStats"></div>
+<div style="display:grid;grid-template-columns:2fr 1fr;gap:16px">
+<div class="card"><div class="card-h"><span class="card-t">Hourly Traffic</span></div><div class="chart-wrap"><canvas id="hourlyChart"></canvas></div></div>
+<div class="card"><div class="card-h"><span class="card-t">Browsers</span></div><div class="chart-wrap"><canvas id="browserChart"></canvas></div></div>
+</div>
+<div class="card"><div class="card-h"><span class="card-t">Top Pages</span></div><table class="tbl"><thead><tr><th>Page</th><th>Views</th></tr></thead><tbody id="aPages"></tbody></table></div>
+</div>
+
+<!-- SECURITY -->
+<div id="pgSecurity" class="page">
+<h1 class="page-title">Security Monitor</h1>
+<div class="stats" id="sStats"></div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+<div class="card"><div class="card-h"><span class="card-t">Security Score</span></div><div id="secScoreBig" style="text-align:center;padding:20px"></div></div>
+<div class="card"><div class="card-h"><span class="card-t">Protection Status</span></div><div id="protStatus"></div></div>
+</div>
+<div class="card"><div class="card-h"><span class="card-t">Recent Threats</span><div><input class="fi" placeholder="IP to block..." id="blockIpInput" style="width:160px;display:inline-block"><button class="btn btn-sm btn-d" onclick="blockIP()" style="margin-left:8px"><i class="fas fa-ban"></i> Block</button></div></div><table class="tbl"><thead><tr><th>Type</th><th>IP</th><th>Detail</th><th>Time</th></tr></thead><tbody id="sThreats"></tbody></table></div>
+</div>
+
+<!-- BLOG -->
+<div id="pgBlog" class="page">
+<h1 class="page-title">Blog Manager</h1>
+<div class="card"><div class="card-h"><span class="card-t">All Posts</span><button class="btn btn-sm btn-p" onclick="openBlogModal()"><i class="fas fa-plus"></i> <span>New Post</span></button></div><table class="tbl"><thead><tr><th>Title</th><th>Category</th><th>Status</th><th>Views</th><th>Date</th><th>Actions</th></tr></thead><tbody id="bPosts"></tbody></table></div>
+</div>
+
+<!-- GALLERY -->
+<div id="pgGallery" class="page">
+<h1 class="page-title">Gallery Manager</h1>
+<div class="card"><div class="card-h"><span class="card-t">Images</span><label class="btn btn-sm btn-p" style="cursor:pointer"><i class="fas fa-upload"></i> <span>Upload</span><input type="file" id="galUpload" multiple accept="image/*" style="display:none"></label></div><div class="gallery-grid" id="galGrid"></div></div>
+</div>
+
+<!-- CAREER OPENINGS -->
+<div id="pgCareers" class="page">
+<h1 class="page-title">Career Openings</h1>
+<div class="card"><div class="card-h"><span class="card-t">Job Positions</span><button class="btn btn-sm btn-p" onclick="openCareerModal()"><i class="fas fa-plus"></i> <span>New Opening</span></button></div><table class="tbl"><thead><tr><th>Title</th><th>Department</th><th>Type</th><th>Location</th><th>Status</th><th>Actions</th></tr></thead><tbody id="cOpenings"></tbody></table></div>
+</div>
+
+<!-- APPLICATIONS -->
+<div id="pgApps" class="page">
+<h1 class="page-title">Applications</h1>
+<div class="card"><div class="card-h"><span class="card-t">Career Applications</span><div style="display:flex;gap:8px"><input class="fi" id="appSearch" placeholder="Search..." style="width:180px"><select class="fi" id="appFilter" style="width:130px"><option value="all">All Status</option><option value="new">New</option><option value="reviewing">Reviewing</option><option value="shortlisted">Shortlisted</option><option value="hired">Hired</option><option value="rejected">Rejected</option></select></div></div><table class="tbl"><thead><tr><th>ID</th><th>Name</th><th>Email</th><th>Position</th><th>Status</th><th>Date</th><th>Actions</th></tr></thead><tbody id="appList"></tbody></table></div>
+</div>
+
+<!-- CONTACTS -->
+<div id="pgContacts" class="page">
+<h1 class="page-title">Contact Submissions</h1>
+<div class="card"><table class="tbl"><thead><tr><th>Name</th><th>Email</th><th>Subject</th><th>Status</th><th>Date</th><th>Actions</th></tr></thead><tbody id="ctList"></tbody></table></div>
+</div>
+
+<!-- COLLABORATIONS -->
+<div id="pgCollabs" class="page">
+<h1 class="page-title">Collaboration Inquiries</h1>
+<div class="card"><table class="tbl"><thead><tr><th>Name</th><th>Company</th><th>Type</th><th>Status</th><th>Date</th><th>Actions</th></tr></thead><tbody id="coList"></tbody></table></div>
+</div>
+
+<!-- AUDIT -->
+<div id="pgAudit" class="page">
+<h1 class="page-title">Audit Log</h1>
+<div class="card"><table class="tbl"><thead><tr><th>User</th><th>Action</th><th>Resource</th><th>Details</th><th>IP</th><th>Time</th></tr></thead><tbody id="auList"></tbody></table></div>
+</div>
+
+<!-- SETTINGS -->
+<div id="pgSettings" class="page">
+<h1 class="page-title">Settings</h1>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+<div class="card"><h3 class="card-t" style="margin-bottom:18px">System Status</h3><div id="sysStatus"></div></div>
+<div class="card"><h3 class="card-t" style="margin-bottom:18px">Server Info</h3><div id="srvInfo"></div></div>
+</div>
+</div>
+
+</main>
+</div>
+
+<!-- Modals -->
+<div class="modal-overlay" id="blogModal"><div class="modal-box" style="max-width:740px"><h3 id="bmTitle">New Post<button onclick="closeBlogModal()">&times;</button></h3><form id="blogForm">
+<input type="hidden" id="bfId">
+<div class="grid-2"><div class="fg"><label>Title</label><input class="fi" id="bfTitle" placeholder="Post title..." required></div><div class="fg"><label>Category</label><select class="fi" id="bfCat"><option>Technology</option><option>IoT</option><option>Space Tech</option><option>Electronics</option><option>AI & ML</option><option>Tutorials</option><option>Company News</option></select></div></div>
+<div class="fg"><label>Excerpt</label><textarea class="fi" id="bfExcerpt" rows="2" placeholder="Brief description..."></textarea></div>
+<div class="fg"><label>Content (HTML)</label><textarea class="fi" id="bfContent" rows="10" required style="font-family:'JetBrains Mono',monospace,monospace;font-size:12px" placeholder="<p>Your content here...</p>"></textarea></div>
+<div class="grid-2"><div class="fg"><label>Cover Image URL</label><input class="fi" id="bfCover" placeholder="/uploads/blog/..."></div><div class="fg"><label>Author</label><input class="fi" id="bfAuthor" value="PixelPi Team"></div></div>
+<div class="fg"><label>Status</label><select class="fi" id="bfStatus"><option value="draft">Draft</option><option value="published">Published</option></select></div>
+<div style="display:flex;gap:10px"><button type="submit" class="btn btn-p" style="flex:1"><i class="fas fa-save"></i> <span>Save Post</span></button><button type="button" class="btn btn-s" onclick="closeBlogModal()">Cancel</button></div>
+</form></div></div>
+
+<div class="modal-overlay" id="careerModal"><div class="modal-box"><h3 id="cmTitle">New Opening<button onclick="closeCareerModal()">&times;</button></h3><form id="careerForm">
+<input type="hidden" id="cfId">
+<div class="grid-2"><div class="fg"><label>Title</label><input class="fi" id="cfTitle" placeholder="Job title..." required></div><div class="fg"><label>Department</label><input class="fi" id="cfDept" placeholder="e.g. Engineering"></div></div>
+<div class="grid-2"><div class="fg"><label>Location</label><input class="fi" id="cfLoc" value="Bangalore, India"></div><div class="fg"><label>Type</label><select class="fi" id="cfType"><option value="full-time">Full-time</option><option value="part-time">Part-time</option><option value="internship">Internship</option><option value="contract">Contract</option></select></div></div>
+<div class="fg"><label>Experience</label><input class="fi" id="cfExp" placeholder="e.g. 2-4 years"></div>
+<div class="fg"><label>Description</label><textarea class="fi" id="cfDesc" rows="4" placeholder="Job description..."></textarea></div>
+<div class="fg"><label>Requirements</label><textarea class="fi" id="cfReq" rows="4" placeholder="Job requirements..."></textarea></div>
+<div style="display:flex;gap:10px"><button type="submit" class="btn btn-p" style="flex:1"><i class="fas fa-save"></i> <span>Save Opening</span></button><button type="button" class="btn btn-s" onclick="closeCareerModal()">Cancel</button></div>
+</form></div></div>
+
+<div class="modal-overlay" id="appModal"><div class="modal-box"><h3>Application Details<button onclick="el('appModal').classList.remove('show')">&times;</button></h3><div id="appDetail"></div></div></div>
+
+<div class="modal-overlay" id="galEditModal"><div class="modal-box"><h3>Edit Image Details<button onclick="closeGalEditModal()">&times;</button></h3><form id="galEditForm">
+<input type="hidden" id="gefFilename">
+<div class="fg"><label>Title</label><input class="fi" id="gefTitle" placeholder="Enter image title..."></div>
+<div class="fg"><label>Description</label><textarea class="fi" id="gefDesc" rows="3" placeholder="Enter image description..."></textarea></div>
+<div style="display:flex;gap:10px"><button type="submit" class="btn btn-p" style="flex:1"><i class="fas fa-save"></i> <span>Save Details</span></button><button type="button" class="btn btn-s" onclick="closeGalEditModal()">Cancel</button></div>
+</form></div></div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="/js/admin.js?v=2.0.1"></script>
+</body>
+</html>

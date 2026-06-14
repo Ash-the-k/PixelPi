@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /private/
+Disallow: /uploads/
+Disallow: /data/
+Disallow: /api/
+
+Sitemap: https://pixelpitechnologies.in/sitemap.xml

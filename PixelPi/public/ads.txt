@@ -1,0 +1,4 @@
+# PixelPi Technologies - Ads.txt
+# Contact: info@pixelpitechnologies.in
+# No third-party ads currently
+google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0

@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | Pixel Pi Technologies - Insights on IoT, Space Tech & Innovation</title>
+    <meta name="description" content="Explore the latest insights, tutorials, and updates from Pixel Pi Technologies on IoT, embedded systems, space technology, and innovation.">
+    <meta name="keywords" content="IoT blog, embedded systems tutorials, space technology, electronics, Pixel Pi Technologies blog">
+    <meta name="author" content="Pixel Pi Technologies">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Blog | Pixel Pi Technologies">
+    <meta property="og:description" content="Latest insights on IoT, Space Tech & Innovation">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pixelpitechnologies.in/blog">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://pixelpitechnologies.in/blog">
+    <link rel="icon" href="/images/logo.jpg" type="image/jpeg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"Blog","name":"Pixel Pi Technologies Blog","url":"https://pixelpitechnologies.in/blog","description":"Insights on IoT, Space Tech & Innovation","publisher":{"@type":"Organization","name":"Pixel Pi Technologies","logo":{"@type":"ImageObject","url":"https://pixelpitechnologies.in/images/logo.jpg"}}}
+    </script>
+    <style>
+        :root{--primary:#0066ff;--primary-dark:#0055dd;--secondary:#6e44ff;--accent:#ff4d8d;--dark:#1a1a1a;--darker:#101010;--light:#f5f5f7;--gray:#86868b;--card-bg:#ffffff;--glass:rgba(255,255,255,0.7);--border:rgba(0,0,0,0.08);--text:#333333;--transition:all .4s cubic-bezier(.4,0,.2,1)}
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:'Inter',sans-serif;background:var(--light);color:var(--text);line-height:1.7;overflow-x:hidden}
+        a{text-decoration:none;color:inherit}
+
+        /* Animated gradient background */
+        .bg-mesh{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;background:radial-gradient(ellipse at 20% 50%,rgba(0,102,255,.04) 0%,transparent 50%),radial-gradient(ellipse at 80% 20%,rgba(110,68,255,.03) 0%,transparent 50%),radial-gradient(ellipse at 50% 80%,rgba(255,77,141,.02) 0%,transparent 50%),var(--light)}
+
+        /* Header */
+        header{position:fixed;top:0;left:0;width:100%;z-index:1000;background:rgba(255,255,255,0.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:var(--transition)}
+        .container{max-width:1200px;margin:0 auto;padding:0 24px}
+        .navbar{display:flex;justify-content:space-between;align-items:center;padding:16px 0}
+        .logo{font-family:'Montserrat',sans-serif;font-size:22px;font-weight:800;letter-spacing:-0.5px;color:var(--dark);display:flex;align-items:center;gap:10px;text-decoration:none}
+        .logo-img{width:36px;height:36px;object-fit:contain}
+        .logo span{color:var(--primary)}
+        .nav-links{display:flex;list-style:none;gap:28px;align-items:center}
+        .nav-links a{font-size:15px;font-weight:500;color:var(--text);transition:var(--transition);position:relative;text-decoration:none}
+        .nav-links a:hover{color:var(--primary)}
+        .nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--primary);transition:width .3s ease}
+        .nav-links a:hover::after{width:100%}
+        .nav-links a.active{color:var(--primary)}
+        .nav-links a.active::after{width:100%}
+        .cta-button{background:linear-gradient(90deg,var(--primary),var(--secondary));color:#fff;padding:10px 24px;border-radius:50px;font-weight:500;transition:var(--transition);text-decoration:none;font-size:14px}
+        .cta-button:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,102,255,.2)}
+        .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;z-index:1001}
+        .hamburger span{width:24px;height:2px;background:var(--dark);transition:var(--transition)}
+
+        /* Hero */
+        .blog-hero{padding:140px 0 60px;text-align:center;position:relative}
+        .blog-hero h1{font-size:3.2rem;font-weight:800;background:linear-gradient(135deg,var(--dark) 0%,var(--primary) 50%,var(--secondary) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:16px;animation:fadeUp .8s ease forwards}
+        .blog-hero p{font-size:1.15rem;color:var(--gray);max-width:600px;margin:0 auto 32px;animation:fadeUp .8s ease .2s forwards;opacity:0}
+
+        /* Search & Filter */
+        .controls{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:48px;animation:fadeUp .8s ease .3s forwards;opacity:0}
+        .search-box{position:relative;flex:0 1 400px}
+        .search-box input{width:100%;padding:14px 20px 14px 48px;border:1px solid var(--border);border-radius:50px;background:#ffffff;color:var(--dark);font-size:15px;transition:var(--transition);backdrop-filter:blur(10px)}
+        .search-box input:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(0,102,255,.15)}
+        .search-box input::placeholder{color:var(--gray)}
+        .search-box i{position:absolute;left:18px;top:50%;transform:translateY(-50%);color:var(--gray)}
+        .filter-pills{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+        .pill{padding:10px 20px;border-radius:50px;border:1px solid var(--border);background:#ffffff;color:var(--dark);font-size:14px;cursor:pointer;transition:var(--transition);font-weight:500}
+        .pill:hover,.pill.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+
+        /* Blog Grid */
+        .blog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:28px;margin-bottom:48px}
+        .blog-card{background:var(--card-bg);border:1px solid var(--border);border-radius:20px;overflow:hidden;transition:var(--transition);cursor:pointer;position:relative}
+        .blog-card::before{content:'';position:absolute;inset:0;border-radius:20px;background:linear-gradient(135deg,rgba(0,102,255,.05),rgba(110,68,255,.05));opacity:0;transition:opacity .4s ease;z-index:0}
+        .blog-card:hover{transform:translateY(-8px);border-color:rgba(0,102,255,.3);box-shadow:0 20px 60px rgba(0,102,255,.1)}
+        .blog-card:hover::before{opacity:1}
+        .card-image{width:100%;height:220px;object-fit:cover;position:relative;z-index:1;background:linear-gradient(135deg,rgba(0,102,255,.2),rgba(110,68,255,.2))}
+        .card-image img{width:100%;height:100%;object-fit:cover}
+        .card-body{padding:24px;position:relative;z-index:1}
+        .card-meta{display:flex;align-items:center;gap:16px;margin-bottom:12px;font-size:13px;color:var(--gray)}
+        .card-meta .category{color:var(--primary);font-weight:600;text-transform:uppercase;letter-spacing:.5px}
+        .card-meta .dot{width:4px;height:4px;border-radius:50%;background:var(--gray)}
+        .card-body h3{font-size:1.25rem;font-weight:700;color:var(--dark);margin-bottom:10px;line-height:1.4;transition:var(--transition)}
+        .blog-card:hover .card-body h3{color:var(--primary)}
+        .card-body p{color:var(--gray);font-size:.95rem;line-height:1.6;margin-bottom:16px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+        .card-footer{display:flex;justify-content:space-between;align-items:center;padding-top:16px;border-top:1px solid var(--border)}
+        .card-footer .author{font-size:13px;color:var(--dark);font-weight:500}
+        .card-footer .stats{display:flex;gap:12px;font-size:13px;color:var(--gray)}
+        .card-footer .stats i{margin-right:4px}
+
+        /* Loading */
+        .loading{text-align:center;padding:60px 0}
+        .loader{width:40px;height:40px;border:3px solid var(--border);border-top-color:var(--primary);border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 16px}
+
+        /* No posts */
+        .no-posts{text-align:center;padding:80px 0;color:var(--gray)}
+        .no-posts i{font-size:3rem;margin-bottom:16px;color:var(--border)}
+
+        /* Pagination */
+        .pagination{display:flex;justify-content:center;gap:8px;margin-bottom:80px}
+        .page-btn{padding:10px 18px;border:1px solid var(--border);background:transparent;color:var(--text);border-radius:10px;cursor:pointer;transition:var(--transition);font-weight:500}
+        .page-btn.active,.page-btn:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
+
+        /* Blog Detail View */
+        .blog-detail{display:none;max-width:800px;margin:0 auto;padding:120px 24px 80px}
+        .blog-detail.active{display:block}
+        .blog-list.hidden{display:none}
+        .back-btn{display:inline-flex;align-items:center;gap:8px;color:var(--primary);font-weight:500;margin-bottom:32px;cursor:pointer;transition:var(--transition)}
+        .back-btn:hover{gap:12px}
+        .detail-meta{display:flex;align-items:center;gap:16px;margin-bottom:24px;font-size:14px;color:var(--gray);flex-wrap:wrap}
+        .detail-meta .category{color:var(--primary);font-weight:600}
+        .blog-detail h1{font-size:2.5rem;font-weight:800;color:var(--dark);margin-bottom:24px;line-height:1.3}
+        .detail-cover{width:100%;border-radius:16px;margin-bottom:32px;max-height:400px;object-fit:cover}
+        .blog-content{font-size:1.05rem;line-height:1.9;color:var(--text)}
+        .blog-content h2{font-size:1.6rem;color:var(--dark);margin:32px 0 16px;font-weight:700}
+        .blog-content h3{font-size:1.3rem;color:var(--dark);margin:24px 0 12px}
+        .blog-content p{margin-bottom:16px}
+        .blog-content code{background:rgba(0,102,255,.1);padding:2px 8px;border-radius:4px;font-size:.95rem}
+        .blog-content pre{background:#1e1e2f;color:#f8f8f2;padding:20px;border-radius:12px;overflow-x:auto;margin:20px 0}
+        .blog-content img{max-width:100%;border-radius:12px;margin:20px 0}
+
+        .share-bar{display:flex;gap:12px;margin:32px 0;padding:20px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+        .share-btn{padding:10px 20px;border-radius:50px;border:1px solid var(--border);background:transparent;color:var(--text);cursor:pointer;transition:var(--transition);display:flex;align-items:center;gap:8px;font-size:14px}
+        .share-btn:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
+
+        .related-posts{margin-top:48px}
+        .related-posts h2{font-size:1.5rem;color:var(--dark);margin-bottom:24px;font-weight:700}
+        .related-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:20px}
+        .related-card{background:var(--card-bg);border:1px solid var(--border);border-radius:14px;padding:20px;cursor:pointer;transition:var(--transition)}
+        .related-card:hover{border-color:var(--primary);transform:translateY(-4px)}
+        .related-card h4{color:var(--dark);font-size:1rem;margin-bottom:8px}
+        .related-card p{color:var(--gray);font-size:.85rem}
+
+        /* Footer */
+        footer{background:var(--darker);padding:80px 0 30px;position:relative;border-top:none}
+        footer::before{content:'';position:absolute;top:0;left:0;width:100%;height:5px;background:linear-gradient(90deg,var(--primary),var(--secondary),var(--accent))}
+        .footer-content{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:50px;margin-bottom:50px;position:relative;z-index:1}
+        .footer-logo{font-family:'Montserrat',sans-serif;font-size:1.8rem;font-weight:800;letter-spacing:-0.5px;margin-bottom:20px;display:block;color:white;text-decoration:none}
+        .footer-logo span{color:var(--primary)}
+        .footer-about p{color:#ccc;margin-bottom:20px;font-size:0.95rem}
+        .footer-heading{font-size:1.2rem;margin-bottom:20px;color:white}
+        .footer-links{list-style:none}
+        .footer-links li{margin-bottom:10px;display:flex;align-items:center;color:#ccc;font-size:0.95rem}
+        .footer-links i{margin-right:10px;color:var(--primary)}
+        .footer-links a{color:#ccc;transition:var(--transition);font-size:0.95rem;text-decoration:none}
+        .footer-links a:hover{color:var(--primary)}
+        .footer-social{display:flex;gap:15px}
+        .footer-social a{display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.1);color:white;transition:var(--transition);text-decoration:none}
+        .footer-social a:hover{background:var(--primary);transform:translateY(-3px)}
+        .copyright{text-align:center;padding-top:30px;border-top:1px solid rgba(255,255,255,.1);color:#999;font-size:0.9rem}
+
+        @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+        @keyframes spin{to{transform:rotate(360deg)}}
+
+        @media(max-width:768px){
+            .blog-hero h1{font-size:2rem}
+            .blog-grid{grid-template-columns:1fr}
+            .nav-links{display:none}
+            .hamburger{display:flex}
+            .blog-detail h1{font-size:1.8rem}
+            .controls{flex-direction:column;align-items:stretch}
+            .search-box{flex:1}
+            .filter-pills{justify-content:center}
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-mesh"></div>
+
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="/" class="logo">
+                    <img src="/images/logo.jpg" alt="Pixel Pi Technologies Logo" class="logo-img">
+                    Pixel <span>Pi</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="/#services">Services</a></li>
+                    <li><a href="/#collaboration">Collaborate</a></li>
+                    <li><a href="/#vision">Vision</a></li>
+                    <li><a href="/#why-us">Why Us</a></li>
+                    <li><a href="/#gallery">Gallery</a></li>
+                    <li><a href="/blog" class="active">Blog</a></li>
+                    <li><a href="/career">Career</a></li>
+                    <li><a href="/#contact">Contact</a></li>
+                </ul>
+                <a href="/#collaboration" class="cta-button">Partner With Us</a>
+                <div class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('active')">
+                    <span></span><span></span><span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Blog List View -->
+    <div class="blog-list" id="blogList">
+        <section class="blog-hero">
+            <div class="container">
+                <h1>Insights & Innovation</h1>
+                <p>Explore the latest in IoT, embedded systems, space technology, and cutting-edge innovation from our team.</p>
+            </div>
+        </section>
+
+        <div class="container">
+            <div class="controls">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Search articles...">
+                </div>
+                <div class="filter-pills" id="filterPills">
+                    <button class="pill active" data-category="all">All</button>
+                </div>
+            </div>
+
+            <div id="blogGrid" class="blog-grid"></div>
+            <div id="loading" class="loading" style="display:none"><div class="loader"></div><p style="color:var(--gray)">Loading posts...</p></div>
+            <div id="noPosts" class="no-posts" style="display:none"><i class="fas fa-newspaper"></i><h3>No posts found</h3><p>Check back soon for new content!</p></div>
+            <div id="pagination" class="pagination"></div>
+        </div>
+    </div>
+
+    <!-- Blog Detail View -->
+    <div class="blog-detail" id="blogDetail">
+        <div class="back-btn" onclick="showList()"><i class="fas fa-arrow-left"></i> Back to Blog</div>
+        <div id="detailContent"></div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <a href="/" class="footer-logo">Pixel <span>Pi</span></a>
+                    <p>Innovating the Future of Electronics, IoT, Space Technologies, and Building a Sustainable
+                        Electronics Ecosystem in India.</p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Facebook page of Pixel Pi Technologies"><i class="fab fa-facebook-f"
+                                aria-hidden="true"></i></a>
+                        <a href="#" aria-label="Twitter profile of Pixel Pi Technologies"><i class="fab fa-twitter"
+                                aria-hidden="true"></i></a>
+                        <a href="https://www.instagram.com/pixel_pi_technologies?utm_source=ig_web_button_share_sheet&igsh=MWhsYzZwandwOGJtYQ=="
+                            aria-label="Instagram profile of Pixel Pi Technologies"><i class="fab fa-instagram"
+                                aria-hidden="true"></i></a>
+                        <a href="https://www.linkedin.com/company/pixelpi-lab-s-electronics/ "
+                            aria-label="LinkedIn page of Pixel Pi Technologies"><i class="fab fa-linkedin-in"
+                                aria-hidden="true"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3 class="footer-heading">Quick Links</h3>
+                    <ul>
+                        <li><a href="/#services">Services</a></li>
+                        <li><a href="/#collaboration">Collaboration</a></li>
+                        <li><a href="/#vision">Vision & Mission</a></li>
+                        <li><a href="/#industries">Industries</a></li>
+                        <li><a href="/career">Career</a></li>
+                        <li><a href="/blog">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3 class="footer-heading">Services</h3>
+                    <ul>
+                        <li><a href="/#services">IoT & Embedded Systems</a></li>
+                        <li><a href="/#services">Space Technology</a></li>
+                        <li><a href="/#services">PCB Prototyping</a></li>
+                        <li><a href="/#services">Drone Development</a></li>
+                        <li><a href="/#services">AI Solutions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3 class="footer-heading">Contact Us</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt" aria-hidden="true"></i>Bangalore Karnataka India</li>
+                        <li><i class="fas fa-phone" aria-hidden="true"></i> +91 8088959143</li>
+                        <li><i class="fas fa-envelope" aria-hidden="true"></i> info@pixelpitechnologies.in</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 Pixel Pi Technologies. All rights reserved. | <a href="/admin" style="color:var(--primary);text-decoration:none">Admin</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    const API = window.location.origin;
+    let currentPage = 1, currentCategory = 'all', currentSearch = '', allCategories = [];
+
+    async function loadPosts() {
+        const grid = document.getElementById('blogGrid');
+        const loading = document.getElementById('loading');
+        const noPosts = document.getElementById('noPosts');
+        loading.style.display = 'block';
+        grid.innerHTML = '';
+        noPosts.style.display = 'none';
+
+        try {
+            const params = new URLSearchParams({ page: currentPage, limit: 9 });
+            if (currentCategory !== 'all') params.set('category', currentCategory);
+            if (currentSearch) params.set('search', currentSearch);
+
+            const res = await fetch(`${API}/api/blog?${params}`);
+            const data = await res.json();
+            loading.style.display = 'none';
+
+            if (!data.success || !data.data.posts.length) {
+                noPosts.style.display = 'block';
+                document.getElementById('pagination').innerHTML = '';
+                return;
+            }
+
+            // Update category pills
+            if (data.data.categories && data.data.categories.length) {
+                const pills = document.getElementById('filterPills');
+                pills.innerHTML = '<button class="pill ' + (currentCategory === 'all' ? 'active' : '') + '" data-category="all" onclick="filterCategory(\'all\')">All</button>';
+                data.data.categories.forEach(cat => {
+                    pills.innerHTML += `<button class="pill ${currentCategory === cat ? 'active' : ''}" data-category="${cat}" onclick="filterCategory('${cat}')">${cat}</button>`;
+                });
+            }
+
+            data.data.posts.forEach((post, i) => {
+                const tags = typeof post.tags === 'string' ? JSON.parse(post.tags || '[]') : (post.tags || []);
+                const card = document.createElement('div');
+                card.className = 'blog-card';
+                card.style.animation = `fadeUp .5s ease ${i * .08}s forwards`;
+                card.style.opacity = '0';
+                card.onclick = () => showPost(post.slug);
+                card.innerHTML = `
+                    <div class="card-image">${post.cover_image ? `<img src="${post.cover_image}" alt="${post.title}" loading="lazy">` : ''}</div>
+                    <div class="card-body">
+                        <div class="card-meta">
+                            <span class="category">${post.category || 'Technology'}</span>
+                            <span class="dot"></span>
+                            <span>${post.reading_time || 5} min read</span>
+                        </div>
+                        <h3>${post.title}</h3>
+                        <p>${post.excerpt || ''}</p>
+                        <div class="card-footer">
+                            <span class="author">${post.author || 'PixelPi Team'}</span>
+                            <span class="stats"><i class="fas fa-eye"></i>${post.views || 0}<i class="fas fa-calendar" style="margin-left:8px"></i>${post.published_at || ''}</span>
+                        </div>
+                    </div>`;
+                grid.appendChild(card);
+            });
+
+            // Pagination
+            const { page, totalPages } = data.data.pagination;
+            const pagDiv = document.getElementById('pagination');
+            pagDiv.innerHTML = '';
+            if (totalPages > 1) {
+                for (let i = 1; i <= totalPages; i++) {
+                    pagDiv.innerHTML += `<button class="page-btn ${i === page ? 'active' : ''}" onclick="goToPage(${i})">${i}</button>`;
+                }
+            }
+        } catch (e) {
+            loading.style.display = 'none';
+            noPosts.style.display = 'block';
+        }
+    }
+
+    function filterCategory(cat) { currentCategory = cat; currentPage = 1; loadPosts(); }
+    function goToPage(p) { currentPage = p; loadPosts(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+
+    let searchTimeout;
+    document.getElementById('searchInput').addEventListener('input', (e) => {
+        clearTimeout(searchTimeout);
+        searchTimeout = setTimeout(() => { currentSearch = e.target.value; currentPage = 1; loadPosts(); }, 400);
+    });
+
+    async function showPost(slug) {
+        document.getElementById('blogList').classList.add('hidden');
+        const detail = document.getElementById('blogDetail');
+        detail.classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        history.pushState({}, '', `/blog/${slug}`);
+
+        try {
+            const res = await fetch(`${API}/api/blog/${slug}`);
+            const data = await res.json();
+            if (!data.success) throw new Error();
+            const post = data.data.post;
+            const tags = typeof post.tags === 'string' ? JSON.parse(post.tags || '[]') : (post.tags || []);
+
+            document.title = `${post.title} | PixelPi Technologies Blog`;
+
+            let html = `
+                <div class="detail-meta">
+                    <span class="category">${post.category}</span>
+                    <span>${post.reading_time} min read</span>
+                    <span><i class="fas fa-eye"></i> ${post.views} views</span>
+                    <span><i class="fas fa-calendar"></i> ${post.published_at ? new Date(post.published_at).toLocaleDateString('en-US', {year:'numeric',month:'long',day:'numeric'}) : ''}</span>
+                </div>
+                <h1>${post.title}</h1>
+                ${post.cover_image ? `<img class="detail-cover" src="${post.cover_image}" alt="${post.title}">` : ''}
+                <div class="blog-content">${post.content}</div>
+                <div class="share-bar">
+                    <button class="share-btn" onclick="navigator.clipboard.writeText(window.location.href);this.innerHTML='<i class=\\'fas fa-check\\'></i> Copied!'"><i class="fas fa-link"></i> Copy Link</button>
+                    <button class="share-btn" onclick="window.open('https://twitter.com/intent/tweet?url='+encodeURIComponent(location.href)+'&text='+encodeURIComponent('${post.title}'))"><i class="fab fa-twitter"></i> Tweet</button>
+                    <button class="share-btn" onclick="window.open('https://www.linkedin.com/sharing/share-offsite/?url='+encodeURIComponent(location.href))"><i class="fab fa-linkedin"></i> Share</button>
+                </div>`;
+
+            if (data.data.related && data.data.related.length) {
+                html += '<div class="related-posts"><h2>Related Posts</h2><div class="related-grid">';
+                data.data.related.forEach(r => {
+                    html += `<div class="related-card" onclick="showPost('${r.slug}')"><h4>${r.title}</h4><p>${r.category} &bull; ${r.published_at || ''}</p></div>`;
+                });
+                html += '</div></div>';
+            }
+            document.getElementById('detailContent').innerHTML = html;
+        } catch (e) {
+            document.getElementById('detailContent').innerHTML = '<div class="no-posts"><i class="fas fa-exclamation-circle"></i><h3>Post not found</h3></div>';
+        }
+    }
+
+    function showList() {
+        document.getElementById('blogList').classList.remove('hidden');
+        document.getElementById('blogDetail').classList.remove('active');
+        document.title = 'Blog | PixelPi Technologies';
+        history.pushState({}, '', '/blog');
+    }
+
+    // Handle URL-based routing
+    window.addEventListener('DOMContentLoaded', () => {
+        const path = window.location.pathname;
+        if (path.startsWith('/blog/') && path.length > 6) {
+            showPost(path.replace('/blog/', ''));
+        } else {
+            loadPosts();
+        }
+    });
+
+    window.addEventListener('popstate', () => {
+        const path = window.location.pathname;
+        if (path === '/blog' || path === '/blog/') { showList(); loadPosts(); }
+        else if (path.startsWith('/blog/')) showPost(path.replace('/blog/', ''));
+    });
+    </script>
+</body>
+</html>

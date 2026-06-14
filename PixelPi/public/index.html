@@ -1,0 +1,3466 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Enhanced SEO Meta Tags -->
+    <title>Pixel Pi Technologies | IoT, Embedded Systems & Space Technology Solutions</title>
+    <meta name="description"
+        content="Pixel Pi Technologies - Innovating IoT, Embedded Systems, Space Technology, Electronics, PCB Design, Drones & AI Solutions. Building India's Electronics Ecosystem.">
+    <meta name="keywords"
+        content="IoT solutions, embedded systems, space technology, electronics design, PCB prototyping, drone development, AI automation, technology innovation, India electronics, startup incubation">
+    <meta name="author" content="Pixel Pi Technologies">
+    <meta name="robots" content="index, follow">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://pixelpitechnologies.in/">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Pixel Pi Technologies | Precision and Intelligence in Every Technology">
+    <meta property="og:description"
+        content="Innovating the Future of Electronics, IoT & Space Technologies. Building India's Sustainable Electronics Ecosystem.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pixelpitechnologies.in/">
+    <meta property="og:image" content="https://pixelpitechnologies.in/images/og-image.jpg">
+    <meta property="og:site_name" content="Pixel Pi Technologies">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Pixel Pi Technologies | IoT & Space Technology Solutions">
+    <meta name="twitter:description"
+        content="Innovating IoT, Embedded Systems, Space Technology, Electronics, PCB Design, Drones & AI Solutions in India.">
+    <meta name="twitter:image" content="https://pixelpitechnologies.in/images/twitter-image.jpg">
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/images/logo.jpg" type="image/jpeg">
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+
+    <!-- Preconnect for faster loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+
+    <!-- Sitemap Link -->
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
+
+    <!-- Your existing CSS and font links -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Pixel Pi Technologies",
+      "url": "https://pixelpitechnologies.in",
+      "logo": "https://pixelpitechnologies.in/images/logo.jpg",
+      "description": "Precision and Intelligence in every technology. Innovating the Future of Electronics, IoT & Space Technologies. MSME Registered.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Bangalore",
+        "addressRegion": "Karnataka",
+        "addressCountry": "IN"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+91-8088959143",
+        "contactType": "Customer service"
+      },
+      "sameAs": [
+        "https://www.instagram.com/pixel_pi_technologies",
+        "https://www.linkedin.com/company/pixelpi-lab-s-electronics/"
+      ]
+    }
+    </script>
+    <style>
+        :root {
+            --primary: #0066ff;
+            --primary-dark: #0055dd;
+            --secondary: #6e44ff;
+            --accent: #ff4d8d;
+            --success: #4caf50;
+            --warning: #ff9800;
+            --dark: #1a1a1a;
+            --darker: #101010;
+            --light: #f5f5f7;
+            --gray: #86868b;
+            --transition: all 0.3s ease;
+            --card-bg: #ffffff;
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html.lenis {
+            height: auto;
+        }
+
+        .lenis.lenis-smooth {
+            scroll-behavior: auto;
+        }
+
+        .lenis.lenis-smooth [data-lenis-prevent] {
+            overscroll-behavior: contain;
+        }
+
+        .lenis.lenis-stopped {
+            overflow: hidden;
+        }
+
+        .lenis.lenis-scrolling iframe {
+            pointer-events: none;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--dark);
+            background-color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Particle Background */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        /* WhatsApp Floating Button - Multiple solutions */
+        /* Solution 1: Direct WhatsApp Link */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 100px;
+            /* Changed from 30px to 100px to avoid overlap with back to top */
+            left: 30px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            animation: pulse-whatsapp 2s infinite;
+            border: 3px solid #fff;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+        }
+
+        .whatsapp-float:hover {
+            background-color: #128c7e;
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4);
+            animation: none;
+        }
+
+        .whatsapp-float:active {
+            transform: scale(0.95);
+        }
+
+        .whatsapp-float .whatsapp-text {
+            position: absolute;
+            right: 70px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #25d366;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            white-space: nowrap;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .whatsapp-float:hover .whatsapp-text {
+            opacity: 1;
+            visibility: visible;
+            right: 75px;
+        }
+
+        .whatsapp-float .whatsapp-text::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: -6px;
+            transform: translateY(-50%);
+            border-width: 6px 0 6px 6px;
+            border-style: solid;
+            border-color: transparent transparent transparent #25d366;
+        }
+
+        /* Solution 2: WhatsApp API Link (works better on mobile) */
+        .whatsapp-link {
+            display: none;
+            /* Hidden by default, will be shown via JavaScript */
+        }
+
+        /* Solution 3: Touch-friendly WhatsApp button */
+        .whatsapp-touch {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 100px;
+            right: 30px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            animation: pulse-whatsapp 2s infinite;
+            border: 3px solid #fff;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
+
+        @keyframes pulse-whatsapp {
+            0% {
+                box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+            }
+
+            50% {
+                box-shadow: 0 10px 30px rgba(37, 211, 102, 0.5);
+            }
+
+            100% {
+                box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+            }
+        }
+
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+            transform: translateX(-100%);
+            transition: transform 0.5s ease;
+        }
+
+        .logo:hover::after {
+            transform: translateX(0);
+        }
+
+        .logo-img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+            object-fit: contain;
+            transition: var(--transition);
+        }
+
+        .logo:hover .logo-img {
+            transform: rotate(15deg);
+        }
+
+        .logo span {
+            color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .logo:hover span {
+            color: var(--secondary);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin: 0 15px;
+            position: relative;
+        }
+
+        .nav-links a {
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--dark);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: width 0.3s ease;
+            z-index: 1;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a.active {
+            color: var(--primary);
+        }
+
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            height: 3px;
+            width: 100%;
+            background-color: var(--dark);
+            border-radius: 3px;
+            transition: var(--transition);
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+
+        .cta-button {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--secondary), var(--primary));
+            transition: left 0.5s ease;
+            z-index: -1;
+        }
+
+        .cta-button:hover::before {
+            left: 0;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(110, 68, 255, 0.1) 0%, rgba(0, 102, 255, 0.1) 100%);
+            z-index: -1;
+        }
+
+        .hero-content {
+            max-width: 650px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1s ease forwards 0.5s;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            color: var(--gray);
+            margin-bottom: 30px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .secondary-button {
+            border: 2px solid var(--dark);
+            color: var(--dark);
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .secondary-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: var(--dark);
+            transition: width 0.3s ease;
+            z-index: -1;
+        }
+
+        .secondary-button:hover::before {
+            width: 100%;
+        }
+
+        .secondary-button:hover {
+            color: white;
+        }
+
+        /* Animated Background Elements */
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .shape {
+            position: absolute;
+            opacity: 0.1;
+            animation: float 15s infinite linear;
+        }
+
+        .shape-1 {
+            width: 100px;
+            height: 100px;
+            top: 20%;
+            left: 10%;
+            background: var(--primary);
+            border-radius: 50%;
+            animation-delay: 0s;
+            animation-duration: 20s;
+        }
+
+        .shape-2 {
+            width: 150px;
+            height: 150px;
+            top: 60%;
+            left: 80%;
+            background: var(--secondary);
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            animation-delay: -5s;
+            animation-duration: 25s;
+        }
+
+        .shape-3 {
+            width: 80px;
+            height: 80px;
+            top: 70%;
+            left: 15%;
+            background: var(--accent);
+            border-radius: 50%;
+            animation-delay: -10s;
+            animation-duration: 15s;
+        }
+
+        .shape-4 {
+            width: 120px;
+            height: 120px;
+            top: 15%;
+            left: 75%;
+            background: var(--primary);
+            border-radius: 50%;
+            animation-delay: -15s;
+            animation-duration: 30s;
+        }
+
+        /* Sections */
+        section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Services - Updated with new animation */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(30px);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 0;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            transition: height 0.5s ease;
+            z-index: -1;
+            opacity: 0.05;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-card:hover::before {
+            height: 100%;
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            transition: var(--transition);
+            display: inline-block;
+        }
+
+        .service-card:hover .service-icon {
+            color: var(--secondary);
+            transform: scale(1.2) rotate(5deg);
+            animation: pulse 1s infinite alternate;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            transition: var(--transition);
+            color: var(--dark);
+        }
+
+        .service-card:hover h3 {
+            color: var(--primary);
+        }
+
+        .service-card p {
+            color: var(--gray);
+            transition: var(--transition);
+        }
+
+        /* Collaboration Section */
+        .collaboration {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        .collaboration-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .collab-option {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            text-align: center;
+            opacity: 0;
+            transform: translateY(30px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .collab-option::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: height 0.3s ease;
+        }
+
+        .collab-option:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .collab-option:hover::before {
+            height: 100%;
+            opacity: 0.1;
+        }
+
+        .collab-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            transition: var(--transition);
+        }
+
+        .collab-option:hover .collab-icon {
+            color: var(--secondary);
+            transform: scale(1.1);
+        }
+
+        .collab-option h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .collab-option p {
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+
+        .collab-features {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 25px;
+        }
+
+        .collab-features li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .collab-features i {
+            color: var(--success);
+            margin-right: 10px;
+        }
+
+        .collab-button {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 100%;
+        }
+
+        .collab-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Partnership Process */
+        .process-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+            position: relative;
+        }
+
+        .process-steps::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            z-index: -1;
+        }
+
+        .process-step {
+            text-align: center;
+            width: 200px;
+            position: relative;
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .step-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .step-description {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Stats Section */
+        .stats {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stats::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.05)"/></svg>');
+            background-size: 100% 100%;
+        }
+
+        .stats .section-title h2 {
+            color: white;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .stat {
+            padding: 30px;
+            opacity: 0;
+            transform: translateY(30px);
+            position: relative;
+            z-index: 1;
+        }
+
+        .stat::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .stat-text {
+            font-size: 1.2rem;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            position: relative;
+            overflow: hidden;
+            background-color: var(--darker);
+            color: white;
+        }
+
+        .gallery .section-title h2 {
+            color: white;
+        }
+
+        .gallery-container {
+            width: 100%;
+            height: 550px;
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+            background: #000;
+        }
+
+        .gallery-track {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .gallery-slide {
+            flex: 0 0 100%;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: flex-end;
+            padding: 50px;
+            box-sizing: border-box;
+        }
+
+        .slide-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+            transform: scale(1.1);
+            z-index: 1;
+        }
+
+        .gallery-slide.active .slide-bg {
+            transform: scale(1.03);
+        }
+
+        /* Dark overlay for readability */
+        .gallery-slide::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.1) 100%);
+            z-index: 2;
+            transition: opacity 0.8s ease;
+        }
+
+        .slide-content {
+            position: relative;
+            z-index: 3;
+            max-width: 600px;
+            transform: translateY(30px);
+            opacity: 0;
+            transition: all 0.7s cubic-bezier(0.25, 1, 0.5, 1) 0.2s;
+            background: rgba(255, 255, 255, 0.08);
+            padding: 30px;
+            border-radius: 20px;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .gallery-slide.active .slide-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .slide-content h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #fff;
+            letter-spacing: -0.5px;
+        }
+
+        .slide-content p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.05rem;
+            line-height: 1.5;
+        }
+
+        /* Next/Prev Navigation Buttons */
+        .gallery-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+            opacity: 0;
+            visibility: hidden;
+            outline: none;
+        }
+
+        .gallery-container:hover .gallery-arrow {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .gallery-arrow:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-50%) scale(1.08);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .gallery-arrow-prev {
+            left: 24px;
+        }
+
+        .gallery-arrow-next {
+            right: 24px;
+        }
+
+        .gallery-arrow i {
+            font-size: 1.2rem;
+        }
+
+        /* Apple TV+ Style capsule progress indicators */
+        .gallery-nav {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            z-index: 10;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 8px 16px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .gallery-dot {
+            width: 40px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.25);
+            border-radius: 2px;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .gallery-dot-progress {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 0%;
+            background: #fff;
+            border-radius: 2px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--light);
+            color: var(--dark);
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* Contact Form Section */
+        .contact {
+            background-color: var(--darker);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+            opacity: 0.1;
+            border-radius: 50%;
+        }
+
+        .contact::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, var(--secondary) 0%, transparent 70%);
+            opacity: 0.1;
+            border-radius: 50%;
+        }
+
+        .contact .section-title h2 {
+            color: white;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-info {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .contact-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .contact-details {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .contact-details li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-details i {
+            margin-right: 15px;
+            color: var(--primary);
+            font-size: 1.2rem;
+            width: 20px;
+        }
+
+        .contact-form {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 20px;
+            opacity: 0;
+            transform: translateY(30px);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 0 2px var(--primary);
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-button {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .submit-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--secondary), var(--primary));
+            transition: left 0.5s ease;
+            z-index: -1;
+        }
+
+        .submit-button:hover::before {
+            left: 0;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Industries */
+        .industries {
+            background-color: #f8f9fa;
+            position: relative;
+        }
+
+        .industries::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,100 L0,100 Z" fill="rgba(0,0,0,0.02)"/></svg>');
+            background-size: 100% 100%;
+            z-index: -1;
+        }
+
+        .industries-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .industry {
+            text-align: center;
+            padding: 25px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.03);
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(30px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .industry:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        .industry-icon {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            transition: var(--transition);
+        }
+
+        .industry:hover .industry-icon {
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        .industry h3 {
+            font-size: 1.2rem;
+        }
+
+        /* Newsletter Section */
+        .newsletter {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+            color: white;
+            text-align: center;
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .newsletter::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 C30,100 70,0 100,100 L100,0 Z" fill="rgba(255,255,255,0.05)"/></svg>');
+            background-size: 100% 100%;
+        }
+
+        .newsletter .section-title h2 {
+            color: white;
+        }
+
+        .newsletter-form {
+            max-width: 500px;
+            margin: 0 auto;
+            display: flex;
+            gap: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .newsletter-button {
+            background: var(--dark);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .newsletter-button:hover {
+            background: black;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--darker);
+            color: white;
+            padding: 80px 0 30px;
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 50px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 20px;
+            display: block;
+            color: white;
+            text-decoration: none;
+        }
+
+        .footer-logo span {
+            color: var(--primary);
+        }
+
+        .footer-about p {
+            color: #ccc;
+            margin-bottom: 20px;
+        }
+
+        .footer-heading {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-links i {
+            margin-right: 10px;
+            color: var(--primary);
+        }
+
+        .footer-links a {
+            color: #ccc;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+        }
+
+        .footer-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            transition: var(--transition);
+        }
+
+        .footer-social a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 999;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+
+        /* Message Box */
+        .message-box {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            border-radius: 10px;
+            background: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .message-box.show {
+            transform: translateX(0);
+        }
+
+        .message-box.success {
+            border-left: 4px solid #4caf50;
+        }
+
+        .message-box.error {
+            border-left: 4px solid #f44336;
+        }
+
+        .message-icon {
+            font-size: 1.2rem;
+        }
+
+        .success .message-icon {
+            color: #4caf50;
+        }
+
+        .error .message-icon {
+            color: #f44336;
+        }
+
+        /* Loading Spinner */
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-left-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+            display: none;
+        }
+
+        /* Modal */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 500px;
+            width: 90%;
+            transform: translateY(50px);
+            transition: transform 0.5s ease;
+            position: relative;
+        }
+
+        .modal.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gray);
+            transition: var(--transition);
+        }
+
+        .modal-close:hover {
+            color: var(--dark);
+        }
+
+        .modal-title {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+
+        .modal-form .form-group {
+            margin-bottom: 20px;
+        }
+
+        .modal-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .modal-form input,
+        .modal-form textarea,
+        .modal-form select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .modal-form input:focus,
+        .modal-form textarea:focus,
+        .modal-form select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(0, 102, 255, 0.2);
+        }
+
+        .modal-button {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 100%;
+        }
+
+        .modal-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Vision & Mission Section */
+        .vm-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+        }
+
+        .vm-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(30px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .vm-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 0;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+            transition: height 0.5s ease;
+            z-index: 1;
+        }
+
+        .vm-card:hover::before {
+            height: 100%;
+        }
+
+        .vm-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .vm-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+            position: relative;
+            z-index: 2;
+        }
+
+        .vm-card p {
+            color: var(--gray);
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Why Choose Us Section */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .feature {
+            text-align: center;
+            padding: 30px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .feature:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            transition: var(--transition);
+            display: inline-block;
+        }
+
+        .feature:hover .feature-icon {
+            color: var(--secondary);
+            transform: scale(1.2);
+        }
+
+        .feature h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+            position: relative;
+            z-index: 2;
+        }
+
+        .feature p {
+            color: var(--gray);
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Animations */
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(10deg);
+            }
+
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes glow {
+            0% {
+                box-shadow: 0 0 5px rgba(0, 102, 255, 0.5);
+            }
+
+            50% {
+                box-shadow: 0 0 20px rgba(0, 102, 255, 0.8);
+            }
+
+            100% {
+                box-shadow: 0 0 5px rgba(0, 102, 255, 0.5);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: white;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: left 0.3s ease;
+                gap: 30px;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .gallery-container {
+                height: 400px;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .process-steps {
+                flex-direction: column;
+                align-items: center;
+                gap: 40px;
+            }
+
+            .process-steps::before {
+                display: none;
+            }
+
+            .process-step {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .vm-container {
+                grid-template-columns: 1fr;
+            }
+
+            /* WhatsApp button responsive */
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                bottom: 90px;
+                /* Adjusted for mobile */
+                left: 20px;
+                font-size: 24px;
+            }
+
+            .whatsapp-float .whatsapp-text {
+                font-size: 12px;
+                padding: 6px 12px;
+                border-radius: 15px;
+            }
+
+            .whatsapp-float:hover .whatsapp-text {
+                right: 65px;
+            }
+
+            .whatsapp-touch {
+                width: 50px;
+                height: 50px;
+                bottom: 90px;
+                right: 20px;
+                font-size: 24px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .gallery-container {
+                height: 300px;
+            }
+
+            .slide-content {
+                padding: 15px;
+                max-width: 100%;
+            }
+
+            .slide-content h3 {
+                font-size: 1.2rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+            }
+
+            .collaboration-options {
+                grid-template-columns: 1fr;
+            }
+
+            /* Adjust WhatsApp button for mobile */
+            .whatsapp-float {
+                width: 45px;
+                height: 45px;
+                bottom: 85px;
+                /* Adjusted for mobile */
+                left: 15px;
+                font-size: 22px;
+            }
+
+            .whatsapp-float .whatsapp-text {
+                display: none;
+                /* Hide text on mobile */
+            }
+
+            .whatsapp-touch {
+                width: 45px;
+                height: 45px;
+                bottom: 85px;
+                right: 15px;
+                font-size: 22px;
+            }
+
+            /* Adjust back to top button position */
+            .back-to-top {
+                bottom: 80px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .service-card,
+            .feature,
+            .industry,
+            .collab-option,
+            .vm-card {
+                padding: 20px;
+            }
+
+            .floating-shapes {
+                display: none;
+            }
+
+            .modal-content {
+                padding: 30px 20px;
+            }
+
+            /* Further adjust for small screens */
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                bottom: 90px;
+                left: 20px;
+                font-size: 24px;
+                border: 3px solid #fff;
+            }
+
+            .whatsapp-touch {
+                width: 50px;
+                height: 50px;
+                bottom: 90px;
+                right: 20px;
+                font-size: 24px;
+                border: 3px solid #fff;
+            }
+
+            .back-to-top {
+                bottom: 30px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .whatsapp-float {
+                width: 45px;
+                height: 45px;
+                bottom: 85px;
+                left: 15px;
+                font-size: 22px;
+            }
+
+            .whatsapp-touch {
+                width: 45px;
+                height: 45px;
+                bottom: 85px;
+                right: 15px;
+                font-size: 22px;
+            }
+
+            .back-to-top {
+                bottom: 30px;
+                right: 15px;
+                width: 40px;
+                height: 40px;
+            }
+        }
+
+        /* Skip to content link for accessibility */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--primary);
+            color: white;
+            padding: 8px;
+            z-index: 100;
+            transition: top 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Particle Background -->
+    <div id="particles-js"></div>
+
+    <!-- Floating Shapes -->
+    <div class="floating-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+        <div class="shape shape-4"></div>
+    </div>
+
+    <!-- WhatsApp Floating Button (Multiple solutions) -->
+
+    <!-- Solution 1: Direct WhatsApp Link (for desktop and modern mobile browsers) -->
+    <a href="https://wa.me/918088959143?text=Hello%20Pixel%20Pi%20Technologies!%20I%20would%20like%20to%20inquire%20about%20your%20services."
+        class="whatsapp-float" target="_blank" rel="noopener noreferrer"
+        aria-label="Contact Pixel Pi Technologies on WhatsApp" id="whatsappDesktop">
+        <i class="fab fa-whatsapp" aria-hidden="true"></i>
+        <span class="whatsapp-text">Chat with us</span>
+    </a>
+
+    <!-- Solution 2: WhatsApp API Link (for mobile devices) -->
+    <a href="whatsapp://send?phone=918088959143&text=Hello%20Pixel%20Pi%20Technologies!%20I%20would%20like%20to%20inquire%20about%20your%20services."
+        class="whatsapp-link" id="whatsappMobile" aria-label="Contact Pixel Pi Technologies on WhatsApp">
+    </a>
+
+    <!-- Solution 3: Touch-friendly button with JavaScript fallback -->
+    <div class="whatsapp-touch" id="whatsappTouch" aria-label="Contact on WhatsApp">
+        <i class="fab fa-whatsapp" aria-hidden="true"></i>
+    </div>
+
+    <!-- Skip to content link for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Header & Navigation -->
+    <header id="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="/" class="logo">
+                    <img src="/images/logo.jpg" alt="Pixel Pi Technologies Logo" class="logo-img">
+                    Pixel <span>Pi</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#collaboration">Collaborate</a></li>
+                    <li><a href="#vision">Vision</a></li>
+                    <li><a href="#why-us">Why Us</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="career.html">Career</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <a href="#collaboration" class="cta-button">Partner With Us</a>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="main-content">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Precision and Intelligence in Every Technology We Build</h1>
+                <p>Innovating the Future of Electronics, IoT, Space Technologies, and Building a Sustainable Electronics
+                    Ecosystem in India</p>
+                <div class="hero-buttons">
+                    <a href="#services" class="cta-button">Explore Our Services</a>
+                    <a href="#collaboration" class="secondary-button">Collaborate With Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>What We Do</h2>
+                <p>Comprehensive technology solutions for the future</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-microchip" aria-hidden="true"></i>
+                    </div>
+                    <h3>IoT & Embedded Systems</h3>
+                    <p>ESP32, Arduino, STM, Raspberry Pi, ARM, PIC development for innovative connected solutions.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-satellite" aria-hidden="true"></i>
+                    </div>
+                    <h3>Space & Satellite Research</h3>
+                    <p>Mini Satellites, CubeSats, Ground Stations, and Communication Systems for space exploration.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-project-diagram" aria-hidden="true"></i>
+                    </div>
+                    <h3>Custom Electronics & PCB</h3>
+                    <p>Tailored designs for innovation and scalability in electronic product development.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-helicopter" aria-hidden="true"></i>
+                    </div>
+                    <h3>Drones & Autonomous Systems</h3>
+                    <p>Intelligent UAVs and robotics with Autonomous and AI capabilities.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-cloud" aria-hidden="true"></i>
+                    </div>
+                    <h3>Web & Cloud Solutions</h3>
+                    <p>IoT dashboards, cloud servers, and secure system integrations for seamless operations.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-robot" aria-hidden="true"></i>
+                    </div>
+                    <h3>AI & Automation</h3>
+                    <p>Smart solutions for industries and startups to optimize processes and increase efficiency.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Collaboration Section -->
+    <section id="collaboration" class="collaboration">
+        <div class="container">
+            <div class="section-title">
+                <h2>Collaboration Opportunities</h2>
+                <p>Partner with us to create innovative technology solutions</p>
+            </div>
+
+            <div class="collaboration-options">
+                <div class="collab-option">
+                    <div class="collab-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Industry Partnership</h3>
+                    <p>Collaborate with us for commercial product development and market research.</p>
+                    <ul class="collab-features">
+                        <li><i class="fas fa-check"></i> Co-development of IoT products</li>
+                        <li><i class="fas fa-check"></i> Manufacturing partnership</li>
+                        <li><i class="fas fa-check"></i> Product commercialization</li>
+                        <li><i class="fas fa-check"></i> Technology transfer</li>
+                    </ul>
+                    <button class="collab-button" data-type="industry">Explore Partnership</button>
+                </div>
+
+                <div class="collab-option">
+                    <div class="collab-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Academic Collaboration</h3>
+                    <p>Partner with educational institutions for research and development projects.</p>
+                    <ul class="collab-features">
+                        <li><i class="fas fa-check"></i> Student internship programs</li>
+                        <li><i class="fas fa-check"></i> Joint research papers</li>
+                        <li><i class="fas fa-check"></i> Workshop organization</li>
+                        <li><i class="fas fa-check"></i> Curriculum development</li>
+                    </ul>
+                    <button class="collab-button" data-type="academic">Explore Collaboration</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Successful Projects</h2>
+            </div>
+            <div class="stats-grid">
+                <div class="stat">
+                    <div class="stat-number" data-target="10">0</div>
+                    <div class="stat-text">Projects Completed</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number" data-target="30">0</div>
+                    <div class="stat-text">Happy Clients</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number" data-target="2">0</div>
+                    <div class="stat-text">Collaborations</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number" data-target="2">0</div>
+                    <div class="stat-text">Research Papers</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vision & Mission Section -->
+    <section id="vision" class="vision-mission">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Vision & Mission</h2>
+                <p>Driving innovation with purpose and precision</p>
+            </div>
+            <div class="vm-container">
+                <div class="vm-card">
+                    <h3>Our Vision</h3>
+                    <p>To become India's leading innovation hub in IoT, electronics, and space technologies empowering
+                        students, makers, and industries to transform futuristic ideas into reality with affordable,
+                        reliable, and advanced solutions, while building a strong and sustainable electronics ecosystem
+                        in India.</p>
+                </div>
+                <div class="vm-card">
+                    <h3>Our Mission</h3>
+                    <p>To drive innovation in IoT, embedded systems, and space technologies through practical,
+                        real-world applications. To empower students and startups with project guidance, rapid
+                        prototyping, and product development. To create sustainable, affordable, and advanced solutions
+                        that strengthen education, healthcare, defense, aerospace, research, and the electronics
+                        ecosystem in India.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section id="why-us" class="why-us">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Choose Pixel Pi?</h2>
+                <p>Excellence in every aspect of our service</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-lightbulb" aria-hidden="true"></i>
+                    </div>
+                    <h3>Innovation-Driven</h3>
+                    <p>Cutting-edge solutions at the core of everything we do</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-hand-holding-usd" aria-hidden="true"></i>
+                    </div>
+                    <h3>Affordable & Scalable</h3>
+                    <p>Cost-effective solutions that grow with your needs</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-handshake" aria-hidden="true"></i>
+                    </div>
+                    <h3>Strong Collaboration</h3>
+                    <p>Working closely with students, startups, and industries</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-users" aria-hidden="true"></i>
+                    </div>
+                    <h3>Customer-First Approach</h3>
+                    <p>Friendly, transparent, and supportive at every step</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Work Gallery</h2>
+                <p>Showcasing our innovative projects and solutions</p>
+            </div>
+            <div class="gallery-container">
+                <!-- Navigation Arrows -->
+                <button class="gallery-arrow gallery-arrow-prev" aria-label="Previous Slide"><i
+                        class="fas fa-chevron-left"></i></button>
+                <button class="gallery-arrow gallery-arrow-next" aria-label="Next Slide"><i
+                        class="fas fa-chevron-right"></i></button>
+
+                <div class="gallery-track">
+                    <div class="gallery-slide active">
+                        <div class="slide-bg" style="background-image: url('images/Smart.jpg');"></div>
+                        <div class="slide-content">
+                            <h3>IoT Smart Home System</h3>
+                            <p>Complete home automation solution with energy monitoring and AI-powered optimization</p>
+                        </div>
+                    </div>
+                    <div class="gallery-slide">
+                        <div class="slide-bg" style="background-image: url('images/Cubic.jpg');"></div>
+                        <div class="slide-content">
+                            <h3>CubeSat Development</h3>
+                            <p>Miniature satellite for atmospheric research and communication experiments</p>
+                        </div>
+                    </div>
+                    <div class="gallery-slide">
+                        <div class="slide-bg" style="background-image: url('images/Industrial.jpg');"></div>
+                        <div class="slide-content">
+                            <h3>Industrial Automation</h3>
+                            <p>AI-powered robotic arm for precision manufacturing and assembly</p>
+                        </div>
+                    </div>
+                    <div class="gallery-slide">
+                        <div class="slide-bg" style="background-image: url('images/Auto.jpg');"></div>
+                        <div class="slide-content">
+                            <h3>Autonomous Drone</h3>
+                            <p>AI-powered UAV for agricultural monitoring and precision farming</p>
+                        </div>
+                    </div>
+                    <div class="gallery-slide">
+                        <div class="slide-bg" style="background-image: url('images/Cost.jpg');"></div>
+                        <div class="slide-content">
+                            <h3>Custom PCB Design</h3>
+                            <p>High-density circuit board for medical device applications</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-nav">
+                    <div class="gallery-dot active" data-index="0">
+                        <div class="gallery-dot-progress"></div>
+                    </div>
+                    <div class="gallery-dot" data-index="1">
+                        <div class="gallery-dot-progress"></div>
+                    </div>
+                    <div class="gallery-dot" data-index="2">
+                        <div class="gallery-dot-progress"></div>
+                    </div>
+                    <div class="gallery-dot" data-index="3">
+                        <div class="gallery-dot-progress"></div>
+                    </div>
+                    <div class="gallery-dot" data-index="4">
+                        <div class="gallery-dot-progress"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Industries Section -->
+    <section id="industries" class="industries">
+        <div class="container">
+            <div class="section-title">
+                <h2>Industries We Serve</h2>
+                <p>Transforming diverse sectors with innovative technology solutions</p>
+            </div>
+            <div class="industries-grid">
+                <div class="industry">
+                    <div class="industry-icon">
+                        <i class="fas fa-graduation-cap" aria-hidden="true"></i>
+                    </div>
+                    <h3>Education & Research</h3>
+                </div>
+                <div class="industry">
+                    <div class="industry-icon">
+                        <i class="fas fa-broadcast-tower" aria-hidden="true"></i>
+                    </div>
+                    <h3>IoT & Automation</h3>
+                </div>
+                <div class="industry">
+                    <div class="industry-icon">
+                        <i class="fas fa-satellite" aria-hidden="true"></i>
+                    </div>
+                    <h3>Aerospace & Space Technology</h3>
+                </div>
+                <div class="industry">
+                    <div class="industry-icon">
+                        <i class="fas fa-shield-alt" aria-hidden="true"></i>
+                    </div>
+                    <h3>Defense</h3>
+                </div>
+                <div class="industry">
+                    <div class="industry-icon">
+                        <i class="fas fa-laptop" aria-hidden="true"></i>
+                    </div>
+                    <h3>Consumer Electronics</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Get In Touch</h2>
+                <p>We'd love to hear from you and discuss how we can help</p>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <ul class="contact-details">
+                        <li><i class="fas fa-map-marker-alt"></i> Bangalore, Karnataka, India</li>
+                        <li><i class="fas fa-phone"></i> +91 8088959143</li>
+                        <li><i class="fas fa-envelope"></i> info@pixelpitechnologies.in</li>
+                        <li><i class="fas fa-clock"></i> Monday - Friday: 9AM - 6PM</li>
+                    </ul>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Facebook page of Pixel Pi Technologies"><i class="fab fa-facebook-f"
+                                aria-hidden="true"></i></a>
+                        <a href="#" aria-label="Twitter profile of Pixel Pi Technologies"><i class="fab fa-twitter"
+                                aria-hidden="true"></i></a>
+                        <a href="https://www.instagram.com/pixel_pi_technologies?utm_source=ig_web_button_share_sheet&igsh=MWhsYzZwandwOGJtYQ=="
+                            aria-label="Instagram profile of Pixel Pi Technologies"><i class="fab fa-instagram"
+                                aria-hidden="true"></i></a>
+                        <a href="https://www.linkedin.com/company/pixelpi-lab-s-electronics/ "
+                            aria-label="LinkedIn page of Pixel Pi Technologies"><i class="fab fa-linkedin-in"
+                                aria-hidden="true"></i></a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3>Send Us a Message</h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" class="form-control" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-button">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <div class="container">
+            <div class="section-title">
+                <h2>Stay Updated with Pixel Pi</h2>
+                <p>Subscribe to our newsletter for the latest updates in IoT, Embedded Systems & Space Tech</p>
+            </div>
+            <form id="newsletterForm" class="newsletter-form">
+                <input type="email" name="email" class="newsletter-input" placeholder="Enter your email address"
+                    required aria-label="Email address for newsletter subscription">
+                <button type="submit" class="newsletter-button">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <a href="/" class="footer-logo">Pixel <span>Pi</span></a>
+                    <p>Innovating the Future of Electronics, IoT, Space Technologies, and Building a Sustainable
+                        Electronics Ecosystem in India.</p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Facebook page of Pixel Pi Technologies"><i class="fab fa-facebook-f"
+                                aria-hidden="true"></i></a>
+                        <a href="#" aria-label="Twitter profile of Pixel Pi Technologies"><i class="fab fa-twitter"
+                                aria-hidden="true"></i></a>
+                        <a href="https://www.instagram.com/pixel_pi_technologies?utm_source=ig_web_button_share_sheet&igsh=MWhsYzZwandwOGJtYQ=="
+                            aria-label="Instagram profile of Pixel Pi Technologies"><i class="fab fa-instagram"
+                                aria-hidden="true"></i></a>
+                        <a href="https://www.linkedin.com/company/pixelpi-lab-s-electronics/ "
+                            aria-label="LinkedIn page of Pixel Pi Technologies"><i class="fab fa-linkedin-in"
+                                aria-hidden="true"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3 class="footer-heading">Quick Links</h3>
+                    <ul>
+                        <li><a href="/#services">Services</a></li>
+                        <li><a href="/#collaboration">Collaboration</a></li>
+                        <li><a href="/#vision">Vision & Mission</a></li>
+                        <li><a href="/#industries">Industries</a></li>
+                        <li><a href="/career">Career</a></li>
+                        <li><a href="/blog">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3 class="footer-heading">Services</h3>
+                    <ul>
+                        <li><a href="#">IoT & Embedded Systems</a></li>
+                        <li><a href="#">Space Technology</a></li>
+                        <li><a href="#">PCB Prototyping</a></li>
+                        <li><a href="#">Drone Development</a></li>
+                        <li><a href="#">AI Solutions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3 class="footer-heading">Contact Us</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt" aria-hidden="true"></i>Bangalore Karnataka India</li>
+                        <li><i class="fas fa-phone" aria-hidden="true"></i> +91 8088959143</li>
+                        <li><i class="fas fa-envelope" aria-hidden="true"></i> info@pixelpitechnologies.in</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 Pixel Pi Technologies. All rights reserved. | <a href="/admin"
+                        style="color:var(--primary);text-decoration:none">Admin</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Message Box -->
+    <div id="messageBox" class="message-box">
+        <div class="message-icon"><i class="fas fa-check-circle" aria-hidden="true"></i></div>
+        <div class="message-text"></div>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div class="spinner" id="loadingSpinner"></div>
+
+    <!-- Collaboration Modal -->
+    <div class="modal" id="collabModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <h2 class="modal-title" id="modalTitle">Collaboration Inquiry</h2>
+            <form class="modal-form" id="collabForm">
+                <div class="form-group">
+                    <label for="collabName">Full Name</label>
+                    <input type="text" id="collabName" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="collabEmail">Email Address</label>
+                    <input type="email" id="collabEmail" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="collabCompany">Company/Organization</label>
+                    <input type="text" id="collabCompany" name="company" required>
+                </div>
+                <div class="form-group">
+                    <label for="collabType">Collaboration Type</label>
+                    <select id="collabType" name="type" required>
+                        <option value="">Select collaboration type</option>
+                        <option value="industry">Industry Partnership</option>
+                        <option value="academic">Academic Collaboration</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="collabMessage">Your Collaboration Idea</label>
+                    <textarea id="collabMessage" name="message" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="modal-button">Submit Inquiry</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Particle.js Library -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+    <!-- Lenis Smooth Scrolling Library -->
+    <script src="https://unpkg.com/lenis@1.0.45/dist/lenis.min.js"></script>
+
+    <script>
+        // WhatsApp functionality with multiple fallbacks
+        function initWhatsApp() {
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            const whatsappDesktop = document.getElementById('whatsappDesktop');
+            const whatsappMobile = document.getElementById('whatsappMobile');
+            const whatsappTouch = document.getElementById('whatsappTouch');
+
+            // Show/hide appropriate WhatsApp buttons based on device
+            if (isMobile) {
+                // On mobile, use the whatsapp:// protocol which works better
+                if (whatsappDesktop) {
+                    whatsappDesktop.style.display = 'none';
+                }
+                if (whatsappMobile) {
+                    // We'll handle this via JavaScript click
+                }
+                if (whatsappTouch) {
+                    whatsappTouch.style.display = 'flex';
+                }
+            } else {
+                // On desktop, use the web version
+                if (whatsappDesktop) {
+                    whatsappDesktop.style.display = 'flex';
+                }
+                if (whatsappTouch) {
+                    whatsappTouch.style.display = 'none';
+                }
+            }
+
+            // Handle touch button click
+            if (whatsappTouch) {
+                whatsappTouch.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    // Try multiple WhatsApp URLs
+                    const whatsappUrls = [
+                        'whatsapp://send?phone=918088959143&text=Hello%20PixelPi%20Technologies!%20I%20would%20like%20to%20inquire%20about%20your%20services.',
+                        'https://api.whatsapp.com/send?phone=918088959143&text=Hello%20PixelPi%20Technologies!%20I%20would%20like%20to%20inquire%20about%20your%20services.',
+                        'https://wa.me/918088959143?text=Hello%20PixelPi%20Technologies!%20I%20would%20like%20to%20inquire%20about%20your%20services.'
+                    ];
+
+                    // Try to open WhatsApp with fallback
+                    let opened = false;
+                    for (let i = 0; i < whatsappUrls.length; i++) {
+                        try {
+                            window.open(whatsappUrls[i], '_blank');
+                            opened = true;
+                            break;
+                        } catch (err) {
+                            console.log('WhatsApp URL attempt ' + i + ' failed:', err);
+                        }
+                    }
+
+                    // If all fail, show a message
+                    if (!opened) {
+                        alert('Please install WhatsApp to contact us directly, or call us at +91 8088959143');
+                    }
+                });
+            }
+
+            // Handle mobile link click (for the hidden link)
+            if (whatsappMobile) {
+                whatsappMobile.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    window.location.href = 'whatsapp://send?phone=918088959143&text=Hello%20PixelPi%20Technologies!%20I%20would%20like%20to%20inquire%20about%20your%20services.';
+                });
+            }
+        }
+
+        // Initialize Lenis for smooth scrolling
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            orientation: 'vertical',
+            gestureOrientation: 'vertical',
+            smoothWheel: true,
+            wheelMultiplier: 1,
+            touchMultiplier: 2,
+            infinite: false,
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+
+        requestAnimationFrame(raf);
+
+        // Update all anchor links to work with Lenis
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    lenis.scrollTo(targetElement, {
+                        offset: -80, // Adjust for header height
+                        duration: 1.5
+                    });
+                }
+            });
+        });
+
+        // Initialize particles.js
+        document.addEventListener('DOMContentLoaded', function () {
+            particlesJS('particles-js', {
+                "particles": {
+                    "number": {
+                        "value": 80,
+                        "density": {
+                            "enable": true,
+                            "value_area": 800
+                        }
+                    },
+                    "color": {
+                        "value": "#0066ff"
+                    },
+                    "shape": {
+                        "type": "circle",
+                        "stroke": {
+                            "width": 0,
+                            "color": "#000000"
+                        }
+                    },
+                    "opacity": {
+                        "value": 0.5,
+                        "random": true,
+                        "anim": {
+                            "enable": true,
+                            "speed": 1,
+                            "opacity_min": 0.1,
+                            "sync": false
+                        }
+                    },
+                    "size": {
+                        "value": 3,
+                        "random": true,
+                        "anim": {
+                            "enable": true,
+                            "speed": 2,
+                            "size_min": 0.1,
+                            "sync": false
+                        }
+                    },
+                    "line_linked": {
+                        "enable": true,
+                        "distance": 150,
+                        "color": "#0066ff",
+                        "opacity": 0.4,
+                        "width": 1
+                    },
+                    "move": {
+                        "enable": true,
+                        "speed": 2,
+                        "direction": "none",
+                        "random": true,
+                        "straight": false,
+                        "out_mode": "out",
+                        "bounce": false,
+                        "attract": {
+                            "enable": true,
+                            "rotateX": 600,
+                            "rotateY": 1200
+                        }
+                    }
+                },
+                "interactivity": {
+                    "detect_on": "canvas",
+                    "events": {
+                        "onhover": {
+                            "enable": true,
+                            "mode": "grab"
+                        },
+                        "onclick": {
+                            "enable": true,
+                            "mode": "push"
+                        },
+                        "resize": true
+                    },
+                    "modes": {
+                        "grab": {
+                            "distance": 140,
+                            "line_linked": {
+                                "opacity": 1
+                            }
+                        },
+                        "push": {
+                            "particles_nb": 4
+                        }
+                    }
+                },
+                "retina_detect": true
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', function () {
+            const header = document.getElementById('header');
+            const backToTop = document.getElementById('backToTop');
+
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+
+            if (window.scrollY > 500) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        // Mobile menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', function () {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+
+            // Toggle body scroll when menu is open
+            if (navLinks.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Close mobile menu when clicking on links
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+        });
+
+        // Back to top functionality
+        document.getElementById('backToTop').addEventListener('click', function () {
+            lenis.scrollTo(0, {
+                duration: 1.5
+            });
+        });
+
+        // Animate elements on scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.service-card, .vm-card, .feature, .industry, .collab-option, .team-member, .stat, .contact-info, .contact-form, .process-step');
+
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+
+                if (elementPosition < screenPosition) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                    element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                }
+            });
+        }
+
+        // Animate stats counter
+        function animateStats() {
+            const stats = document.querySelectorAll('.stat-number');
+            const speed = 200;
+
+            stats.forEach(stat => {
+                const target = parseInt(stat.getAttribute('data-target'));
+                let count = 0;
+
+                const updateCount = () => {
+                    const increment = Math.ceil(target / speed);
+
+                    if (count < target) {
+                        count += increment;
+                        if (count > target) count = target;
+                        stat.textContent = count;
+                        setTimeout(updateCount, 1);
+                    }
+                };
+
+                updateCount();
+            });
+        }
+
+        // Check if stats are in view
+        function checkStats() {
+            const statsSection = document.querySelector('.stats');
+            if (statsSection) {
+                const statsPosition = statsSection.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+
+                if (statsPosition < screenPosition) {
+                    animateStats();
+                    window.removeEventListener('scroll', checkStats);
+                }
+            }
+        }
+
+        // Gallery functionality
+        async function initGallery() {
+            const track = document.querySelector('.gallery-track');
+            const nav = document.querySelector('.gallery-nav');
+            const prevBtn = document.querySelector('.gallery-arrow-prev');
+            const nextBtn = document.querySelector('.gallery-arrow-next');
+            if (!track || !nav) return;
+
+            // Fetch dynamic gallery uploads
+            let slidesData = [];
+            try {
+                const res = await fetch('/api/gallery');
+                const result = await res.json();
+                if (result.success && result.data && result.data.length > 0) {
+                    slidesData = result.data;
+                }
+            } catch (err) {
+                console.log('Dynamic gallery error, falling back to static');
+            }
+
+            // Map filenames to premium titles and descriptions
+            function getSlideMeta(filename) {
+                const fn = filename.toLowerCase();
+                if (fn.includes('smart')) {
+                    return {
+                        title: 'IoT Smart Home System',
+                        desc: 'Complete home automation solution with energy monitoring and AI-powered optimization'
+                    };
+                }
+                if (fn.includes('cubic') || fn.includes('cubesat')) {
+                    return {
+                        title: 'CubeSat Development',
+                        desc: 'Miniature satellite for atmospheric research and communication experiments'
+                    };
+                }
+                if (fn.includes('industrial')) {
+                    return {
+                        title: 'Industrial Automation',
+                        desc: 'AI-powered robotic arm for precision manufacturing and assembly'
+                    };
+                }
+                if (fn.includes('auto') || fn.includes('drone')) {
+                    return {
+                        title: 'Autonomous Drone',
+                        desc: 'AI-powered UAV for agricultural monitoring and precision farming'
+                    };
+                }
+                if (fn.includes('cost') || fn.includes('pcb')) {
+                    return {
+                        title: 'Custom PCB Design',
+                        desc: 'High-density circuit board for medical device applications'
+                    };
+                }
+                // Fallback for custom uploaded files: format filename as Title
+                let clean = filename.replace(/^\d+-/, '');
+                clean = clean.substring(0, clean.lastIndexOf('.')) || clean;
+                clean = clean.replace(/[-_]+/g, ' ');
+                const title = clean.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+                return {
+                    title: title || 'Innovation Project',
+                    desc: 'Precision and intelligence in every technology solution.'
+                };
+            }
+
+            // Build dynamic slide track and dots
+            if (slidesData.length > 0) {
+                track.innerHTML = slidesData.map((img, index) => {
+                    const meta = img.title ? { title: img.title, desc: img.desc || '' } : getSlideMeta(img.filename);
+                    return `
+                        <div class="gallery-slide ${index === 0 ? 'active' : ''}">
+                            <div class="slide-bg" style="background-image: url('${img.url}');"></div>
+                            <div class="slide-content">
+                                <h3>${meta.title}</h3>
+                                <p>${meta.desc}</p>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+
+                nav.innerHTML = slidesData.map((_, index) => `
+                    <div class="gallery-dot ${index === 0 ? 'active' : ''}" data-index="${index}"><div class="gallery-dot-progress"></div></div>
+                `).join('');
+            }
+
+            const slides = document.querySelectorAll('.gallery-slide');
+            const dots = document.querySelectorAll('.gallery-dot');
+            let currentSlide = 0;
+            const slideDuration = 6000; // 6 seconds per slide
+            let progressInterval;
+            let startTime;
+            let elapsed = 0;
+
+            function showSlide(index) {
+                if (index < 0) index = slides.length - 1;
+                if (index >= slides.length) index = 0;
+
+                slides.forEach(slide => slide.classList.remove('active'));
+                dots.forEach(dot => {
+                    dot.classList.remove('active');
+                    const prog = dot.querySelector('.gallery-dot-progress');
+                    if (prog) prog.style.width = '0%';
+                });
+
+                if (track) {
+                    track.style.transform = `translateX(-${index * 100}%)`;
+                }
+
+                if (slides[index]) slides[index].classList.add('active');
+                if (dots[index]) dots[index].classList.add('active');
+
+                currentSlide = index;
+                resetProgressBar();
+            }
+
+            function resetProgressBar() {
+                clearInterval(progressInterval);
+                startTime = Date.now();
+                elapsed = 0;
+
+                const activeDot = dots[currentSlide];
+                const progress = activeDot ? activeDot.querySelector('.gallery-dot-progress') : null;
+
+                if (progress) {
+                    progressInterval = setInterval(() => {
+                        elapsed = Date.now() - startTime;
+                        let percentage = (elapsed / slideDuration) * 100;
+                        if (percentage >= 100) {
+                            percentage = 100;
+                            clearInterval(progressInterval);
+                            nextSlide();
+                        }
+                        progress.style.width = `${percentage}%`;
+                    }, 30);
+                }
+            }
+
+            function nextSlide() {
+                showSlide(currentSlide + 1);
+            }
+
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    showSlide(index);
+                });
+            });
+
+            if (prevBtn) prevBtn.addEventListener('click', () => showSlide(currentSlide - 1));
+            if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+
+            const gallery = document.querySelector('.gallery-container');
+            if (gallery) {
+                gallery.addEventListener('mouseenter', () => {
+                    clearInterval(progressInterval);
+                });
+                gallery.addEventListener('mouseleave', () => {
+                    startTime = Date.now() - elapsed;
+                    const activeDot = dots[currentSlide];
+                    const progress = activeDot ? activeDot.querySelector('.gallery-dot-progress') : null;
+                    if (progress) {
+                        progressInterval = setInterval(() => {
+                            elapsed = Date.now() - startTime;
+                            let percentage = (elapsed / slideDuration) * 100;
+                            if (percentage >= 100) {
+                                percentage = 100;
+                                clearInterval(progressInterval);
+                                nextSlide();
+                            }
+                            progress.style.width = `${percentage}%`;
+                        }, 30);
+                    }
+                });
+            }
+
+            showSlide(0);
+        }
+
+
+
+        // Form submission handling
+        function initForms() {
+            // Contact form
+            const contactForm = document.getElementById('contactForm');
+            const newsletterForm = document.getElementById('newsletterForm');
+            const collabForm = document.getElementById('collabForm');
+            const messageBox = document.getElementById('messageBox');
+
+            // Function to validate email
+            function validateEmail(email) {
+                const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                return re.test(String(email).toLowerCase());
+            }
+
+            // Function to show message
+            function showMessage(message, type) {
+                const messageText = messageBox.querySelector('.message-text');
+                const messageIcon = messageBox.querySelector('.message-icon');
+
+                messageText.textContent = message;
+                messageBox.className = `message-box ${type}`;
+                messageBox.classList.add('show');
+
+                // Update icon based on message type
+                messageIcon.innerHTML = type === 'success'
+                    ? '<i class="fas fa-check-circle" aria-hidden="true"></i>'
+                    : '<i class="fas fa-exclamation-circle" aria-hidden="true"></i>';
+
+                // Hide message after 5 seconds
+                setTimeout(() => {
+                    messageBox.classList.remove('show');
+                }, 5000);
+            }
+
+            // Function to submit form data
+            async function submitForm(formData, endpoint) {
+                try {
+                    const response = await fetch(endpoint, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(formData)
+                    });
+
+                    const result = await response.json();
+
+                    if (response.ok) {
+                        showMessage(result.message || 'Form submitted successfully!', 'success');
+                        return true;
+                    } else {
+                        showMessage(result.error || 'Something went wrong. Please try again.', 'error');
+                        return false;
+                    }
+                } catch (error) {
+                    console.error('Form submission error:', error);
+                    showMessage('Network error. Please check your connection and try again.', 'error');
+                    return false;
+                }
+            }
+
+            // Contact form submission
+            if (contactForm) {
+                contactForm.addEventListener('submit', async function (e) {
+                    e.preventDefault();
+
+                    const name = document.getElementById('name').value;
+                    const email = document.getElementById('email').value;
+                    const subject = document.getElementById('subject').value;
+                    const message = document.getElementById('message').value;
+
+                    if (!name || !email || !subject || !message) {
+                        showMessage('Please fill in all fields.', 'error');
+                        return;
+                    }
+
+                    if (!validateEmail(email)) {
+                        showMessage('Please enter a valid email address.', 'error');
+                        return;
+                    }
+
+                    // Show loading state
+                    const submitButton = contactForm.querySelector('button[type="submit"]');
+                    submitButton.disabled = true;
+                    submitButton.textContent = 'Sending...';
+
+                    // Submit form
+                    const success = await submitForm({
+                        name, email, subject, message, type: 'contact'
+                    }, '/api/contact');
+
+                    // Reset form if successful
+                    if (success) {
+                        contactForm.reset();
+                    }
+
+                    // Reset button state
+                    submitButton.disabled = false;
+                    submitButton.textContent = 'Send Message';
+                });
+            }
+
+            // Newsletter form submission
+            if (newsletterForm) {
+                newsletterForm.addEventListener('submit', async function (e) {
+                    e.preventDefault();
+
+                    const email = newsletterForm.querySelector('input[type="email"]').value;
+
+                    if (!email || !validateEmail(email)) {
+                        showMessage('Please enter a valid email address.', 'error');
+                        return;
+                    }
+
+                    // Show loading state
+                    const submitButton = newsletterForm.querySelector('button[type="submit"]');
+                    submitButton.disabled = true;
+                    submitButton.textContent = 'Subscribing...';
+
+                    // Submit form
+                    const success = await submitForm({
+                        email, type: 'newsletter'
+                    }, '/api/newsletter');
+
+                    // Reset form if successful
+                    if (success) {
+                        newsletterForm.reset();
+                    }
+
+                    // Reset button state
+                    submitButton.disabled = false;
+                    submitButton.textContent = 'Subscribe';
+                });
+            }
+
+            // Collaboration form submission
+            if (collabForm) {
+                collabForm.addEventListener('submit', async function (e) {
+                    e.preventDefault();
+
+                    const name = document.getElementById('collabName').value;
+                    const email = document.getElementById('collabEmail').value;
+                    const company = document.getElementById('collabCompany').value;
+                    const type = document.getElementById('collabType').value;
+                    const message = document.getElementById('collabMessage').value;
+
+                    if (!name || !email || !company || !type || !message) {
+                        showMessage('Please fill in all fields.', 'error');
+                        return;
+                    }
+
+                    if (!validateEmail(email)) {
+                        showMessage('Please enter a valid email address.', 'error');
+                        return;
+                    }
+
+                    // Show loading state
+                    const submitButton = collabForm.querySelector('button[type="submit"]');
+                    submitButton.disabled = true;
+                    submitButton.textContent = 'Submitting...';
+
+                    // Submit form
+                    const success = await submitForm({
+                        name, email, company, type, message
+                    }, '/api/collaboration');
+
+                    // Reset form and close modal if successful
+                    if (success) {
+                        collabForm.reset();
+                        document.getElementById('collabModal').classList.remove('active');
+                        document.body.style.overflow = 'auto';
+                    }
+
+                    // Reset button state
+                    submitButton.disabled = false;
+                    submitButton.textContent = 'Submit Inquiry';
+                });
+            }
+        }
+
+        // Collaboration modal functionality
+        function initCollaborationModal() {
+            const modal = document.getElementById('collabModal');
+            const modalClose = document.getElementById('modalClose');
+            const collabButtons = document.querySelectorAll('.collab-button');
+            const modalTitle = document.getElementById('modalTitle');
+            const collabType = document.getElementById('collabType');
+
+            // Open modal when collaboration buttons are clicked
+            collabButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const type = this.getAttribute('data-type');
+                    let title = '';
+
+                    switch (type) {
+                        case 'industry':
+                            title = 'Industry Partnership Inquiry';
+                            break;
+                        case 'academic':
+                            title = 'Academic Collaboration Inquiry';
+                            break;
+                        default:
+                            title = 'Collaboration Inquiry';
+                    }
+
+                    modalTitle.textContent = title;
+                    collabType.value = type;
+                    modal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+
+            // Close modal
+            modalClose.addEventListener('click', function () {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+
+            // Close modal when clicking outside
+            modal.addEventListener('click', function (e) {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        }
+
+        // Initialize everything when the DOM is loaded
+        document.addEventListener('DOMContentLoaded', function () {
+            // Initialize WhatsApp functionality first
+            initWhatsApp();
+
+            // Initial call for scroll animations
+            animateOnScroll();
+
+            // Listen for scroll events
+            window.addEventListener('scroll', animateOnScroll);
+            window.addEventListener('scroll', checkStats);
+
+            // Initialize components
+            initGallery();
+            initForms();
+            initCollaborationModal();
+
+            init3DCards();
+        });
+
+
+
+        // 3D tilt effect on service cards
+        function init3DCards() {
+            document.querySelectorAll('.service-card, .feature, .collab-option').forEach(card => {
+                card.style.transition = 'transform .4s ease, box-shadow .4s ease';
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    const rotateX = (y - centerY) / 20;
+                    const rotateY = (centerX - x) / 20;
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px) scale(1.02)`;
+                });
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0) scale(1)';
+                });
+            });
+        }
+    </script>
+
+    <!-- Premium Page Loader -->
+    <div id="pageLoader"
+        style="position:fixed;top:0;left:0;width:100%;height:100%;background:#fff;display:flex;align-items:center;justify-content:center;z-index:99999;transition:opacity .5s ease,visibility .5s ease">
+        <div style="text-align:center">
+            <div
+                style="width:50px;height:50px;border:3px solid rgba(0,102,255,.1);border-top-color:#0066ff;border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 16px">
+            </div>
+            <div style="font-family:Inter,sans-serif;font-size:18px;font-weight:700;color:#1a1a1a">Pixel<span
+                    style="color:#0066ff">Pi</span></div>
+        </div>
+    </div>
+    <script>
+        window.addEventListener('load', function () {
+            const loader = document.getElementById('pageLoader');
+            if (loader) { setTimeout(() => { loader.style.opacity = '0'; loader.style.visibility = 'hidden'; setTimeout(() => loader.remove(), 500); }, 800); }
+        });
+    </script>
+</body>
+
+</html>
