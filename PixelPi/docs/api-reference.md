@@ -52,6 +52,16 @@ POST /api/admin/login
 
 ---
 
+# Verification Levels
+
+| Status | Meaning |
+|----------|----------|
+| **Verified** | Personally tested and confirmed working. |
+| **Partially Verified** | Implementation confirmed through code review, but not fully tested end-to-end. |
+| **Discovered** | Endpoint or functionality exists in code, but behavior has not been fully validated. |
+
+---
+
 # PUBLIC APIS
 
 ---
@@ -124,7 +134,7 @@ contact_submissions
 ### Side Effects
 
 * Stores inquiry
-* Sends email notification
+* Email notification behavior requires verification
 
 ### Frontend Usage
 
@@ -222,7 +232,7 @@ collaboration_inquiries
 ### Side Effects
 
 * Stores inquiry
-* Sends email notification
+* Email notification behavior requires verification
 
 ### Frontend Usage
 
@@ -1057,10 +1067,9 @@ Discovered.
 ## Known Technical Debt
 
 1. Monolithic `server.js` (~2435 lines)
-2. Admin password initialization uses Base64 instead of bcrypt
-3. Blocked IPs are stored in memory only
-4. Public and admin frontend are tightly coupled
-5. JSON fallback duplicates database logic
+2. Blocked IPs are stored in memory only
+3. Public and admin frontend are tightly coupled
+4. JSON fallback duplicates database logic
 
 ---
 

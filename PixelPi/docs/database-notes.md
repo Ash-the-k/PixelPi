@@ -47,7 +47,7 @@ JSON Storage
 Application
 ```
 
-This allows development and limited production operation even when MySQL is unavailable.
+This appears intended to allow development and limited fallback operation when MySQL is unavailable.
 
 ---
 
@@ -248,13 +248,9 @@ created_at
 
 Current Observation:
 
-Default admin creation currently uses Base64 encoding rather than password hashing.
+Authentication appears to have been migrated from Base64 password encoding to bcrypt hashing.
 
-Recommended future improvement:
-
-```txt
-bcrypt
-```
+Verification of all administrative account records has not yet been completed.
 
 ---
 
@@ -579,7 +575,7 @@ API
 ↓
 contact_submissions
 ↓
-Email Notification
+Potential Email Notification
 ```
 
 ---
@@ -595,7 +591,7 @@ API
 ↓
 collaboration_inquiries
 ↓
-Email Notification
+Potential Email Notification
 ```
 
 ---
@@ -611,7 +607,7 @@ uploads/resumes
 ↓
 career_applications
 ↓
-Email Notification
+Potential Email Notification
 ```
 
 ---

@@ -294,7 +294,11 @@ JSON Storage
 
 continues functioning.
 
-This creates resilience against database outages and allows development without requiring a running MySQL instance.
+Repository contains a JSON-based fallback storage mechanism primarily intended for development and local operation when MySQL is unavailable.
+
+It should not be assumed to be a production-grade failover strategy.
+
+Runtime behavior and production suitability have not yet been verified.
 
 ---
 
@@ -376,7 +380,7 @@ Verified Working
 Behavior:
 
 * Stores subscriber
-* Sends email notification
+* Email notification behavior requires verification
 
 ---
 
@@ -397,7 +401,7 @@ Verified Working
 Behavior:
 
 * Stores inquiry
-* Sends email notification
+* Email notification behavior requires verification
 
 ---
 
