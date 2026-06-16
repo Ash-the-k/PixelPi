@@ -43,3 +43,6 @@ coverage/
 # Build
 dist/
 build/
+
+# Local Files
+test.md
