@@ -10,6 +10,55 @@
 
 
 /* ─────────────────────────────────────────
+   Component Utilities
+   (Values that can't be expressed in Tailwind
+   without arbitrary values go here)
+───────────────────────────────────────── */
+@layer components {
+  /* Gradient fill — primary CTA buttons, brand moments */
+  .gradient-bg {
+    background: var(--gradient-brand);
+  }
+
+  /* Gradient fill — hover state (slightly lightened) */
+  .gradient-bg-hover {
+    background: linear-gradient(135deg, #3D2866, #4A5CA8);
+  }
+
+  /* Gradient text — hero headline, select display words */
+  .gradient-text {
+    background: var(--gradient-brand-text);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Glass surface — cards, navbar, overlays */
+  .glass-surface {
+    background: rgba(13, 18, 32, 0.70);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  /* Section vertical rhythm */
+  .section-padding {
+    padding-top: 96px;
+    padding-bottom: 96px;
+  }
+
+  /* Content container — centered, max-width enforced */
+  .content-container {
+    width: 100%;
+    max-width: var(--max-width-content);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+
+/* ─────────────────────────────────────────
    Design Tokens — Public Site
 ───────────────────────────────────────── */
 :root {
