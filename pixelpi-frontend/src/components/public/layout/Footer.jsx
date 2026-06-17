@@ -1,26 +1,26 @@
 import { Link } from 'react-router-dom';
-import { MessageCircle } from 'lucide-react';
-import { SocialIconLinks } from '../ui/SocialIcons';
+import { SocialIconLinks, IconWhatsApp } from '../ui/SocialIcons';
+import { LogoMark } from '../ui/LogoMark';
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
 const COMPANY_LINKS = [
-  { label: 'About',    to: '/about' },
+  { label: 'About', to: '/about' },
   { label: 'Projects', to: '/projects' },
-  { label: 'Blog',     to: '/blog' },
-  { label: 'Careers',  to: '/careers' },
-  { label: 'Contact',  to: '/contact' },
+  { label: 'Blog', to: '/blog' },
+  { label: 'Careers', to: '/careers' },
+  { label: 'Contact', to: '/contact' },
 ];
 
 // Anchor links point to the homepage services section.
 // When /services becomes a standalone page, update these hrefs to /services#iot etc.
 const SERVICE_LINKS = [
-  { label: 'IoT & Embedded Systems',  href: '/#services-iot' },
-  { label: 'Space & Satellite',        href: '/#services-space' },
-  { label: 'PCB Design',               href: '/#services-pcb' },
-  { label: 'Drones & Autonomous',      href: '/#services-drones' },
-  { label: 'Web & Cloud',              href: '/#services-web' },
-  { label: 'AI & Automation',          href: '/#services-ai' },
+  { label: 'IoT & Embedded Systems', href: '/#services-iot' },
+  { label: 'Space & Satellite', href: '/#services-space' },
+  { label: 'PCB Design', href: '/#services-pcb' },
+  { label: 'Drones & Autonomous', href: '/#services-drones' },
+  { label: 'Web & Cloud', href: '/#services-web' },
+  { label: 'AI & Automation', href: '/#services-ai' },
 ];
 
 // ─── Sub-components ───────────────────────────────────────────────────────────
@@ -58,21 +58,7 @@ export function Footer() {
               aria-label="Pixel Pi Technologies — home"
               style={{ textDecoration: 'none' }}
             >
-              {/* Logo placeholder — replace outer div with <img src="/logo.svg" alt="" /> once available */}
-              <div
-                className="w-8 h-8 rounded-md gradient-bg-button flex items-center justify-center flex-shrink-0"
-                aria-hidden="true"
-              >
-                <span className="font-mono text-mono-sm font-medium text-white select-none">
-                  π
-                </span>
-              </div>
-              <span
-                className="font-display font-semibold text-body-lg"
-                style={{ color: 'var(--color-text-primary)' }}
-              >
-                Pixel Pi
-              </span>
+              <LogoMark size="md" />
             </Link>
 
             {/* Tagline */}
@@ -168,11 +154,11 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 font-body text-body-sm transition-colors duration-fast w-fit"
-                style={{ color: 'var(--color-accent)' }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--color-accent-hover)')}
-                onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--color-accent)')}
+                style={{ color: 'var(--color-whatsapp)' }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--color-whatsapp-hover)')}
+                onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--color-whatsapp)')}
               >
-                <MessageCircle size={14} aria-hidden="true" />
+                <IconWhatsApp size={15} aria-hidden="true" className="flex-shrink-0" />
                 <span>WhatsApp</span>
                 <span aria-hidden="true">→</span>
               </a>

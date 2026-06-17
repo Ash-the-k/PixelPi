@@ -123,6 +123,10 @@
   --color-accent-hover:  #6B8CFF;
   --color-accent-subtle: rgba(79, 107, 204, 0.12);
 
+  /* WhatsApp Brand Colors */
+  --color-whatsapp:       #0f766e;
+  --color-whatsapp-hover: #0d9488;
+
   /* Semantic */
   --color-success: #22C55E;
   --color-warning: #F59E0B;
