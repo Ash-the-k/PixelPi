@@ -55,6 +55,45 @@
     padding-left: 24px;
     padding-right: 24px;
   }
+
+  /* Button-specific gradient — brighter than brand gradient for use on dark surfaces */
+  .gradient-bg-button {
+    background: var(--gradient-brand);
+  }
+
+  /* Footer navigation links */
+  .footer-link {
+    color: var(--color-text-muted);
+    transition: color var(--duration-fast) var(--easing-standard);
+    text-decoration: none;
+  }
+  .footer-link:hover {
+    color: var(--color-text-primary);
+  }
+
+  /* Social icon links */
+  .social-icon-link {
+    color: var(--color-text-muted);
+    transition: color var(--duration-fast) var(--easing-standard);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    /* Expand tap target without adding visual spacing */
+    padding: 4px;
+    margin: -4px;
+  }
+  .social-icon-link:hover {
+    color: var(--color-text-primary);
+  }
+
+  /* Unavailable social links (coming soon) */
+  .social-icon-disabled {
+    color: var(--color-text-disabled);
+    cursor: not-allowed;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 

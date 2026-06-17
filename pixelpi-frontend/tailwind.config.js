@@ -13,6 +13,7 @@ export default {
         // Brand Accent
         accent: '#4F6BCC',
         'accent-hover': '#6B8CFF',
+        'accent-subtle':   'rgba(79, 107, 204, 0.12)',
         // Semantic
         success: '#22C55E',
         warning: '#F59E0B',

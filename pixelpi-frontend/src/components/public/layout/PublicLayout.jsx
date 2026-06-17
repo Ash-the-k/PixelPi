@@ -1,4 +1,5 @@
 import { Outlet } from 'react-router-dom';
+import { Footer } from './Footer';
 
 export function PublicLayout() {
   return (
@@ -7,7 +8,7 @@ export function PublicLayout() {
       <main>
         <Outlet />
       </main>
-      {/* Footer goes here — Day 2 */}
+      <Footer />
     </div>
   );
 }
