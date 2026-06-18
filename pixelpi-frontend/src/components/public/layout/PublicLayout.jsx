@@ -15,13 +15,7 @@ export function PublicLayout() {
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       <Navbar />
 
-      {/*
-        padding-top accounts for the fixed navbar:
-        20px (top offset) + 52px (pill height) + 24px (breathing room) = 96px.
-        Hero sections override this with their own full-height treatment.
-        For now all pages get the padding — it's overridden per-section where needed.
-      */}
-      <main className="flex-1" style={{ paddingTop: '96px' }}>
+      <main className="flex-1">
         <Outlet />
       </main>
 

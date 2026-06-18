@@ -1,12 +1,6 @@
 import { motion } from 'framer-motion';
 
-export function AnimatedSection({
-  children,
-  className = '',
-  delay = 0,
-  // Pass `as` if you need a non-div element (e.g., section, article)
-  as: Tag = 'div',
-}) {
+export function AnimatedSection({ children, className = '', delay = 0 }) {
   return (
     <motion.div
       className={className}
@@ -14,9 +8,9 @@ export function AnimatedSection({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }}
       transition={{
-        duration: 0.275,
+        duration: 0.35,                      // --duration-moderate
         delay,
-        ease: [0.0, 0.0, 0.2, 1],
+        ease: [0.32, 0.72, 0, 1],           // --easing-enter
       }}
     >
       {children}

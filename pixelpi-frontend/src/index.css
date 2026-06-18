@@ -15,6 +15,17 @@
    without arbitrary values go here)
 ───────────────────────────────────────── */
 @layer components {
+/* Hero headline — responsive clamp sizing */
+.hero-headline {
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  font-size: clamp(44px, 5.5vw, 80px);
+  line-height: 1.05;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
   /* Gradient fill — primary CTA buttons, brand moments */
   .gradient-bg {
     background: var(--gradient-brand-button);
