@@ -153,10 +153,15 @@
 
   /* Animation */
   --duration-fast:     175ms;
-  --duration-moderate: 275ms;
+  --duration-hover:    220ms;   /* new — hover states, color transitions */
+  --duration-moderate: 350ms;   /* was 275ms — element entrances */
+  --duration-expand:   480ms;   /* new — layout expansions, menus */
+  --duration-glass:    300ms;   /* new — glass background/shadow transitions */
+
   --easing-standard:   cubic-bezier(0.4, 0, 0.2, 1);
-  --easing-enter:      cubic-bezier(0.0, 0.0, 0.2, 1);
-  --easing-exit:       cubic-bezier(0.4, 0.0, 1, 1);
+  --easing-enter:      cubic-bezier(0.32, 0.72, 0, 1);  /* spring-like settle */
+  --easing-exit:       cubic-bezier(0.4, 0, 1, 1);
+  --easing-glass:      cubic-bezier(0.4, 0, 0.2, 1);
 
   /* Border Radius */
   --radius-sm:   4px;

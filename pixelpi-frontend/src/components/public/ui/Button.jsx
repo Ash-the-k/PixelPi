@@ -14,7 +14,7 @@ export function Button({
     'font-body font-semibold text-label',
     'rounded-md',
     'border border-transparent',
-    'transition-all',
+    'transition-[background,box-shadow,opacity,filter,border-color,color]', 'duration-[220ms]',
     'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1',
     'disabled:opacity-50 disabled:cursor-not-allowed',
     'cursor-pointer border-0',

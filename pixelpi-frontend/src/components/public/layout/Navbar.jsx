@@ -70,12 +70,6 @@ export function Navbar() {
         setDrawerOpen(false);
     }, [location.pathname]);
 
-    // ── Lock body scroll when drawer is open ─────────────────────────────────
-    useEffect(() => {
-        document.body.style.overflow = drawerOpen ? 'hidden' : '';
-        return () => { document.body.style.overflow = ''; };
-    }, [drawerOpen]);
-
     // ── Active route detection ────────────────────────────────────────────────
     const isActive = (to) =>
         to === '/'
@@ -86,13 +80,9 @@ export function Navbar() {
     const glassStyle = {
         backdropFilter: 'blur(5px)',
         WebkitBackdropFilter: 'blur(5px)',
-        background: scrolled
-            ? 'rgba(13, 18, 32, 0.85)'
-            : 'rgba(13, 18, 32, 0.65)',
+        background: 'rgba(13, 18, 32, 0.65)',
         border: '1px solid rgba(255, 255, 255, 0.10)',
-        boxShadow: scrolled
-            ? '0 8px 32px rgba(0, 0, 0, 0.40), inset 0 1px 0 rgba(255, 255, 255, 0.10)'
-            : '0 2px 16px rgba(0, 0, 0, 0.20), inset 0 1px 0 rgba(255, 255, 255, 0.07)',
+        boxShadow: '0 8px 32px rgba(0, 0, 0, 0.40), inset 0 1px 0 rgba(255, 255, 255, 0.10)',
         transition: 'background 175ms ease, box-shadow 175ms ease',
     };
 
@@ -116,7 +106,7 @@ export function Navbar() {
                     {/* Logo */}
                     <Link
                         to="/"
-                        className="mr-1 flex-shrink-0"
+                        className="mr-1 flex-shrink-0 flex items-center"
                         style={{ textDecoration: 'none' }}
                         aria-label="Pixel Pi Technologies — home"
                     >
@@ -153,42 +143,85 @@ export function Navbar() {
                 </nav>
 
                 {/* ── Mobile Bar ── */}
+                {/* Mobile — single expanding glass component */}
                 <div
-                    className="flex md:hidden items-center justify-between w-full"
+                    className="flex md:hidden flex-col w-full overflow-hidden"
                     style={{
-                        ...glassStyle, height: '60px', borderRadius: 'var(--radius-lg)',
-                        paddingLeft: '16px',
-                        paddingRight: '12px',
+                        ...glassStyle,
+                        borderRadius: 'var(--radius-lg)',
+                        maxHeight: drawerOpen ? '400px' : '56px',
+                        transition: 'max-height 480ms cubic-bezier(0.32, 0.72, 0, 1)',
                     }}
-
                     role="banner"
                 >
-                    {/* Logo */}
-                    <Link
-                        to="/"
-                        className="mr-1 flex-shrink-0 flex items-center"
-                        style={{ textDecoration: 'none' }}
-                        aria-label="Pixel Pi Technologies — home"
+                    {/* Top row — always visible */}
+                    <div
+                        className="flex items-center justify-between flex-shrink-0"
+                        style={{ height: '56px', paddingLeft: '16px', paddingRight: '12px' }}
                     >
-                        <LogoMark size="md" />
-                    </Link>
+                        <Link to="/" style={{ textDecoration: 'none' }} aria-label="Pixel Pi Technologies — home">
+                            <LogoMark size="md" />
+                        </Link>
+                        <button
+                            className="flex items-center justify-center w-9 h-9 rounded-md"
+                            style={{
+                                color: 'var(--color-text-secondary)',
+                                background: 'transparent',
+                                border: 'none',
+                                cursor: 'pointer',
+                                transition: 'color var(--duration-hover) var(--easing-standard), transform var(--duration-hover) var(--easing-standard)',
+                            }}
+                            onClick={() => setDrawerOpen((v) => !v)}
+                            aria-label={drawerOpen ? 'Close menu' : 'Open menu'}
+                            aria-expanded={drawerOpen}
+                        >
+                            {/* Icon crossfades */}
+                            <span style={{ opacity: drawerOpen ? 0 : 1, position: 'absolute', transition: 'opacity 200ms ease' }}>
+                                <Menu size={20} />
+                            </span>
+                            <span style={{ opacity: drawerOpen ? 1 : 0, position: 'absolute', transition: 'opacity 200ms ease' }}>
+                                <X size={20} />
+                            </span>
+                        </button>
+                    </div>
 
-                    {/* Hamburger */}
-                    <button
-                        className="flex items-center justify-center w-9 h-9 rounded-md transition-colors duration-fast"
+                    {/* Expandable content — fades in after container starts opening */}
+                    <div
                         style={{
-                            color: 'var(--color-text-secondary)',
-                            background: 'transparent',
-                            border: 'none',
-                            cursor: 'pointer',
+                            opacity: drawerOpen ? 1 : 0,
+                            transition: 'opacity 250ms ease 120ms', // delayed so container leads
+                            borderTop: '1px solid var(--color-border)',
                         }}
-                        onClick={() => setDrawerOpen(true)}
-                        aria-label="Open navigation menu"
-                        aria-expanded={drawerOpen}
-                        aria-controls="mobile-drawer"
                     >
-                        <Menu size={20} />
-                    </button>
+                        <nav className="flex flex-col p-3 gap-0.5" aria-label="Mobile navigation">
+                            {NAV_LINKS.map((link) => {
+                                const active = isActive(link.to);
+                                return (
+                                    <Link
+                                        key={link.to}
+                                        to={link.to}
+                                        className="px-3 py-3 rounded-lg font-body text-body-md no-underline"
+                                        style={{
+                                            color: active ? 'var(--color-text-primary)' : 'var(--color-text-secondary)',
+                                            background: active ? 'var(--color-bg-subtle)' : 'transparent',
+                                            fontWeight: active ? '500' : '400',
+                                            transition: 'color var(--duration-hover) var(--easing-standard), background var(--duration-hover) var(--easing-standard)',
+                                        }}
+                                        aria-current={active ? 'page' : undefined}
+                                    >
+                                        {link.label}
+                                    </Link>
+                                );
+                            })}
+                        </nav>
+                        <div className="px-3 pb-4" style={{ borderTop: '1px solid var(--color-border)' }}>
+                            <div className="pt-3">
+                                <Button as={Link} to="/contact" variant="primary" size="md" className="w-full">
+                                    Get in Touch
+                                </Button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
             </header>
@@ -199,109 +232,7 @@ export function Navbar() {
           are smooth in both directions.
       ══════════════════════════════════════════════════════════════════ */}
 
-            {/* Backdrop */}
-            <div
-                className="fixed inset-0 z-40 md:hidden"
-                style={{
-                    background: 'rgba(0, 0, 0, 0.60)',
-                    backdropFilter: 'blur(4px)',
-                    opacity: drawerOpen ? 1 : 0,
-                    pointerEvents: drawerOpen ? 'auto' : 'none',
-                    transition: `opacity ${275}ms ease`,
-                }}
-                onClick={() => setDrawerOpen(false)}
-                aria-hidden="true"
-            />
 
-            {/* Drawer Panel */}
-            <div
-                id="mobile-drawer"
-                className={cn(
-                    'fixed top-0 right-0 bottom-0 z-50 w-72 md:hidden',
-                    'flex flex-col',
-                )}
-                style={{
-                    background: 'var(--color-bg-elevated)',
-                    borderLeft: '1px solid var(--color-border)',
-                    transform: drawerOpen ? 'translateX(0)' : 'translateX(100%)',
-                    transition: `transform ${275}ms cubic-bezier(0.4, 0, 0.2, 1)`,
-                }}
-                role="dialog"
-                aria-modal="true"
-                aria-label="Navigation menu"
-            >
-
-                {/* Drawer — Header */}
-                <div
-                    className="flex items-center justify-between px-5 py-4 flex-shrink-0"
-                    style={{ borderBottom: '1px solid var(--color-border)' }}
-                >
-                    <Link
-                        to="/"
-                        style={{ textDecoration: 'none' }}
-                        aria-label="Pixel Pi Technologies — home"
-                    >
-                        <LogoMark size="md" />
-                    </Link>
-
-                    <button
-                        className="flex items-center justify-center w-9 h-9 rounded-md transition-colors duration-fast"
-                        style={{
-                            color: 'var(--color-text-secondary)',
-                            background: 'transparent',
-                            border: 'none',
-                            cursor: 'pointer',
-                        }}
-                        onClick={() => setDrawerOpen(false)}
-                        aria-label="Close navigation menu"
-                    >
-                        <X size={20} />
-                    </button>
-                </div>
-
-                {/* Drawer — Nav Links */}
-                <nav
-                    className="flex flex-col px-3 py-3 flex-1 overflow-y-auto"
-                    aria-label="Mobile navigation"
-                >
-                    {NAV_LINKS.map((link) => {
-                        const active = isActive(link.to);
-                        return (
-                            <Link
-                                key={link.to}
-                                to={link.to}
-                                className="px-3 py-3 rounded-lg font-body text-body-md transition-colors duration-fast"
-                                style={{
-                                    color: active ? 'var(--color-text-primary)' : 'var(--color-text-secondary)',
-                                    background: active ? 'var(--color-bg-subtle)' : 'transparent',
-                                    fontWeight: active ? '500' : '400',
-                                    textDecoration: 'none',
-                                }}
-                                aria-current={active ? 'page' : undefined}
-                            >
-                                {link.label}
-                            </Link>
-                        );
-                    })}
-                </nav>
-
-                {/* Drawer — CTA pinned to bottom */}
-                <div
-                    className="px-5 py-5 flex-shrink-0"
-                    style={{ borderTop: '1px solid var(--color-border)' }}
-                >
-                    <Button
-                        as={Link}
-                        to="/contact"
-                        variant="primary"
-                        size="md"
-                        className="w-full"
-                    >
-                        Get in Touch
-                    </Button>
-                </div>
-
-            </div>
         </>
     );
 }
