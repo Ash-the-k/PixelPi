@@ -78,10 +78,9 @@ export function Navbar() {
 
     // ── Shared glass styles ───────────────────────────────────────────────────
     const glassStyle = {
-        backdropFilter: 'blur(5px)',
-        WebkitBackdropFilter: 'blur(5px)',
-        background: 'rgba(13, 18, 32, 0.65)',
-        border: '1px solid rgba(255, 255, 255, 0.10)',
+        backdropFilter: 'blur(3px)',
+        WebkitBackdropFilter: 'blur(3px)',
+        background: 'rgba(13, 18, 32, 0.70)',
         boxShadow: '0 8px 32px rgba(0, 0, 0, 0.40), inset 0 1px 0 rgba(255, 255, 255, 0.10)',
         transition: 'background 175ms ease, box-shadow 175ms ease',
     };
@@ -100,18 +99,13 @@ export function Navbar() {
                 {/* ── Desktop Pill ── */}
                 <nav
                     className="hidden md:flex items-center gap-1 px-3"
-                    style={{ ...glassStyle, height: '60px', borderRadius: '9999px' }}
+                    style={{ ...glassStyle, height: '66px', padding: '20px', borderRadius: '9999px' }}
                     aria-label="Primary navigation"
                 >
                     {/* Logo */}
-                    <Link
-                        to="/"
-                        className="mr-1 flex-shrink-0 flex items-center"
-                        style={{ textDecoration: 'none' }}
-                        aria-label="Pixel Pi Technologies — home"
-                    >
-                        <LogoMark size="md" />
-                    </Link>
+                    
+                        <LogoMark size="nav" />
+                    
 
                     <Separator />
 
@@ -159,8 +153,8 @@ export function Navbar() {
                         className="flex items-center justify-between flex-shrink-0"
                         style={{ height: '56px', paddingLeft: '16px', paddingRight: '12px' }}
                     >
-                        <Link to="/" style={{ textDecoration: 'none' }} aria-label="Pixel Pi Technologies — home">
-                            <LogoMark size="md" />
+                        <Link to="/" className='flex items-center' style={{ textDecoration: 'none' }} aria-label="Pixel Pi Technologies — home">
+                            <LogoMark size="ph" />
                         </Link>
                         <button
                             className="flex items-center justify-center w-9 h-9 rounded-md"
@@ -225,14 +219,6 @@ export function Navbar() {
                 </div>
 
             </header>
-
-            {/* ══════════════════════════════════════════════════════════════════
-          Mobile Drawer — backdrop + panel
-          Always rendered; opacity/transform handle show/hide so transitions
-          are smooth in both directions.
-      ══════════════════════════════════════════════════════════════════ */}
-
-
         </>
     );
 }

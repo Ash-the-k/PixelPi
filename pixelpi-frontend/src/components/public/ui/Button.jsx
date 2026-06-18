@@ -24,7 +24,7 @@ export function Button({
     sm: 'px-4 h-9',   // 36px — used inside Navbar pill
     md: 'px-6 h-12',  // 48px — standard CTA
     lg: 'px-8 h-14',  // 56px — hero CTA on larger breakpoints
-    pill: 'px-5 h-9 rounded-full text-[13px]',  // fits inside navbar pill
+    pill: 'px-5 h-9 rounded-full text-[14px]',  // fits inside navbar pill
   };
 
   const variants = {

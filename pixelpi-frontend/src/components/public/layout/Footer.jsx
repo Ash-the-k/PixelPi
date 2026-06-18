@@ -52,14 +52,7 @@ export function Footer() {
           <div className="flex flex-col gap-6">
 
             {/* Logo mark + wordmark — links to homepage */}
-            <Link
-              to="/"
-              className="inline-flex items-center gap-2.5 w-fit"
-              aria-label="Pixel Pi Technologies — home"
-              style={{ textDecoration: 'none' }}
-            >
-              <LogoMark size="md" />
-            </Link>
+            <LogoMark size="lg" />
 
             {/* Tagline */}
             <div className="flex flex-col gap-0.5">
