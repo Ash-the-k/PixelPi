@@ -56,15 +56,6 @@ export function Navbar() {
     const [drawerOpen, setDrawerOpen] = useState(false);
     const location = useLocation();
 
-    // ── Scroll tracking ──────────────────────────────────────────────────────
-    useEffect(() => {
-        const onScroll = () => setScrolled(window.scrollY > 20);
-        window.addEventListener('scroll', onScroll, { passive: true });
-        // Set initial state in case page loads mid-scroll
-        onScroll();
-        return () => window.removeEventListener('scroll', onScroll);
-    }, []);
-
     // ── Close drawer on navigation ───────────────────────────────────────────
     useEffect(() => {
         setDrawerOpen(false);
@@ -81,7 +72,7 @@ export function Navbar() {
         backdropFilter: 'blur(3px)',
         WebkitBackdropFilter: 'blur(3px)',
         background: 'rgba(13, 18, 32, 0.70)',
-        boxShadow: '0 8px 32px rgba(0, 0, 0, 0.40), inset 0 1px 0 rgba(255, 255, 255, 0.10)',
+        boxShadow: '0 4px 10px rgba(0, 0, 0, 0.30), inset 0 1px 0 rgba(255, 255, 255, 0.10)',
         transition: 'background 175ms ease, box-shadow 175ms ease',
     };
 
@@ -103,9 +94,9 @@ export function Navbar() {
                     aria-label="Primary navigation"
                 >
                     {/* Logo */}
-                    
-                        <LogoMark size="nav" />
-                    
+
+                    <LogoMark size="nav" />
+
 
                     <Separator />
 
@@ -139,12 +130,13 @@ export function Navbar() {
                 {/* ── Mobile Bar ── */}
                 {/* Mobile — single expanding glass component */}
                 <div
-                    className="flex md:hidden flex-col w-full overflow-hidden"
+                    className="flex md:hidden flex-col w-full"
                     style={{
                         ...glassStyle,
                         borderRadius: 'var(--radius-lg)',
+                        overflow: 'hidden',
                         maxHeight: drawerOpen ? '400px' : '56px',
-                        transition: 'max-height 480ms cubic-bezier(0.32, 0.72, 0, 1)',
+                        transition: 'max-height var(--duration-moderate) var(--easing-enter)',
                     }}
                     role="banner"
                 >
@@ -183,7 +175,7 @@ export function Navbar() {
                     <div
                         style={{
                             opacity: drawerOpen ? 1 : 0,
-                            transition: 'opacity 250ms ease 120ms', // delayed so container leads
+                            transition: 'opacity var(--duration-fast) ease 50ms',
                             borderTop: '1px solid var(--color-border)',
                         }}
                     >
