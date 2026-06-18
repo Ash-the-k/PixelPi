@@ -1,25 +1,32 @@
+import { cn } from '../../../utils/cn';
+
 export function LogoMark({ size = 'md' }) {
-    const sizes = {
-        sm: { box: 'w-6 h-6', text: 'text-[10px]', label: 'text-body-md' },
-        md: { box: 'w-7 h-7', text: 'text-mono-sm', label: 'text-body-lg' },
-        lg: { box: 'w-8 h-8', text: 'text-mono-sm', label: 'text-body-lg' },
-    };
+  const sizes = {
+    sm: { box: 'w-5 h-5', label: 'text-[13px]' },
+    md: { box: 'w-6 h-6', label: 'text-[15px]' },    // 24px icon, 15px wordmark
+    lg: { box: 'w-7 h-7', label: 'text-body-md' },   // footer / large contexts
+  };
 
-    const s = sizes[size] || sizes.md;
+  const s = sizes[size] || sizes.md;
 
-    return (
-        <div className="inline-flex items-center gap-2">
-            <img
-                src="/logo.png"
-                alt=""
-                className={`${s.box} flex-shrink-0 object-contain`}
-                aria-hidden="true"
-            />
-            <span className={`font-display font-semibold ${s.label}`}>
-                <span style={{ color: '#332155' }}>Pixel</span>{' '}
-                <span style={{ color: '#3B4E93' }}>Pi</span>
-            </span>
-
-        </div>
-    );
+  return (
+    <div className="inline-flex items-center gap-2 leading-none">
+      <img
+        src="/logo.png"
+        alt=""
+        className={cn(s.box, 'flex-shrink-0 object-contain block')}
+        aria-hidden="true"
+      />
+      <span
+        className={cn(
+          'font-display font-semibold leading-none',
+          'inline-flex items-center gap-[3px]',
+          s.label,
+        )}
+      >
+        <span style={{ color: 'var(--color-text-primary)' }}>Pixel</span>
+        <span style={{ color: 'var(--color-accent-hover)' }}>Pi</span>
+      </span>
+    </div>
+  );
 }

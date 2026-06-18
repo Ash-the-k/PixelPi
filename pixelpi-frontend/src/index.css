@@ -17,12 +17,7 @@
 @layer components {
   /* Gradient fill — primary CTA buttons, brand moments */
   .gradient-bg {
-    background: var(--gradient-brand);
-  }
-
-  /* Gradient fill — hover state (slightly lightened) */
-  .gradient-bg-hover {
-    background: linear-gradient(135deg, #3D2866, #4A5CA8);
+    background: var(--gradient-brand-button);
   }
 
   /* Gradient text — hero headline, select display words */
@@ -116,7 +111,8 @@
 
   /* Brand Gradient */
   --gradient-brand:      linear-gradient(135deg, #332055, #3C4D93);
-  --gradient-brand-text: linear-gradient(135deg, #7B4FBF, #6B8CFF);
+  --gradient-brand-text: linear-gradient(135deg, #7B4FBF, #6B8CFF, #7B4FBF);
+  --gradient-brand-button: linear-gradient(135deg, #332055, #3C4D93, #3C4D93, #332055);
 
   /* Brand Accent — Solid */
   --color-accent:        #4F6BCC;

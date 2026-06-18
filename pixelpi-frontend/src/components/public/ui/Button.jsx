@@ -9,11 +9,13 @@ export function Button({
   ...props
 }) {
   const base = cn(
+    'group',
     'inline-flex items-center justify-center gap-2',
-    'font-body font-medium text-label',
+    'font-body font-semibold text-label',
     'rounded-md',
+    'border border-transparent',
     'transition-all',
-    'focus-visible:outline-none focus-visible:ring-2',
+    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1',
     'disabled:opacity-50 disabled:cursor-not-allowed',
     'cursor-pointer border-0',
   );
@@ -22,12 +24,13 @@ export function Button({
     sm: 'px-4 h-9',   // 36px — used inside Navbar pill
     md: 'px-6 h-12',  // 48px — standard CTA
     lg: 'px-8 h-14',  // 56px — hero CTA on larger breakpoints
+    pill: 'px-5 h-9 rounded-full text-[13px]',  // fits inside navbar pill
   };
 
   const variants = {
     primary: cn(
       'gradient-bg text-white',
-      'hover:opacity-90 active:opacity-80',
+      'hover:opacity-90 brightness-110 active:opacity-80 brightness-90',
       'focus-visible:ring-accent',
     ),
     secondary: cn(
@@ -52,8 +55,8 @@ export function Button({
         variant === 'secondary'
           ? { borderColor: 'var(--color-accent)', color: 'var(--color-accent)' }
           : variant === 'ghost'
-          ? { color: 'var(--color-accent)' }
-          : undefined
+            ? { color: 'var(--color-accent)' }
+            : undefined
       }
       {...props}
     >
