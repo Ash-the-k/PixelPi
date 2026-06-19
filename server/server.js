@@ -34,14 +34,12 @@ app.use('/api/', limiter);
 app.use(compression({ level: 6 }));
 
 // CORS Configuration
-const allowedOrigins = [
-  'https://pixelpitechnologies.in',
-  'http://pixelpitechnologies.in',
-  'https://www.pixelpitechnologies.in',
-  'http://localhost:3000',
-  'http://127.0.0.1:5500',
-  'http://localhost:5500'
-];
+const allowedOrigins = (
+  process.env.ALLOWED_ORIGINS || ''
+)
+  .split(',')
+  .map(origin => origin.trim())
+  .filter(Boolean);
 
 app.use(cors({
   origin: function (origin, callback) {
@@ -141,30 +139,30 @@ try {
   console.warn('⚠ MySQL session store unavailable, using memory store');
 }
 
-const CustomStore = function() {};
+const CustomStore = function () { };
 CustomStore.prototype = Object.create(session.Store.prototype);
-CustomStore.prototype.get = function(sid, cb) {
+CustomStore.prototype.get = function (sid, cb) {
   if (dbAvailable && sessionStoreInstance) {
     sessionStoreInstance.get(sid, cb);
   } else {
     memoryStore.get(sid, cb);
   }
 };
-CustomStore.prototype.set = function(sid, sess, cb) {
+CustomStore.prototype.set = function (sid, sess, cb) {
   if (dbAvailable && sessionStoreInstance) {
     sessionStoreInstance.set(sid, sess, cb);
   } else {
     memoryStore.set(sid, sess, cb);
   }
 };
-CustomStore.prototype.destroy = function(sid, cb) {
+CustomStore.prototype.destroy = function (sid, cb) {
   if (dbAvailable && sessionStoreInstance) {
     sessionStoreInstance.destroy(sid, cb);
   } else {
     memoryStore.destroy(sid, cb);
   }
 };
-CustomStore.prototype.touch = function(sid, sess, cb) {
+CustomStore.prototype.touch = function (sid, sess, cb) {
   if (dbAvailable && sessionStoreInstance && typeof sessionStoreInstance.touch === 'function') {
     sessionStoreInstance.touch(sid, sess, cb);
   } else if (typeof memoryStore.touch === 'function') {
@@ -195,31 +193,31 @@ app.use(session(sessionConfig));
 const authenticateToken = (req, res, next) => {
   const authHeader = req.headers['authorization'];
   const token = authHeader && authHeader.split(' ')[1];
-  
+
   if (!token) {
-    return res.status(401).json({ 
+    return res.status(401).json({
       error: 'Access denied. No token provided.',
-      success: false 
+      success: false
     });
   }
-  
+
   try {
     const verified = jwt.verify(token, process.env.JWT_SECRET);
     req.user = verified;
     next();
   } catch (error) {
-    return res.status(403).json({ 
+    return res.status(403).json({
       error: 'Invalid or expired token',
-      success: false 
+      success: false
     });
   }
 };
 
 const isAdmin = (req, res, next) => {
   if (!req.user || req.user.role !== 'admin') {
-    return res.status(403).json({ 
+    return res.status(403).json({
       error: 'Access denied. Admin rights required.',
-      success: false 
+      success: false
     });
   }
   next();
@@ -228,7 +226,7 @@ const isAdmin = (req, res, next) => {
 // Generate JWT token
 const generateToken = (userData) => {
   return jwt.sign(
-    { 
+    {
       id: userData.id || 'admin',
       username: userData.username,
       role: userData.role || 'admin',
@@ -250,7 +248,7 @@ async function initializeDatabase() {
   }
   try {
     const connection = await pool.getConnection();
-    
+
     // Create tables if they don't exist
     await connection.execute(`
       CREATE TABLE IF NOT EXISTS contact_submissions (
@@ -270,7 +268,7 @@ async function initializeDatabase() {
         INDEX idx_created_at (created_at)
       )
     `);
-    
+
     await connection.execute(`
       CREATE TABLE IF NOT EXISTS newsletter_subscriptions (
         id INT AUTO_INCREMENT PRIMARY KEY,
@@ -288,7 +286,7 @@ async function initializeDatabase() {
         INDEX idx_status (status)
       )
     `);
-    
+
     await connection.execute(`
       CREATE TABLE IF NOT EXISTS collaboration_inquiries (
         id INT AUTO_INCREMENT PRIMARY KEY,
@@ -309,7 +307,7 @@ async function initializeDatabase() {
         INDEX idx_type (type)
       )
     `);
-    
+
     await connection.execute(`
       CREATE TABLE IF NOT EXISTS career_applications (
         id INT AUTO_INCREMENT PRIMARY KEY,
@@ -339,7 +337,7 @@ async function initializeDatabase() {
         FULLTEXT idx_search (name, email, skills, experience)
       )
     `);
-    
+
     await connection.execute(`
       CREATE TABLE IF NOT EXISTS email_logs (
         id INT AUTO_INCREMENT PRIMARY KEY,
@@ -357,7 +355,7 @@ async function initializeDatabase() {
         INDEX idx_sent_at (sent_at)
       )
     `);
-    
+
     // Create admin users table
     await connection.execute(`
       CREATE TABLE IF NOT EXISTS admin_users (
@@ -486,7 +484,7 @@ async function initializeDatabase() {
       'SELECT id FROM admin_users WHERE username = ?',
       [process.env.ADMIN_USERNAME || 'admin']
     );
-    
+
     if (adminExists.length === 0) {
       const defaultPassword = await bcrypt.hash(
         process.env.ADMIN_PASSWORD || 'admin123',
@@ -503,7 +501,7 @@ async function initializeDatabase() {
       );
       console.log('✓ Default admin user created');
     }
-    
+
     connection.release();
     dbAvailable = true;
     console.log('✓ Database tables initialized successfully');
@@ -543,7 +541,7 @@ const storage = multer.diskStorage({
   }
 });
 
-const upload = multer({ 
+const upload = multer({
   storage: storage,
   limits: {
     fileSize: 5 * 1024 * 1024, // 5MB
@@ -551,7 +549,7 @@ const upload = multer({
   fileFilter: function (req, file, cb) {
     const allowedTypes = ['.pdf', '.doc', '.docx', '.png', '.jpg', '.jpeg'];
     const fileExt = path.extname(file.originalname).toLowerCase();
-    
+
     if (allowedTypes.includes(fileExt)) {
       cb(null, true);
     } else {
@@ -575,7 +573,7 @@ try {
     maxConnections: 5,
     maxMessages: 100
   });
-  
+
   transporter.verify((error, success) => {
     if (error) {
       console.error('✗ Email configuration error:', error.message);
@@ -614,9 +612,9 @@ app.get('/api/health', async (req, res) => {
     const connection = await pool.getConnection();
     await connection.query('SELECT 1');
     connection.release();
-    
-    res.status(200).json({ 
-      status: 'OK', 
+
+    res.status(200).json({
+      status: 'OK',
       timestamp: new Date().toISOString(),
       server: 'PixelPi Technologies API',
       database: 'connected',
@@ -625,8 +623,8 @@ app.get('/api/health', async (req, res) => {
       version: '2.0.0'
     });
   } catch (error) {
-    res.status(500).json({ 
-      status: 'ERROR', 
+    res.status(500).json({
+      status: 'ERROR',
       database: 'disconnected',
       error: error.message,
       timestamp: new Date().toISOString()
@@ -638,17 +636,17 @@ app.get('/api/health', async (req, res) => {
 app.post('/api/admin/login', async (req, res) => {
   try {
     const { username, password } = req.body;
-    
+
     if (!username || !password) {
       return res.status(400).json({
         success: false,
         error: 'Username and password are required'
       });
     }
-    
+
     // Try database auth first, fallback to env-based auth
     let user = null;
-    
+
     if (dbAvailable && pool) {
       try {
         const connection = await pool.getConnection();
@@ -657,7 +655,7 @@ app.post('/api/admin/login', async (req, res) => {
           [username]
         );
         connection.release();
-        
+
         if (users.length > 0) {
           const dbUser = users[0];
           const passwordMatch = await bcrypt.compare(
@@ -679,35 +677,35 @@ app.post('/api/admin/login', async (req, res) => {
         console.warn('DB auth failed, trying env fallback:', dbErr.message);
       }
     }
-    
+
     // Fallback: authenticate with env credentials
     if (!user) {
       const envUsername = process.env.ADMIN_USERNAME || 'admin';
       const envPassword = process.env.ADMIN_PASSWORD || 'admin123';
-      
+
       if (username === envUsername && password === envPassword) {
         user = { id: 'env-admin', username: envUsername, role: 'admin', email: process.env.ADMIN_EMAIL || 'admin@pixelpitechnologies.in' };
       }
     }
-    
+
     if (!user) {
       return res.status(401).json({ success: false, error: 'Invalid credentials' });
     }
-    
+
     // Generate JWT token
     const token = generateToken(user);
-    
+
     // Set session
     req.session.user = user;
     req.session.isLoggedIn = true;
-    
+
     res.status(200).json({
       success: true,
       message: 'Login successful',
       token: token,
       user: user
     });
-    
+
   } catch (error) {
     console.error('Login error:', error);
     res.status(500).json({
@@ -726,7 +724,7 @@ app.post('/api/admin/logout', (req, res) => {
         error: 'Logout failed'
       });
     }
-    
+
     res.clearCookie('connect.sid');
     res.status(200).json({
       success: true,
@@ -747,7 +745,7 @@ app.get('/api/admin/status', authenticateToken, (req, res) => {
 // CAREER APPLICATIONS - PUBLIC ENDPOINT
 app.post('/api/careers/apply', upload.single('resume'), async (req, res) => {
   console.log('📨 Career application received');
-  
+
   try {
     const file = req.file;
     const {
@@ -762,62 +760,62 @@ app.post('/api/careers/apply', upload.single('resume'), async (req, res) => {
       portfolio,
       message
     } = req.body;
-    
+
     console.log('📝 Application data:', { name, email, position });
-    
+
     // Validate required fields
     if (!name || !email || !phone || !position || !education || !university || !skills) {
       console.log('❌ Missing required fields');
-      return res.status(400).json({ 
-        error: 'Please fill in all required fields', 
-        success: false 
+      return res.status(400).json({
+        error: 'Please fill in all required fields',
+        success: false
       });
     }
-    
+
     // Validate email
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       console.log('❌ Invalid email format:', email);
-      return res.status(400).json({ 
-        error: 'Please enter a valid email address', 
-        success: false 
+      return res.status(400).json({
+        error: 'Please enter a valid email address',
+        success: false
       });
     }
-    
+
     // Validate phone
     const cleanPhone = phone.replace(/\D/g, '');
     if (cleanPhone.length < 10) {
       console.log('❌ Invalid phone number:', phone);
-      return res.status(400).json({ 
-        error: 'Please enter a valid phone number with at least 10 digits', 
-        success: false 
+      return res.status(400).json({
+        error: 'Please enter a valid phone number with at least 10 digits',
+        success: false
       });
     }
-    
+
     // Validate file
     if (!file) {
       console.log('❌ No resume file uploaded');
-      return res.status(400).json({ 
-        error: 'Please upload your resume', 
-        success: false 
+      return res.status(400).json({
+        error: 'Please upload your resume',
+        success: false
       });
     }
-    
+
     if (file.size > 5 * 1024 * 1024) {
       console.log('❌ File too large:', file.size);
-      return res.status(400).json({ 
-        error: 'Resume file size must be less than 5MB', 
-        success: false 
+      return res.status(400).json({
+        error: 'Resume file size must be less than 5MB',
+        success: false
       });
     }
-    
+
     // Generate application ID
     const applicationId = 'APP' + Date.now() + Math.random().toString(36).substr(2, 9).toUpperCase();
-    
+
     // Get client info
     const ipAddress = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
     const userAgent = req.headers['user-agent'];
-    
+
     // Save to database
     let savedSuccessfully = false;
     if (dbAvailable && pool) {
@@ -830,25 +828,25 @@ app.post('/api/careers/apply', upload.single('resume'), async (req, res) => {
             application_id, ip_address, user_agent, status
           ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
           [
-            name, email, cleanPhone, position, education, university, 
+            name, email, cleanPhone, position, education, university,
             typeof skills === 'string' ? skills : JSON.stringify(skills),
             experience || '', portfolio || '', message || '',
             file.filename, file.path, applicationId,
             ipAddress, userAgent, 'new'
           ]
         );
-        
+
         connection.release();
         console.log('✅ Application saved to database:', applicationId);
         savedSuccessfully = true;
       } catch (dbError) {
         connection.release();
         console.error('❌ Database error:', dbError.message);
-        
+
         if (dbError.code === 'ER_DUP_ENTRY') {
-          return res.status(409).json({ 
+          return res.status(409).json({
             error: 'You have already applied for this position',
-            success: false 
+            success: false
           });
         }
         throw dbError;
@@ -885,33 +883,33 @@ app.post('/api/careers/apply', upload.single('resume'), async (req, res) => {
       console.log('✅ Application saved to JSON file:', applicationId);
       savedSuccessfully = true;
     }
-    
+
   } catch (error) {
     console.error('❌ Career application error:', error.message);
-    
+
     // Handle multer errors
     if (error instanceof multer.MulterError) {
       if (error.code === 'LIMIT_FILE_SIZE') {
-        return res.status(400).json({ 
+        return res.status(400).json({
           error: 'Resume file size must be less than 5MB',
-          success: false 
+          success: false
         });
       }
-      return res.status(400).json({ 
+      return res.status(400).json({
         error: error.message,
-        success: false 
+        success: false
       });
     }
-    
+
     // Handle file filter errors
     if (error.message && error.message.includes('allowed')) {
-      return res.status(400).json({ 
+      return res.status(400).json({
         error: error.message,
-        success: false 
+        success: false
       });
     }
-    
-    res.status(500).json({ 
+
+    res.status(500).json({
       error: 'Failed to submit application. Please try again later.',
       success: false,
       details: process.env.NODE_ENV === 'development' ? error.message : undefined
@@ -931,7 +929,7 @@ app.get('/api/admin/applications', authenticateToken, isAdmin, async (req, res) 
     const offset = (page - 1) * limit;
     const status = req.query.status;
     const search = req.query.search;
-    
+
     let applications = [];
     let total = 0;
     let statusCountsMap = {};
@@ -941,76 +939,76 @@ app.get('/api/admin/applications', authenticateToken, isAdmin, async (req, res) 
       let countQuery = 'SELECT COUNT(*) as total FROM career_applications';
       let conditions = [];
       let params = [];
-      
+
       if (status && status !== 'all') {
         conditions.push('status = ?');
         params.push(status);
       }
-      
+
       if (search) {
         conditions.push('(name LIKE ? OR email LIKE ? OR position LIKE ? OR application_id LIKE ?)');
         params.push(`%${search}%`, `%${search}%`, `%${search}%`, `%${search}%`);
       }
-      
+
       if (conditions.length > 0) {
         query += ' WHERE ' + conditions.join(' AND ');
         countQuery += ' WHERE ' + conditions.join(' AND ');
       }
-      
+
       query += ' ORDER BY created_at DESC LIMIT ? OFFSET ?';
       params.push(limit, offset);
-      
+
       const connection = await pool.getConnection();
-      
+
       // Get total count
       const [countResult] = await connection.execute(countQuery, params.slice(0, -2));
       total = countResult[0].total;
-      
+
       // Get paginated applications
       const [appRows] = await connection.execute(query, params);
       applications = appRows;
-      
+
       // Get status counts
       const [statusCounts] = await connection.execute(
         'SELECT status, COUNT(*) as count FROM career_applications GROUP BY status'
       );
-      
+
       connection.release();
-      
+
       statusCountsMap = statusCounts.reduce((acc, curr) => {
         acc[curr.status] = curr.count;
         return acc;
       }, {});
     } else {
       const allApps = await readJsonFile('applications.json');
-      
+
       // Calculate status counts
       allApps.forEach(app => {
         statusCountsMap[app.status] = (statusCountsMap[app.status] || 0) + 1;
       });
-      
+
       // Filter by status
       let filtered = allApps;
       if (status && status !== 'all') {
         filtered = filtered.filter(app => app.status === status);
       }
-      
+
       // Filter by search
       if (search) {
         const searchLower = search.toLowerCase();
-        filtered = filtered.filter(app => 
+        filtered = filtered.filter(app =>
           (app.name && app.name.toLowerCase().includes(searchLower)) ||
           (app.email && app.email.toLowerCase().includes(searchLower)) ||
           (app.position && app.position.toLowerCase().includes(searchLower)) ||
           (app.application_id && app.application_id.toLowerCase().includes(searchLower))
         );
       }
-      
+
       total = filtered.length;
-      
+
       // Sort desc by id
       filtered.sort((a, b) => b.id - a.id);
-      
+
       // Slice for pagination
       applications = filtered.slice(offset, offset + limit).map(app => ({
         id: app.id,
@@ -1026,7 +1024,7 @@ app.get('/api/admin/applications', authenticateToken, isAdmin, async (req, res) 
         created_at: app.created_at
       }));
     }
-    
+
     res.status(200).json({
       success: true,
       data: {
@@ -1040,7 +1038,7 @@ app.get('/api/admin/applications', authenticateToken, isAdmin, async (req, res) 
         statusCounts: statusCountsMap
       }
     });
-    
+
   } catch (error) {
     console.error('Error fetching applications:', error);
     res.status(500).json({
@@ -1054,23 +1052,23 @@ app.get('/api/admin/applications', authenticateToken, isAdmin, async (req, res) 
 app.get('/api/admin/applications/:id', authenticateToken, isAdmin, async (req, res) => {
   try {
     const { id } = req.params;
-    
+
     if (dbAvailable && pool) {
       const connection = await pool.getConnection();
       const [applications] = await connection.execute(
         `SELECT * FROM career_applications WHERE id = ? OR application_id = ?`,
         [id, id]
       );
-      
+
       connection.release();
-      
+
       if (applications.length === 0) {
         return res.status(404).json({
           success: false,
           error: 'Application not found'
         });
       }
-      
+
       res.status(200).json({
         success: true,
         data: applications[0]
@@ -1089,7 +1087,7 @@ app.get('/api/admin/applications/:id', authenticateToken, isAdmin, async (req, r
         data: application
       });
     }
-    
+
   } catch (error) {
     console.error('Error fetching application:', error);
     res.status(500).json({
@@ -1104,25 +1102,25 @@ app.put('/api/admin/applications/:id/status', authenticateToken, isAdmin, async 
   try {
     const { id } = req.params;
     const { status, notes } = req.body;
-    
+
     const validStatuses = ['new', 'reviewing', 'shortlisted', 'interviewed', 'hired', 'rejected'];
-    
+
     if (!status || !validStatuses.includes(status)) {
       return res.status(400).json({
         success: false,
         error: 'Invalid status value'
       });
     }
-    
+
     if (dbAvailable && pool) {
       const connection = await pool.getConnection();
       const [result] = await connection.execute(
         'UPDATE career_applications SET status = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ? OR application_id = ?',
         [status, id, id]
       );
-      
+
       connection.release();
-      
+
       if (result.affectedRows === 0) {
         return res.status(404).json({
           success: false,
@@ -1142,12 +1140,12 @@ app.put('/api/admin/applications/:id/status', authenticateToken, isAdmin, async 
       applications[idx].updated_at = new Date().toISOString();
       await writeJsonFile('applications.json', applications);
     }
-    
+
     res.status(200).json({
       success: true,
       message: 'Application status updated successfully'
     });
-    
+
   } catch (error) {
     console.error('Error updating application:', error);
     res.status(500).json({
@@ -1166,7 +1164,7 @@ app.get('/api/admin/dashboard/stats', authenticateToken, isAdmin, async (req, re
 
     if (dbAvailable && pool) {
       const connection = await pool.getConnection();
-      
+
       // Get applications count by day (last 30 days)
       const [dbDaily] = await connection.execute(`
         SELECT DATE(created_at) as date, COUNT(*) as count 
@@ -1176,7 +1174,7 @@ app.get('/api/admin/dashboard/stats', authenticateToken, isAdmin, async (req, re
         ORDER BY date DESC
       `);
       dailyApps = dbDaily;
-      
+
       // Get total counts
       const [totalCounts] = await connection.execute(`
         SELECT 
@@ -1187,7 +1185,7 @@ app.get('/api/admin/dashboard/stats', authenticateToken, isAdmin, async (req, re
           (SELECT COUNT(*) FROM contact_submissions WHERE status = 'new') as new_contacts
       `);
       totals = totalCounts[0];
-      
+
       // Get applications by position
       const [dbPosition] = await connection.execute(`
         SELECT position, COUNT(*) as count 
@@ -1197,13 +1195,13 @@ app.get('/api/admin/dashboard/stats', authenticateToken, isAdmin, async (req, re
         LIMIT 10
       `);
       positionStats = dbPosition;
-      
+
       connection.release();
     } else {
       const allApps = await readJsonFile('applications.json');
       const allSubscribers = await readJsonFile('newsletters.json');
       const allContacts = await readJsonFile('contacts.json');
-      
+
       // Totals
       totals = {
         total_applications: allApps.length,
@@ -1212,7 +1210,7 @@ app.get('/api/admin/dashboard/stats', authenticateToken, isAdmin, async (req, re
         newsletter_subscribers: allSubscribers.filter(n => n.status === 'active').length,
         new_contacts: allContacts.filter(c => c.status === 'new').length
       };
-      
+
       // Daily applications count (last 30 days)
       const thirtyDaysAgo = new Date();
       thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
@@ -1226,7 +1224,7 @@ app.get('/api/admin/dashboard/stats', authenticateToken, isAdmin, async (req, re
       dailyApps = Object.entries(appDates)
         .map(([date, count]) => ({ date, count }))
         .sort((a, b) => b.date.localeCompare(a.date));
-        
+
       // Applications by position (limit 10)
       const posCounts = allApps.reduce((acc, a) => {
         acc[a.position] = (acc[a.position] || 0) + 1;
@@ -1237,7 +1235,7 @@ app.get('/api/admin/dashboard/stats', authenticateToken, isAdmin, async (req, re
         .sort((a, b) => b.count - a.count)
         .slice(0, 10);
     }
-    
+
     res.status(200).json({
       success: true,
       data: {
@@ -1246,7 +1244,7 @@ app.get('/api/admin/dashboard/stats', authenticateToken, isAdmin, async (req, re
         positionStats: positionStats
       }
     });
-    
+
   } catch (error) {
     console.error('Error fetching dashboard stats:', error);
     res.status(500).json({
@@ -1455,24 +1453,24 @@ app.get('/api/blog', async (req, res) => {
     } else {
       const allPosts = await readJsonFile('blog_posts.json');
       const published = allPosts.filter(p => p.status === 'published');
-      
+
       categories = [...new Set(published.map(p => p.category))].sort();
-      
+
       let filtered = published;
       if (category && category !== 'all') {
         filtered = filtered.filter(p => p.category === category);
       }
       if (search) {
         const searchLower = search.toLowerCase();
-        filtered = filtered.filter(p => 
+        filtered = filtered.filter(p =>
           (p.title && p.title.toLowerCase().includes(searchLower)) ||
           (p.excerpt && p.excerpt.toLowerCase().includes(searchLower))
         );
       }
-      
+
       total = filtered.length;
       filtered.sort((a, b) => new Date(b.published_at || b.created_at || 0) - new Date(a.published_at || a.created_at || 0));
-      
+
       posts = filtered.slice(offset, offset + limit).map(p => ({
         id: p.id,
         title: p.title,
@@ -1524,11 +1522,11 @@ app.get('/api/blog/:slug', async (req, res) => {
       if (postIdx === -1) {
         return res.status(404).json({ error: 'Post not found', success: false });
       }
-      
+
       const post = allPosts[postIdx];
       post.views = (post.views || 0) + 1;
       await writeJsonFile('blog_posts.json', allPosts);
-      
+
       const related = allPosts
         .filter(p => p.status === 'published' && p.category === post.category && String(p.id) !== String(post.id))
         .sort((a, b) => new Date(b.published_at || b.created_at || 0) - new Date(a.published_at || a.created_at || 0))
@@ -1542,7 +1540,7 @@ app.get('/api/blog/:slug', async (req, res) => {
           category: p.category,
           published_at: p.published_at ? new Date(p.published_at).toISOString().split('T')[0] : null
         }));
-        
+
       res.json({ success: true, data: { post, related } });
     }
   } catch (error) {
@@ -1576,7 +1574,7 @@ app.get('/api/admin/blog', authenticateToken, isAdmin, async (req, res) => {
       const conn = await pool.getConnection();
       const [rows] = await conn.execute(query, params);
       posts = rows;
-      
+
       let countQuery = 'SELECT COUNT(*) as total FROM blog_posts';
       let countParams = [];
       if (status && status !== 'all') { countQuery += ' WHERE status = ?'; countParams.push(status); }
@@ -1590,9 +1588,9 @@ app.get('/api/admin/blog', authenticateToken, isAdmin, async (req, res) => {
         filtered = filtered.filter(p => p.status === status);
       }
       total = filtered.length;
-      
+
       filtered.sort((a, b) => new Date(b.created_at || 0) - new Date(a.created_at || 0));
-      
+
       posts = filtered.slice(offset, offset + limit).map(p => ({
         id: p.id,
         title: p.title,
@@ -1693,7 +1691,7 @@ app.post('/api/admin/blog', authenticateToken, isAdmin, async (req, res) => {
 app.put('/api/admin/blog/:id', authenticateToken, isAdmin, async (req, res) => {
   try {
     const { title, excerpt, content, cover_image, category, tags, author, status, meta_title, meta_description } = req.body;
-    
+
     if (dbAvailable && pool) {
       const conn = await pool.getConnection();
       const [existing] = await conn.execute('SELECT * FROM blog_posts WHERE id = ?', [req.params.id]);
@@ -1711,11 +1709,11 @@ app.put('/api/admin/blog/:id', authenticateToken, isAdmin, async (req, res) => {
       const posts = await readJsonFile('blog_posts.json');
       const idx = posts.findIndex(p => String(p.id) === String(req.params.id));
       if (idx === -1) return res.status(404).json({ error: 'Post not found', success: false });
-      
+
       const existing = posts[idx];
       const publishedAt = status === 'published' && existing.status !== 'published' ? new Date().toISOString() : existing.published_at;
       const readingTime = content ? Math.ceil(content.replace(/<[^>]*>/g, '').split(/\s+/).length / 200) : existing.reading_time;
-      
+
       posts[idx] = {
         ...existing,
         title: title !== undefined ? title : existing.title,
@@ -1902,7 +1900,7 @@ app.get('/api/admin/dashboard/overview', authenticateToken, isAdmin, async (req,
       const collaborations = await readJsonFile('collaborations.json');
       const blogPosts = await readJsonFile('blog_posts.json');
       const auditLogs = await readJsonFile('audit_logs.json');
-      
+
       const stats = {
         total_applications: applications.length,
         new_applications: applications.filter(a => a.status === 'new').length,
@@ -1915,10 +1913,10 @@ app.get('/api/admin/dashboard/overview', authenticateToken, isAdmin, async (req,
         published_posts: blogPosts.filter(b => b.status === 'published').length,
         total_views: blogPosts.reduce((acc, b) => acc + (b.views || 0), 0)
       };
-      
+
       auditLogs.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
       const recentActivity = auditLogs.slice(0, 10);
-      
+
       res.json({ success: true, data: { stats, recentActivity } });
     }
   } catch (error) {
@@ -2016,14 +2014,16 @@ app.get('/api/admin/analytics', authenticateToken, isAdmin, (req, res) => {
     else if (ua.includes('Tablet') || ua.includes('iPad')) devices.tablet++;
     else devices.desktop++;
   });
-  res.json({ success: true, data: {
-    today: { views: todayVisitors.length, unique: uniqueIPs },
-    week: { views: weekVisitors.length, unique: new Set(weekVisitors.map(v => v.ip)).size },
-    total: { views: visitorLog.length },
-    pageViews: Object.entries(pageViews).sort((a, b) => b[1] - a[1]).slice(0, 10),
-    hourly, daily, browsers, devices,
-    dayLabels: Array(7).fill(0).map((_, i) => { const d = new Date(now - (6 - i) * day); return d.toLocaleDateString('en', { weekday: 'short' }); })
-  }});
+  res.json({
+    success: true, data: {
+      today: { views: todayVisitors.length, unique: uniqueIPs },
+      week: { views: weekVisitors.length, unique: new Set(weekVisitors.map(v => v.ip)).size },
+      total: { views: visitorLog.length },
+      pageViews: Object.entries(pageViews).sort((a, b) => b[1] - a[1]).slice(0, 10),
+      hourly, daily, browsers, devices,
+      dayLabels: Array(7).fill(0).map((_, i) => { const d = new Date(now - (6 - i) * day); return d.toLocaleDateString('en', { weekday: 'short' }); })
+    }
+  });
 });
 
 // Security API
@@ -2035,14 +2035,16 @@ app.get('/api/admin/security', authenticateToken, isAdmin, (req, res) => {
   recentThreats.forEach(t => { threatsByType[t.type] = (threatsByType[t.type] || 0) + 1; });
   // Security score (100 = perfect, minus points for threats)
   const score = Math.max(0, 100 - recentThreats.length * 2);
-  res.json({ success: true, data: {
-    score, threats: recentThreats.slice(-50).reverse(),
-    threatsByType, blockedIPs: [...blockedIPs].slice(0, 50),
-    totalBlocked: blockedIPs.size,
-    ssl: process.env.NODE_ENV === 'production',
-    rateLimit: { windowMs: 15, maxRequests: 100 },
-    summary: { today: recentThreats.length, blocked: blockedIPs.size, failedLogins: recentThreats.filter(t => t.type === 'failed_login').length }
-  }});
+  res.json({
+    success: true, data: {
+      score, threats: recentThreats.slice(-50).reverse(),
+      threatsByType, blockedIPs: [...blockedIPs].slice(0, 50),
+      totalBlocked: blockedIPs.size,
+      ssl: process.env.NODE_ENV === 'production',
+      rateLimit: { windowMs: 15, maxRequests: 100 },
+      summary: { today: recentThreats.length, blocked: blockedIPs.size, failedLogins: recentThreats.filter(t => t.type === 'failed_login').length }
+    }
+  });
 });
 
 app.post('/api/admin/security/block-ip', authenticateToken, isAdmin, (req, res) => {
@@ -2089,11 +2091,26 @@ app.get('/api/gallery', async (req, res) => {
     const files = fs.readdirSync(galleryDir).filter(f => /\.(jpg|jpeg|png|webp|gif)$/i.test(f));
     const metadata = await readGalleryMetadata();
     const images = files.map(f => ({
-      filename: f, url: `/uploads/gallery/${f}`,
+      filename: f,
+      url: `/uploads/gallery/${f}`,
       uploaded: fs.statSync(path.join(galleryDir, f)).mtime.toISOString(),
       title: metadata[f]?.title || '',
-      desc: metadata[f]?.desc || ''
-    })).sort((a, b) => new Date(b.uploaded) - new Date(a.uploaded));
+      desc: metadata[f]?.desc || '',
+      featured: metadata[f]?.featured || false,
+      order: metadata[f]?.order
+    })).sort((a, b) => {
+      const aPinned = typeof a.order === 'number';
+      const bPinned = typeof b.order === 'number';
+
+      if (aPinned && bPinned) {
+        return a.order - b.order;
+      }
+
+      if (aPinned) return -1;
+      if (bPinned) return 1;
+
+      return new Date(b.uploaded) - new Date(a.uploaded);
+    });
     res.json({ success: true, data: images });
   } catch (e) { res.json({ success: true, data: [] }); }
 });
@@ -2106,12 +2123,27 @@ app.get('/api/admin/gallery', authenticateToken, isAdmin, async (req, res) => {
     const files = fs.readdirSync(galleryDir).filter(f => /\.(jpg|jpeg|png|webp|gif)$/i.test(f));
     const metadata = await readGalleryMetadata();
     const images = files.map(f => ({
-      filename: f, url: `/uploads/gallery/${f}`,
+      filename: f,
+      url: `/uploads/gallery/${f}`,
       size: fs.statSync(path.join(galleryDir, f)).size,
       uploaded: fs.statSync(path.join(galleryDir, f)).mtime.toISOString(),
       title: metadata[f]?.title || '',
-      desc: metadata[f]?.desc || ''
-    })).sort((a, b) => new Date(b.uploaded) - new Date(a.uploaded));
+      desc: metadata[f]?.desc || '',
+      featured: metadata[f]?.featured || false,
+      order: metadata[f]?.order
+    })).sort((a, b) => {
+      const aPinned = typeof a.order === 'number';
+      const bPinned = typeof b.order === 'number';
+
+      if (aPinned && bPinned) {
+        return a.order - b.order;
+      }
+
+      if (aPinned) return -1;
+      if (bPinned) return 1;
+
+      return new Date(b.uploaded) - new Date(a.uploaded);
+    });
     res.json({ success: true, data: images });
   } catch (e) { res.json({ success: true, data: [] }); }
 });
@@ -2133,16 +2165,37 @@ app.post('/api/admin/gallery/upload', authenticateToken, isAdmin, galleryUpload.
 
 app.put('/api/admin/gallery/:filename', authenticateToken, isAdmin, async (req, res) => {
   try {
-    const { title, desc } = req.body;
+    const { title, desc, featured, order } = req.body;
+
     const metadata = await readGalleryMetadata();
+
     metadata[req.params.filename] = {
+      ...metadata[req.params.filename],
       title: title || '',
       desc: desc || ''
     };
+
+    if (featured !== undefined) {
+      metadata[req.params.filename].featured = Boolean(featured);
+    }
+
+    if (order === null || order === '') {
+      delete metadata[req.params.filename].order;
+    } else if (order !== undefined) {
+      metadata[req.params.filename].order = Number(order);
+    }
+
     await writeGalleryMetadata(metadata);
-    res.json({ success: true, message: 'Image details updated successfully' });
+
+    res.json({
+      success: true,
+      message: 'Image details updated successfully'
+    });
   } catch (e) {
-    res.status(500).json({ error: e.message, success: false });
+    res.status(500).json({
+      error: e.message,
+      success: false
+    });
   }
 });
 
@@ -2239,7 +2292,7 @@ app.put('/api/admin/career-openings/:id', authenticateToken, isAdmin, async (req
       const openings = await readJsonFile('career_openings.json');
       const idx = openings.findIndex(o => String(o.id) === String(req.params.id));
       if (idx === -1) return res.status(404).json({ error: 'Opening not found', success: false });
-      
+
       openings[idx] = {
         ...openings[idx],
         title: title !== undefined ? title : openings[idx].title,
@@ -2406,9 +2459,9 @@ async function startServer() {
   try {
     // Initialize database (will not crash if MySQL unavailable)
     await initializeDatabase();
-    
+
     const dbStatus = dbAvailable ? 'MySQL (Connected)' : 'DISCONNECTED - MySQL not running';
-    
+
     app.listen(PORT, () => {
       console.log(`
 ╔══════════════════════════════════════════════════════════════════════════╗
