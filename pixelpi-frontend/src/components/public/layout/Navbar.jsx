@@ -83,13 +83,12 @@ export function Navbar() {
           Contains: desktop pill (hidden on mobile) + mobile bar (hidden on desktop)
       ══════════════════════════════════════════════════════════════════ */}
             <header
-                className="fixed top-0 left-0 right-0 z-50 flex justify-center items-start"
-                style={{ paddingTop: '20px', paddingLeft: '16px', paddingRight: '16px' }}
+                className="fixed top-0 left-0 right-0 z-50 flex justify-center items-start pt-5 px-4 lg:pt-7"
             >
 
                 {/* ── Desktop Pill ── */}
                 <nav
-                    className="hidden md:flex items-center gap-1 px-3"
+                    className="hidden md:flex items-center gap-1 px-3 lg:scale-110 lg:origin-top"
                     style={{ ...glassStyle, height: '66px', padding: '20px', borderRadius: '9999px' }}
                     aria-label="Primary navigation"
                 >
