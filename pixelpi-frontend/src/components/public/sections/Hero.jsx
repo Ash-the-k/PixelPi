@@ -47,7 +47,6 @@ export function Hero() {
         */}
         <div
           className="w-full text-center md:text-left"
-          style={{ maxWidth: 'var(--max-width-text)' }}
         >
 
           {/* ── Eyebrow ── */}
@@ -63,7 +62,7 @@ export function Hero() {
           {/* ── Headline ── */}
           <AnimatedSection delay={DELAYS.headline}>
             <h1 className="hero-headline mb-6">
-              Precision Engineering.
+              Precision Engineering. &
               <br />
               <GradientText>Intelligent Systems.</GradientText>
             </h1>
@@ -78,7 +77,7 @@ export function Hero() {
                 maxWidth: 'var(--max-width-narrow)',
               }}
             >
-              Engineering for startups, industry, research, and education.
+              Engineering innovation for startups, industry and education.
             </p>
           </AnimatedSection>
 

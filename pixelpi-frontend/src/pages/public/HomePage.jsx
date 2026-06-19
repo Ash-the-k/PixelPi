@@ -7,16 +7,28 @@
 // import { StatCard } from '../../components/public/ui/StatCard';
 // import { Link } from 'react-router-dom';
 // import { AnimatedSection } from '../../components/public/ui/AnimatedSection';
-import { Hero } from '../../components/public/sections/Hero';
-import { TrustSignalBar } from '../../components/public/sections/TrustSignalBar';
+import { Hero }                 from '../../components/public/sections/Hero';
+import { Services }             from '../../components/public/sections/Services';
+import { ProjectMetrics }       from '../../components/public/sections/ProjectMetrics';
+import { Industries }           from '../../components/public/sections/Industries';
+import { ProjectsTeaser }       from '../../components/public/sections/ProjectsTeaser';
+import { CollaborationTeaser }  from '../../components/public/sections/CollaborationTeaser';
+import { Newsletter }           from '../../components/public/sections/Newsletter';
 
 export default function HomePage() {
   return (
     <div>
       <Hero />
-      <TrustSignalBar />
+      {/* <TrustSignalBar /> */}
+      <Services />
+      <ProjectMetrics />
+      <Industries />
+      <ProjectsTeaser />
+      <CollaborationTeaser />
+      <Newsletter />
     </div>
   );
+}
   // return (
   //   <div style={{ padding: '4rem' , display: 'flex', flexDirection: 'column', gap: '2rem'}}>
   //     <SectionLabel>What We Do</SectionLabel>
@@ -47,4 +59,3 @@ export default function HomePage() {
   //     </div>
   //   </div>
   // );
-}
