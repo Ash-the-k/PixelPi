@@ -102,7 +102,7 @@ function SupportingCard({ item, index, isActive, onClick }) {
     return (
         <button
             onClick={onClick}
-            className="w-full text-left rounded-lg overflow-hidden flex flex-col transition-colors duration-fast"
+            className="w-full text-left rounded-lg overflow-hidden flex flex-col transition-colors duration-fast card-interactive"
             style={{
                 minHeight: '115px',
                 background: isActive ? 'rgba(13,18,32,0.90)' : 'var(--color-bg-elevated)',

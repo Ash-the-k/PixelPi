@@ -73,7 +73,7 @@ function TrackButton({ track, isActive, onClick }) {
   return (
     <button
       onClick={onClick}
-      className="w-full text-left rounded-lg p-5 transition-colors duration-fast"
+      className="w-full text-left rounded-lg p-5 transition-colors duration-fast card-interactive"
       style={{
         background: isActive ? 'var(--color-bg-base)' : 'transparent',
         border:     isActive
