@@ -6,9 +6,9 @@ export function LogoMark({ size = 'md' }) {
   const sizes = {
     sm: { box: 'w-5 h-5', label: 'text-[13px]' },
     md: { box: 'w-6 h-6', label: 'text-body-md' },    // 24px icon, 15px wordmark
-    lg: { box: 'w-8 h-8', label: 'text-[18px]' },   // footer / large contexts
+    lg: { box: 'w-8 h-8', label: 'text-[18.5px]' },   // footer / large contexts
     ph: { box: 'w-8 h-8', label: 'text-[20px]' },
-    nav: { box: 'w-9 h-9', label: 'text-[20px]' },
+    nav: { box: 'w-8 h-8', label: 'text-[20px]' },
   };
 
   const s = sizes[size] || sizes.md;
@@ -28,24 +28,36 @@ export function LogoMark({ size = 'md' }) {
       style={{ textDecoration: 'none' }}
       aria-label="Pixel Pi Technologies — home"
     >
-      <div className="inline-flex items-center gap-2 leading-none">
-        <img
-          src="/logo.png"
-          alt=""
-          className={cn(s.box, 'flex-shrink-0 object-contain block')}
-          aria-hidden="true"
-        />
-        <span
-          className={cn(
-            'font-display font-semibold leading-none',
-            'inline-flex items-center gap-[1px]',
-            s.label,
-          )}
-        >
-          <span style={{ color: 'var(--color-text-primary)' }}>Pixel</span>
-          <span style={{ color: 'var(--color-accent-hover)' }}>Pi</span>
-        </span>
-      </div>
+      <div className="flex items-center gap-2">
+  <img
+    src="/logo.png"
+    alt=""
+    className={cn(s.box, 'flex-shrink-0 object-contain block')}
+  />
+
+  <div className="flex flex-col leading-none">
+    <div
+      className={cn(
+        'font-display font-semibold leading-none',
+        'inline-flex items-center',
+        s.label
+      )}
+      style={{
+        justifyContent: 'space-between'
+      }}
+    >
+      <span style={{ color: 'var(--color-text-primary)' }}>Pixel</span>
+      <span style={{ color: 'var(--color-accent-hover)' }}>Pi</span>
+    </div>
+
+    <span
+      className="text-[9.5px] md:text-[9.5px] font-medium tracking-wide"
+      style={{ color: 'var(--color-text-secondary)' }}
+    >
+      Technologies
+    </span>
+  </div>
+</div>
     </Link>
   );
 }

@@ -52,7 +52,15 @@ export function Footer() {
           <div className="flex flex-col gap-6">
 
             {/* Logo mark + wordmark — links to homepage */}
-            <LogoMark size="lg" />
+            {/* Mobile */}
+            <div className="block lg:hidden">
+              <LogoMark size="ph" />
+            </div>
+
+            {/* Desktop */}
+            <div className="hidden lg:block">
+              <LogoMark size="nav" />
+            </div>
 
             {/* Tagline */}
             <div className="flex flex-col gap-0.5">
@@ -60,7 +68,7 @@ export function Footer() {
                 className="font-display font-semibold text-body-md leading-snug"
                 style={{ color: 'var(--color-text-primary)' }}
               >
-                Precision Engineering.
+                Precision Engineering. &
               </p>
               <p className="font-display font-semibold text-body-md leading-snug gradient-text">
                 Intelligent Systems.
