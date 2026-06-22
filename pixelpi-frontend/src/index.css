@@ -79,6 +79,15 @@
     letter-spacing: -0.02em;
   }
 
+  .hero-bg {
+    background:
+      radial-gradient(ellipse at 30% 50%, rgba(51, 32, 85, 0.35) 0%, transparent 60%),
+      radial-gradient(ellipse at 70% 50%, rgba(60, 77, 147, 0.25) 0%, transparent 60%),
+      var(--color-bg-base);
+    background-size: 200% 200%;
+    animation: gradient-drift 18s ease infinite;
+  }
+
   /* Gradient fill — primary CTA buttons, brand moments */
   .gradient-bg {
     background: var(--gradient-brand-button);
