@@ -83,7 +83,7 @@ export function Navbar() {
           Contains: desktop pill (hidden on mobile) + mobile bar (hidden on desktop)
       ══════════════════════════════════════════════════════════════════ */}
             <header
-                className="fixed top-0 left-0 right-0 z-50 flex justify-center items-start pt-5 px-4 lg:pt-7"
+                className="fixed top-0 left-0 right-0 z-50 flex justify-center items-start pt-5 px-4 lg:pt-[4vh]"
             >
 
                 {/* ── Desktop Pill ── */}
