@@ -33,12 +33,8 @@ export function Hero() {
         doesn't crowd the edges on short viewports.
       */}
       <div
-        className="content-container flex items-center"
-        style={{
-          minHeight:     '100vh',
-          paddingTop:    '64px',
-          paddingBottom: '64px',
-        }}
+        className="content-container flex flex-col items-center justify-center pt-[84px] lg:pt-[92px] pb-16"
+        style={{ minHeight: '100vh' }}
       >
         {/*
           max-w-text constrains copy width for readability.
