@@ -2,7 +2,8 @@ import { Link } from 'react-router-dom';
 import { Button } from '../ui/Button';
 import { GradientText } from '../ui/GradientText';
 import { AnimatedSection } from '../ui/AnimatedSection';
-import { TrustSignalBar } from './TrustSignalBar';
+import { COMPANY_METRICS } from '../../../data/metrics.js';
+
 
 const DELAYS = {
   eyebrow: 0,
@@ -73,19 +74,14 @@ export function Hero() {
         {/* ── Metrics strip ── */}
         <AnimatedSection delay={DELAYS.metrics}>
           <div
-            className="w-full grid grid-cols-2 md:grid-cols-4 gap-px hidden md:grid"
+            className="w-full hidden md:grid grid-cols-4 gap-px"
             style={{
               borderTop: '1px solid var(--color-border)',
               paddingTop: '32px',
               maxWidth: '760px',
             }}
           >
-            {[
-              { value: '10+', label: 'Projects' },
-              { value: '10+', label: 'Clients' },
-              { value: '2', label: 'Collaborations' },
-              { value: '2', label: 'Research Papers' },
-            ].map(({ value, label }) => (
+            {COMPANY_METRICS.map(({ value, label }) => (
               <div key={label} className="flex flex-col items-center gap-1.5 px-4">
                 <span
                   className="font-mono text-display-sm font-semibold"
