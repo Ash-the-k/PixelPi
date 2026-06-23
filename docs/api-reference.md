@@ -441,7 +441,22 @@ End-to-end submission not yet manually tested.
 
 ### Purpose
 
-Retrieve gallery assets.
+Retrieve gallery assets and metadata.
+
+### Response
+
+```json
+[
+  {
+    "filename": "robotics-lab.jpg",
+    "title": "Robotics Lab",
+    "desc": "Students working on robotics projects",
+    "url": "/uploads/gallery/robotics-lab.jpg",
+    "featured": true,
+    "order": 1
+  }
+]
+```
 
 ### Auth
 
@@ -461,9 +476,11 @@ Metadata:
 gallery_metadata.json
 ```
 
-### Frontend Usage
-
-Gallery Section
+### Homepage Gallery Behavior
+* Uses `featured = true` items only
+* Sorted by `order`
+* Limited to 4 items
+* Filtering and sorting handled client-side by `useFeaturedGallery()`
 
 ### Verification
 
@@ -783,13 +800,25 @@ Verification: Discovered
 
 # Gallery Management
 
----
-
 ## GET /api/admin/gallery
 
-Retrieve gallery assets.
+Retrieve gallery assets and metadata.
 
-Verification: Verified
+### Response
+```json
+[
+  {
+    "filename": "robotics-lab.jpg",
+    "title": "Robotics Lab",
+    "desc": "Students working on robotics projects",
+    "url": "/uploads/gallery/robotics-lab.jpg",
+    "featured": true,
+    "order": 1
+  }
+]
+```
+### Verification
+Verified
 
 ---
 
@@ -836,7 +865,9 @@ Update image metadata.
 ```json
 {
   "title": "Aerospace Core Module",
-  "desc": "Description"
+  "desc": "Description",
+  "featured": true,
+  "order": 1
 }
 ```
 
@@ -853,6 +884,16 @@ Delete gallery image.
 ### Verification
 
 Fully Verified
+
+---
+
+### Future Enhancements
+
+* Featured toggle in admin gallery
+* Visual order management UI
+* No manual numeric order entry
+* Drag-and-drop ordering UI
+* Image replacement while preserving metadata
 
 ---
 

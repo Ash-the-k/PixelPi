@@ -17,6 +17,8 @@
 
 ## Document Map
 
+- [Implementation Status — Updated](#implementation-status--updated)
+
 1. [Design Vision Summary](#1-design-vision-summary)
 2. [Final Stack](#2-final-stack)
 3. [Project Architecture](#3-project-architecture)
@@ -32,6 +34,47 @@
 13. [Day 1–Day 7 — Week 1 Detail Plan](#13-day-1day-7--week-1-detail-plan)
 14. [Risks and Dependencies](#14-risks-and-dependencies)
 15. [Definition of Done](#15-definition-of-done)
+
+---
+
+## Implementation Status — Updated
+
+### Completed (Days 1–5)
+- Full project scaffold: Vite, React, Tailwind 3, React Router, TanStack Query,
+  Framer Motion, React Hook Form, Zod, Axios, React Helmet, Lucide React
+- CSS custom property token system (index.css)
+- Tailwind config with full design token mapping
+- API layer: client.js, public.js, admin.js
+- AuthContext + ProtectedRoute
+- All routes defined
+- ScrollToTop (route restoration)
+- Navbar: glass pill desktop, expanding mobile container
+- Footer: 4-column, custom SVG social icons, WhatsApp token
+- LogoMark: final logo.png implemented, two-line wordmark
+- ScrollToTopButton: floating glass pill, bottom-right
+- Homepage: fully complete and finalized (see deviations below)
+
+### Homepage Section Order (final)
+Hero → Services → ProjectMetrics → Industries →
+ProjectsTeaser → CollaborationTeaser → Newsletter
+
+### Deviations from Original Roadmap
+- TrustSignalBar: removed (metrics live in Hero strip, hidden md:grid)
+- TrustSignalBar is the metrics strip inside Hero.jsx — not a separate component
+- Single source of truth for metrics: `src/data/metrics.js`
+  (COMPANY_METRICS imported by Hero.jsx and ProjectMetrics.jsx)
+- WhyUs: removed from homepage, deferred to /about
+- ProjectMetrics: kept as full section despite Hero strip (founder review pending)
+- Industries: rebuilt as horizontal-rule table (Option C pattern),
+  old chip layout discarded
+- ProjectsTeaser: rotating showcase (not card grid) — featured image left,
+  supporting cards right on desktop, dot indicators + swipe on mobile,
+  4s auto-rotation with progress bar, uses useFeaturedGallery hook
+- CollaborationTeaser: two-panel tabbed layout with process steps,
+  Framer Motion AnimatePresence on panel content
+- shadcn/ui: confirmed scoped to admin only, not used on public site
+
+> Ased founder for content for About page, the content of this page on hold until then, procced with other implementation.
 
 ---
 
@@ -1250,7 +1293,7 @@ Founder has a running platform they can operate confidently.
 
 ---
 
-## 13. Day 1–Day 7 — Week 1 Detail Plan
+## 13. Day 1 to Day 7 — Week 1 Detail Plan
 
 > This plan contains enough detail to execute Week 1 directly.
 > Each subsequent week should be planned at this level of detail
@@ -1957,8 +2000,8 @@ Week 2 begins with About and Projects pages, then moves to deployment.
 
 ---
 
-*IMPLEMENTATION_ROADMAP.md — v1.0*
-*Generated from: DESIGN_VISION.md v1.2, architecture-assessment.md, api-reference.md, database-notes.md, company-reference.md*
+*IMPLEMENTATION_ROADMAP.md — v2.0*
+*Generated from: DESIGN_VISION.md v1.3, architecture-assessment.md, api-reference.md, database-notes.md, company-reference.md*
 *Stack finalized: Vite + React + Tailwind + React Router + Axios + TanStack Query + React Hook Form + Framer Motion + shadcn/ui + React Helmet + Lucide React*
-*Target delivery: 4 weeks from implementation start*
-*Each week beyond Week 1 should be expanded into its own day-by-day plan before that week begins.*
+*Target delivery: 4–5 weeks from implementation start*
+*v2.0: Implementation status updated. Homepage complete. Deviations from v1.0 documented above.*

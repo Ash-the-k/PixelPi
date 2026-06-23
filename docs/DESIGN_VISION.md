@@ -806,9 +806,67 @@ RETURNING VISITOR OR REFERRAL
 
 ---
 
+## Approved Implementation Decisions
+*Added post-design-chat. Treat as locked source of truth.*
 
-*Document version: 1.2*
+### Button
+- `pill` size: `px-5 h-9 rounded-full text-[14px]` — navbar CTA only
+- Primary gradient: `#332055 → #3C4D93 → #3C4D93 → #332055` four-stop symmetric
+- Text weight: `font-semibold` (600)
+- Base includes `group` class
+- Base uses `border border-transparent` overridden per variant
+- Transitions: targeted properties, 220ms
+
+### LogoMark
+- Final asset: `logo.png` in `/public/`
+- Two-line wordmark: "Pixel Pi" + "Technologies"
+- Size variants: `sm`, `md`, `lg` (footer), `ph` (mobile navbar), `nav` (desktop navbar)
+- LogoMark owns its own `<Link to="/">` — never wrap in external Link
+
+### Navbar
+- Desktop: 66px height, 20px padding, fully rounded pill, `size="nav"` logo
+- Mobile: single expanding glass container, maxHeight 56px→400px,
+  480ms cubic-bezier(0.32,0.72,0,1), content fades at 120ms delay
+- No backdrop overlay, no body scroll lock, no side drawer
+
+### Glass Treatment
+- blur(3px), rgba(13,18,32,0.65) background
+- box-shadow: `0 4px 10px rgba(0,0,0,0.30), inset 0 1px 0 rgba(255,255,255,0.10)`
+- No border
+- Transition: background 175ms ease, box-shadow 175ms ease
+
+### Motion Tokens (implemented in index.css)
+- `--duration-fast: 150ms`
+- `--duration-hover: 220ms`
+- `--duration-moderate: 350ms`
+- `--duration-expand: 480ms`
+- `--duration-glass: 300ms`
+- `--easing-enter: cubic-bezier(0.32, 0.72, 0, 1)`
+
+### Navigation
+- ScrollToTop.jsx handles route-level scroll restoration (behavior: instant)
+- ScrollToTopButton.jsx: floating glass pill, bottom-right, appears after 400px scroll
+- Logo click on `/` scrolls smoothly to top
+
+### Icon System
+- Lucide React throughout — single source, never mixed
+- No icon-in-box pattern (was removed as AI-template-like)
+- Services cards: monospace index number top-left, raw Lucide icon top-right
+- Social icons: custom SVG components in SocialIcons.jsx
+  (stroke-based for LinkedIn/Instagram/Facebook, filled path for X)
+- WhatsApp: custom SVG with tokens --color-whatsapp / --color-whatsapp-hover
+
+### Hover States
+- Interactive cards use box-shadow inset technique (not border/background)
+  because inline styles override CSS classes
+- `.card-interactive:hover { box-shadow: inset 0 0 0 1px var(--color-border-strong); }`
+
+---
+
+
+*Document version: 1.3*
 *Version 1.0: Design system, visual language, hero section, admin dashboard.*
 *Version 1.1: Information architecture, sitemap, navigation, CTA system, user journeys, contact form strategy.*
 *Version 1.2: Removed Open Implementation Decisions section.*
-*All locked decisions reflect explicit choices made during the design process.*
+*Version 1.3: Approved implementation decisions added (Button, LogoMark, Navbar, Glass treatment, Motion tokens, Icon system, Hover states).*
+*All locked decisions reflect explicit choices made during the design or implementation process.*

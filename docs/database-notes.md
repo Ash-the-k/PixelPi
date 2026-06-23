@@ -476,6 +476,8 @@ Example:
 filename
 title
 description
+featured
+order
 ```
 
 Public API merges:
