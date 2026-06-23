@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { Button } from '../ui/Button';
 import { GradientText } from '../ui/GradientText';
 import { AnimatedSection } from '../ui/AnimatedSection';
+import { TrustSignalBar } from './TrustSignalBar';
 
 const DELAYS = {
   eyebrow: 0,
@@ -81,7 +82,7 @@ export function Hero() {
           >
             {[
               { value: '10+', label: 'Projects' },
-              { value: '30+', label: 'Clients' },
+              { value: '10+', label: 'Clients' },
               { value: '2', label: 'Collaborations' },
               { value: '2', label: 'Research Papers' },
             ].map(({ value, label }) => (

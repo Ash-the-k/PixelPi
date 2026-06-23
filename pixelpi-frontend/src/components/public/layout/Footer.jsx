@@ -68,7 +68,7 @@ export function Footer() {
                 className="font-display font-semibold text-body-md leading-snug"
                 style={{ color: 'var(--color-text-primary)' }}
               >
-                Precision Engineering. &
+                Precision Engineering.
               </p>
               <p className="font-display font-semibold text-body-md leading-snug gradient-text">
                 Intelligent Systems.
