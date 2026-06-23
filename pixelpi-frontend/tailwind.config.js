@@ -56,7 +56,8 @@ export default {
       },
       maxWidth: {
         content: '1200px',
-        text: '720px',
+        article: '1080px',
+        text: '780px',
         narrow: '560px',
       },
       transitionDuration: {
