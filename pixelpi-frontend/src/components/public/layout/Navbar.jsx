@@ -52,7 +52,6 @@ function Separator() {
 }
 
 export function Navbar() {
-    const [scrolled, setScrolled] = useState(false);
     const [drawerOpen, setDrawerOpen] = useState(false);
     const location = useLocation();
 
@@ -144,9 +143,7 @@ export function Navbar() {
                         className="flex items-center justify-between flex-shrink-0"
                         style={{ height: '56px', paddingLeft: '16px', paddingRight: '12px' }}
                     >
-                        <Link to="/" className='flex items-center' style={{ textDecoration: 'none' }} aria-label="Pixel Pi Technologies — home">
-                            <LogoMark size="ph" />
-                        </Link>
+                        <LogoMark size="ph" />
                         <button
                             className="flex items-center justify-center w-9 h-9 rounded-md"
                             style={{

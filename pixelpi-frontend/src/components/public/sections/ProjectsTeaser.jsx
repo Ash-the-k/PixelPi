@@ -48,7 +48,7 @@ function FeaturedPanel({ item, showProgress = false }) {
             />
 
             {/* Content — fades + slides on item change */}
-            <AnimatePresence mode="wait">
+            <AnimatePresence>
                 <motion.div
                     key={item.filename + '-content'}
                     className="absolute bottom-0 left-0 right-0 p-7 flex flex-col gap-2"

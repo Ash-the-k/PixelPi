@@ -3,7 +3,7 @@ import { SectionLabel } from '../ui/SectionLabel';
 
 const METRICS = [
   { value: '10+', label: 'Projects Completed',  description: 'Delivered across IoT, space, and embedded domains.' },
-  { value: '30+', label: 'Happy Clients',        description: 'From startups to research institutions.' },
+  { value: '10+', label: 'Happy Clients',        description: 'From startups to research institutions.' },
   { value: '2',   label: 'Collaborations',       description: 'Industry and academic partnerships active.' },
   { value: '2',   label: 'Research Papers',      description: 'Published across engineering disciplines.' },
 ];
