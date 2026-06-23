@@ -206,7 +206,12 @@ export default function BlogPostPage() {
             className="content-container"
             style={{ maxWidth: 'calc(var(--max-width-article) - 50px)', paddingTop: '40px', paddingBottom: '40px' }}
           >
-            <div className="rounded-xl overflow-hidden aspect-video">
+            {/* Remove aspect-video later if you want natural image height */}
+            <div
+              className="rounded-xl overflow-hidden 
+              aspect-video
+              "
+            >
               <img
                 src={coverSrc}
                 alt={post.title}
