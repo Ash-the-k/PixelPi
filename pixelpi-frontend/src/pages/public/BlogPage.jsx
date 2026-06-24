@@ -91,8 +91,7 @@ export default function BlogPage() {
           No separate hero section → no padding accumulation.
         */}
         <section
-          className="section-padding"
-          style={{ paddingTop: '136px' }}
+          className="section-padding pt-[138px] lg:pt-[10rem]"
         >
           <div className="content-container">
 

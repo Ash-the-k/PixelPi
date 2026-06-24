@@ -127,8 +127,8 @@ export default function BlogPostPage() {
 
         {/* ── Header ── */}
         <header
-          className="content-container"
-          style={{ maxWidth: 'var(--max-width-article)', paddingTop: '136px', paddingBottom: '40px' }}
+          className="content-container pt-[138px] lg:pt-[10rem]"
+          style={{ maxWidth: 'var(--max-width-content)', paddingBottom: '40px' }}
         >
           <div className="mb-8">
             <BackLink />
