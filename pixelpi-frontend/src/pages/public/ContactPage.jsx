@@ -4,20 +4,21 @@ import { useSearchParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { Phone, Mail, MapPin, MessageCircle, CheckCircle, Briefcase, Handshake, MessageSquare } from 'lucide-react';
+import { Phone, Mail, MapPin, CheckCircle, Briefcase, MessageSquare, Handshake, ChevronDown } from 'lucide-react';
 import { IconWhatsApp } from '../../components/public/ui/SocialIcons';
 import { AnimatedSection } from '../../components/public/ui/AnimatedSection';
 import { SectionLabel } from '../../components/public/ui/SectionLabel';
 import { Divider } from '../../components/public/ui/Divider';
 import { api } from '../../api/public';
 
-// ── Inquiry types ─────────────────────────────────────────────────────────────
+// ── Types ─────────────────────────────────────────────────────────────────────
 
 const TYPES = [
-  { id: 'service',       icon: Briefcase,      label: 'Service Inquiry',  desc: 'Quote or project discussion'  },
-  { id: 'collaboration', icon: Handshake,       label: 'Collaboration',    desc: 'Research or industry partnerships' },
-  { id: 'general',       icon: MessageSquare,   label: 'General',          desc: 'Anything else'                },
+  { id: 'general',       icon: MessageSquare,  label: 'General Inquiry',  desc: 'Project quotes or general enquiries' },
+  { id: 'collaboration', icon: Handshake,  label: 'Collaboration',       desc: 'Industry or Academic partnerships' },
 ];
+
+const COLLAB_TYPES = ['Industry Partnership', 'Academic Collaboration', 'Other'];
 
 // ── Schemas ───────────────────────────────────────────────────────────────────
 
@@ -29,13 +30,14 @@ const contactSchema = z.object({
 });
 
 const collaborationSchema = z.object({
-  name:         z.string().min(2, 'Name required'),
-  email:        z.string().email('Valid email required'),
-  organization: z.string().min(2, 'Organization required'),
-  message:      z.string().min(10, 'Message required'),
+  name:    z.string().min(2, 'Name required'),
+  email:   z.string().email('Valid email required'),
+  company: z.string().min(2, 'Company / institution required'),
+  type:    z.string().min(1, 'Select a collaboration type'),
+  message: z.string().min(10, 'Message required'),
 });
 
-// ── Shared input helpers ──────────────────────────────────────────────────────
+// ── Shared helpers ────────────────────────────────────────────────────────────
 
 const inputBase = {
   background: 'rgba(13,18,32,0.70)',
@@ -71,7 +73,7 @@ function Label({ children, required }) {
   );
 }
 
-// ── Inquiry form — key={formType} causes remount on type switch ───────────────
+// ── Form — remounts on type change via key={type} ─────────────────────────────
 
 function InquiryForm({ type }) {
   const [submitted, setSubmitted] = useState(false);
@@ -87,8 +89,12 @@ function InquiryForm({ type }) {
       if (isCollab) await api.submitCollaboration(data);
       else          await api.submitContact(data);
       setSubmitted(true);
-    } catch {
-      setSubmitError('Something went wrong. Please try again or email us directly.');
+    } catch (err) {
+      setSubmitError(
+        err.response?.data?.error ||
+        err.response?.data?.message ||
+        'Something went wrong. Please try again or email us directly.'
+      );
     }
   };
 
@@ -106,35 +112,62 @@ function InquiryForm({ type }) {
     );
   }
 
+  const inputCls = 'h-11 px-4';
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
       <div className="flex flex-col gap-5">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
           <div>
             <Label required>Full Name</Label>
-            <input type="text" className="h-11 px-4" style={inputBase} placeholder="Jane Smith"
+            <input type="text" className={inputCls} style={inputBase} placeholder="Jane Smith"
               {...register('name')} onFocus={handleFocus} onBlur={handleBlur} />
             <FieldError message={errors.name?.message} />
           </div>
           <div>
             <Label required>Email</Label>
-            <input type="email" className="h-11 px-4" style={inputBase} placeholder="jane@example.com"
+            <input type="email" className={inputCls} style={inputBase} placeholder="jane@example.com"
               {...register('email')} onFocus={handleFocus} onBlur={handleBlur} />
             <FieldError message={errors.email?.message} />
           </div>
         </div>
 
         {isCollab ? (
-          <div>
-            <Label required>Organization</Label>
-            <input type="text" className="h-11 px-4" style={inputBase} placeholder="Company or institution"
-              {...register('organization')} onFocus={handleFocus} onBlur={handleBlur} />
-            <FieldError message={errors.organization?.message} />
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div>
+              <Label required>Company / Institution</Label>
+              <input type="text" className={inputCls} style={inputBase} placeholder="Organization name"
+                {...register('company')} onFocus={handleFocus} onBlur={handleBlur} />
+              <FieldError message={errors.company?.message} />
+            </div>
+            <div>
+              <Label required>Collaboration Type</Label>
+              <div className="relative">
+                <select
+                  className={inputCls}
+                  style={{ ...inputBase, appearance: 'none', paddingRight: '36px' }}
+                  {...register('type')}
+                  onFocus={handleFocus}
+                  onBlur={handleBlur}
+                >
+                  <option value="">Select type…</option>
+                  {COLLAB_TYPES.map((t) => (
+                    <option key={t} value={t}>{t}</option>
+                  ))}
+                </select>
+                <ChevronDown
+                  size={14}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none"
+                  style={{ color: 'var(--color-text-muted)' }}
+                />
+              </div>
+              <FieldError message={errors.type?.message} />
+            </div>
           </div>
         ) : (
           <div>
             <Label required>Subject</Label>
-            <input type="text" className="h-11 px-4" style={inputBase} placeholder="What is this regarding?"
+            <input type="text" className={inputCls} style={inputBase} placeholder="What is this regarding?"
               {...register('subject')} onFocus={handleFocus} onBlur={handleBlur} />
             <FieldError message={errors.subject?.message} />
           </div>
@@ -148,7 +181,7 @@ function InquiryForm({ type }) {
             style={inputBase}
             placeholder={
               isCollab
-                ? 'Describe the collaboration opportunity, your goals, and timeline…'
+                ? 'Describe the collaboration opportunity, your goals, and expected timeline…'
                 : 'Tell us about your project or inquiry…'
             }
             {...register('message')}
@@ -164,14 +197,17 @@ function InquiryForm({ type }) {
           </p>
         )}
 
-        <button
-          type="submit"
-          disabled={isSubmitting}
-          className="h-12 px-8 rounded-md font-body font-semibold text-label text-white transition-opacity duration-[175ms] disabled:opacity-50 disabled:cursor-not-allowed self-start"
-          style={{ background: 'var(--gradient-brand-button)' }}
-        >
-          {isSubmitting ? 'Sending…' : 'Send Message'}
-        </button>
+        <div>
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className="h-12 px-8 rounded-md font-body font-semibold text-label text-white transition-opacity duration-[175ms] disabled:opacity-50 disabled:cursor-not-allowed"
+            style={{ background: 'var(--gradient-brand-button)' }}
+          >
+            {isSubmitting ? 'Sending…' : 'Send Message'}
+          </button>
+        </div>
+
       </div>
     </form>
   );
@@ -182,10 +218,8 @@ function InquiryForm({ type }) {
 export default function ContactPage() {
   const [searchParams] = useSearchParams();
   const [type, setType] = useState(
-    searchParams.get('type') === 'collaboration' ? 'collaboration' : 'service'
+    searchParams.get('type') === 'collaboration' ? 'collaboration' : 'general'
   );
-
-  const formType = type === 'collaboration' ? 'collaboration' : 'contact';
 
   return (
     <>
@@ -193,14 +227,12 @@ export default function ContactPage() {
         <title>Contact | Pixel Pi Technologies</title>
         <meta
           name="description"
-          content="Get in touch with Pixel Pi Technologies for service inquiries, collaboration proposals, or general questions."
+          content="Get in touch with Pixel Pi Technologies for service enquiries, collaboration proposals, or general questions."
         />
       </Helmet>
 
-      <section className="section-padding" style={{ paddingTop: '136px' }}>
+      <section className="section-padding pt-[138px] lg:pt-[10rem]" >
         <div className="content-container">
-
-          {/* Heading */}
           <AnimatedSection>
             <SectionLabel>CONTACT</SectionLabel>
             <h1
@@ -219,13 +251,12 @@ export default function ContactPage() {
 
           <Divider />
 
-          {/* Two-column: left = type selector + details, right = form */}
+      {/* Form + details */}
           <div className="grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-12 lg:gap-16">
 
-            {/* Left column */}
+            {/* Left — type selector + contact details */}
             <AnimatedSection className="flex flex-col gap-8">
 
-              {/* Type selector — track buttons from CollaborationTeaser pattern */}
               <div>
                 <p
                   className="font-mono text-mono-sm uppercase tracking-widest mb-4"
@@ -243,9 +274,7 @@ export default function ContactPage() {
                         className="w-full text-left rounded-lg p-4 transition-colors duration-[175ms]"
                         style={{
                           background: active ? 'var(--color-bg-elevated)' : 'transparent',
-                          border: active
-                            ? '1px solid var(--color-accent)'
-                            : '1px solid var(--color-border)',
+                          border: active ? '1px solid var(--color-accent)' : '1px solid var(--color-border)',
                           outline: 'none',
                           cursor: 'pointer',
                         }}
@@ -253,11 +282,7 @@ export default function ContactPage() {
                         <div className="flex items-start gap-3">
                           <div
                             className="w-8 h-8 rounded-md flex items-center justify-center flex-shrink-0 mt-0.5 transition-colors duration-[175ms]"
-                            style={{
-                              background: active
-                                ? 'var(--color-accent-subtle)'
-                                : 'rgba(240,242,248,0.05)',
-                            }}
+                            style={{ background: active ? 'var(--color-accent-subtle)' : 'rgba(240,242,248,0.05)' }}
                           >
                             <Icon
                               size={15}
@@ -286,15 +311,9 @@ export default function ContactPage() {
               {/* Contact details */}
               <div
                 className="rounded-lg p-6 flex flex-col gap-5"
-                style={{
-                  background: 'var(--color-bg-elevated)',
-                  border: '1px solid var(--color-border)',
-                }}
+                style={{ background: 'var(--color-bg-elevated)', border: '1px solid var(--color-border)' }}
               >
-                <p
-                  className="font-mono text-mono-sm uppercase tracking-widest"
-                  style={{ color: 'var(--color-text-muted)' }}
-                >
+                <p className="font-mono text-mono-sm uppercase tracking-widest" style={{ color: 'var(--color-text-muted)' }}>
                   Direct Contact
                 </p>
 
@@ -346,16 +365,16 @@ export default function ContactPage() {
                     e.currentTarget.style.borderColor = 'rgba(15,118,110,0.25)';
                   }}
                 >
-                  <IconWhatsApp/>
+                  <IconWhatsApp size={15} />
                   Chat on WhatsApp
                 </a>
               </div>
 
             </AnimatedSection>
 
-            {/* Right column — form */}
+            {/* Right — form */}
             <AnimatedSection delay={0.1}>
-              <InquiryForm key={formType} type={formType} />
+              <InquiryForm key={type} type={type} />
             </AnimatedSection>
 
           </div>
