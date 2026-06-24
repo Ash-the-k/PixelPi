@@ -9,13 +9,14 @@ import { IconWhatsApp } from '../../components/public/ui/SocialIcons';
 import { AnimatedSection } from '../../components/public/ui/AnimatedSection';
 import { SectionLabel } from '../../components/public/ui/SectionLabel';
 import { Divider } from '../../components/public/ui/Divider';
+import { Button } from '../../components/public/ui/Button';
 import { api } from '../../api/public';
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
 const TYPES = [
-  { id: 'general',       icon: MessageSquare,  label: 'General Inquiry',  desc: 'Project quotes or general enquiries' },
-  { id: 'collaboration', icon: Handshake,  label: 'Collaboration',       desc: 'Industry or Academic partnerships' },
+  { id: 'general', icon: MessageSquare, label: 'General Inquiry', desc: 'Project quotes or general enquiries' },
+  { id: 'collaboration', icon: Handshake, label: 'Collaboration', desc: 'Industry or Academic partnerships' },
 ];
 
 const COLLAB_TYPES = ['Industry Partnership', 'Academic Collaboration', 'Other'];
@@ -23,17 +24,17 @@ const COLLAB_TYPES = ['Industry Partnership', 'Academic Collaboration', 'Other']
 // ── Schemas ───────────────────────────────────────────────────────────────────
 
 const contactSchema = z.object({
-  name:    z.string().min(2, 'Name required'),
-  email:   z.string().email('Valid email required'),
+  name: z.string().min(2, 'Name required'),
+  email: z.string().email('Valid email required'),
   subject: z.string().min(2, 'Subject required'),
   message: z.string().min(10, 'Message required'),
 });
 
 const collaborationSchema = z.object({
-  name:    z.string().min(2, 'Name required'),
-  email:   z.string().email('Valid email required'),
+  name: z.string().min(2, 'Name required'),
+  email: z.string().email('Valid email required'),
   company: z.string().min(2, 'Company / institution required'),
-  type:    z.string().min(1, 'Select a collaboration type'),
+  type: z.string().min(1, 'Select a collaboration type'),
   message: z.string().min(10, 'Message required'),
 });
 
@@ -41,14 +42,11 @@ const collaborationSchema = z.object({
 
 const inputBase = {
   background: 'rgba(13,18,32,0.70)',
-  border: '1px solid var(--color-border)',
   color: 'var(--color-text-primary)',
   borderRadius: 'var(--radius-md)',
   fontFamily: 'Inter, system-ui, sans-serif',
   fontSize: '14px',
   width: '100%',
-  transition: 'border-color 175ms, box-shadow 175ms',
-  outline: 'none',
 };
 
 const handleFocus = (e) => {
@@ -87,7 +85,7 @@ function InquiryForm({ type }) {
     setSubmitError('');
     try {
       if (isCollab) await api.submitCollaboration(data);
-      else          await api.submitContact(data);
+      else await api.submitContact(data);
       setSubmitted(true);
     } catch (err) {
       setSubmitError(
@@ -120,14 +118,14 @@ function InquiryForm({ type }) {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
           <div>
             <Label required>Full Name</Label>
-            <input type="text" className={inputCls} style={inputBase} placeholder="Jane Smith"
-              {...register('name')} onFocus={handleFocus} onBlur={handleBlur} />
+            <input type="text" className={`${inputCls} form-field`} style={inputBase} placeholder="Jane Smith"
+              {...register('name')} />
             <FieldError message={errors.name?.message} />
           </div>
           <div>
             <Label required>Email</Label>
-            <input type="email" className={inputCls} style={inputBase} placeholder="jane@example.com"
-              {...register('email')} onFocus={handleFocus} onBlur={handleBlur} />
+            <input type="email" className={`${inputCls} form-field`} style={inputBase} placeholder="jane@example.com"
+              {...register('email')} />
             <FieldError message={errors.email?.message} />
           </div>
         </div>
@@ -136,21 +134,19 @@ function InquiryForm({ type }) {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
             <div>
               <Label required>Company / Institution</Label>
-              <input type="text" className={inputCls} style={inputBase} placeholder="Organization name"
-                {...register('company')} onFocus={handleFocus} onBlur={handleBlur} />
+              <input type="text" className={`${inputCls} form-field`} style={inputBase} placeholder="Organization name"
+                {...register('company')} />
               <FieldError message={errors.company?.message} />
             </div>
             <div>
               <Label required>Collaboration Type</Label>
               <div className="relative">
                 <select
-                  className={inputCls}
+                  className={`${inputCls} form-field`}
                   style={{ ...inputBase, appearance: 'none', paddingRight: '36px' }}
                   {...register('type')}
-                  onFocus={handleFocus}
-                  onBlur={handleBlur}
                 >
-                  <option value="">Select type…</option>
+                  <option value="" disabled selected>Select type…</option>
                   {COLLAB_TYPES.map((t) => (
                     <option key={t} value={t}>{t}</option>
                   ))}
@@ -167,8 +163,8 @@ function InquiryForm({ type }) {
         ) : (
           <div>
             <Label required>Subject</Label>
-            <input type="text" className={inputCls} style={inputBase} placeholder="What is this regarding?"
-              {...register('subject')} onFocus={handleFocus} onBlur={handleBlur} />
+            <input type="text" className={`${inputCls} form-field`} style={inputBase} placeholder="What is this regarding?"
+              {...register('subject')} />
             <FieldError message={errors.subject?.message} />
           </div>
         )}
@@ -177,7 +173,7 @@ function InquiryForm({ type }) {
           <Label required>Message</Label>
           <textarea
             rows={5}
-            className="px-4 py-3 resize-none"
+            className="form-field px-4 py-3 resize-none"
             style={inputBase}
             placeholder={
               isCollab
@@ -185,8 +181,6 @@ function InquiryForm({ type }) {
                 : 'Tell us about your project or inquiry…'
             }
             {...register('message')}
-            onFocus={handleFocus}
-            onBlur={handleBlur}
           />
           <FieldError message={errors.message?.message} />
         </div>
@@ -198,14 +192,9 @@ function InquiryForm({ type }) {
         )}
 
         <div>
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className="h-12 px-8 rounded-md font-body font-semibold text-label text-white transition-opacity duration-[175ms] disabled:opacity-50 disabled:cursor-not-allowed"
-            style={{ background: 'var(--gradient-brand-button)' }}
-          >
+          <Button type="submit" variant="primary" disabled={isSubmitting}>
             {isSubmitting ? 'Sending…' : 'Send Message'}
-          </button>
+          </Button>
         </div>
 
       </div>
@@ -239,7 +228,7 @@ export default function ContactPage() {
               className="font-display text-display-lg mt-3 mb-4"
               style={{ color: 'var(--color-text-primary)' }}
             >
-              Let's Talk
+              Get in Touch
             </h1>
             <p
               className="text-body-lg"
@@ -251,7 +240,7 @@ export default function ContactPage() {
 
           <Divider />
 
-      {/* Form + details */}
+          {/* Form + details */}
           <div className="grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-12 lg:gap-16">
 
             {/* Left — type selector + contact details */}
@@ -271,10 +260,11 @@ export default function ContactPage() {
                       <button
                         key={id}
                         onClick={() => setType(id)}
-                        className="w-full text-left rounded-lg p-4 transition-colors duration-[175ms]"
+                        data-active={type === id}
+                        className="track-btn w-full text-left rounded-lg p-4 transition-colors duration-[175ms]"
                         style={{
-                          background: active ? 'var(--color-bg-elevated)' : 'transparent',
-                          border: active ? '1px solid var(--color-accent)' : '1px solid var(--color-border)',
+                          background: type === id ? 'var(--color-bg-elevated)' : 'transparent',
+                          border: type === id ? '1px solid var(--color-accent)' : '1px solid var(--color-border)',
                           outline: 'none',
                           cursor: 'pointer',
                         }}
