@@ -299,6 +299,34 @@
     color: var(--color-text-primary);
     font-weight: 500;
   }
+
+  /* Form field states — hover + focus via CSS, no JS handlers needed */
+  .form-field {
+    border: 1px solid var(--color-border);
+    outline: none;
+    transition: border-color var(--duration-fast) var(--easing-standard),
+      box-shadow var(--duration-fast) var(--easing-standard);
+  }
+
+  .form-field:hover {
+    border-color: var(--color-border-strong);
+  }
+
+  .form-field:focus {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px var(--color-accent-subtle);
+  }
+
+  /* Badge hover when inside an interactive card */
+  .card-interactive:hover .badge-hoverable {
+    border-color: rgba(79, 107, 204, 0.30);
+  }
+
+  /* Track button (type selector / collaboration tabs) hover when not active */
+  .track-btn:not([data-active="true"]):hover {
+    border-color: var(--color-border-strong) !important;
+    background: rgba(13, 18, 32, 0.40) !important;
+  }
 }
 
 

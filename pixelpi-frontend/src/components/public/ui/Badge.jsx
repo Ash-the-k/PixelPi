@@ -1,5 +1,3 @@
-import { cn } from '../../../utils/cn';
-
 const BADGE_STYLES = {
   default: {
     background: 'rgba(240, 242, 248, 0.10)',
@@ -27,18 +25,18 @@ const BADGE_STYLES = {
   },
 };
 
-export function Badge({ children, variant = 'default', className }) {
-  const style = BADGE_STYLES[variant] || BADGE_STYLES.default;
+export function Badge({ variant = 'default', children }) {
+  const style = BADGE_STYLES[variant] ?? BADGE_STYLES.default;
+  // badge-hoverable enables the parent card-interactive hover rule in index.css
+  const hoverable = variant === 'accent' || variant === 'default';
 
   return (
     <span
-      className={cn(
-        'inline-flex items-center',
-        'font-mono text-mono-sm uppercase tracking-wider',
-        'px-2 py-0.5 rounded-sm',
-        className
-      )}
-      style={style}
+      className={`inline-flex items-center px-2.5 py-1 rounded-sm font-mono text-mono-sm transition-colors duration-[175ms] ${hoverable ? 'badge-hoverable' : ''}`}
+      style={{
+        ...style,
+        border: '1px solid transparent',
+      }}
     >
       {children}
     </span>

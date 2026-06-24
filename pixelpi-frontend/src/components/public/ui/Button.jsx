@@ -11,7 +11,7 @@ export function Button({
   const base = cn(
     'group',
     'inline-flex items-center justify-center gap-2',
-    'font-body font-semibold text-label',
+    'font-body text-label',
     'rounded-md',
     'border border-transparent',
     'transition-[background,box-shadow,opacity,filter,border-color,color]', 'duration-[220ms]',
@@ -22,9 +22,9 @@ export function Button({
 
   const sizes = {
     sm: 'px-4 h-9',   // 36px — used inside Navbar pill
-    md: 'px-6 h-12',  // 48px — standard CTA
-    lg: 'px-8 h-14',  // 56px — hero CTA on larger breakpoints
-    pill: 'px-5 py-5 h-9 rounded-full text-[14px]',  // fits inside navbar pill
+    md: 'px-6 h-12 font-semibold',  // 48px — standard CTA
+    lg: 'px-8 h-14 font-semibold',  // 56px — hero CTA on larger breakpoints
+    pill: 'px-5 py-5 h-9 rounded-full text-[14px] font-semibold',  // fits inside navbar pill
   };
 
   const variants = {
