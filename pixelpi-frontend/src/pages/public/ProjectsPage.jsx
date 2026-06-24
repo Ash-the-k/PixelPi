@@ -27,7 +27,7 @@ export default function ProjectsPage() {
 
       <ProjectModal item={selectedItem} onClose={() => setSelectedItem(null)} />
 
-      <section className="section-padding" style={{ paddingTop: '136px' }}>
+      <section className="section-padding pt-[138px] lg:pt-[10rem]">
         <div className="content-container">
 
           <AnimatedSection>
@@ -72,7 +72,7 @@ export default function ProjectsPage() {
           )}
 
           {!isLoading && !error && items.length > 0 && (
-            <StaggerGrid className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+            <StaggerGrid className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 item-stretch">
               {items.map((item) => (
                 <ProjectCard key={item.filename} item={item} onClick={setSelectedItem} />
               ))}

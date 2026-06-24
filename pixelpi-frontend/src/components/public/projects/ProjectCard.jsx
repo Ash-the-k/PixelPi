@@ -6,7 +6,7 @@ export function ProjectCard({ item, onClick }) {
   return (
     <button
       onClick={() => onClick(item)}
-      className="card-interactive group w-full text-left rounded-lg overflow-hidden"
+      className="card-interactive group w-full text-left rounded-lg overflow-hidden flex flex-col h-full"
       style={{
         background: 'var(--color-bg-elevated)',
         border: '1px solid var(--color-border)',
