@@ -9,6 +9,7 @@ import { AnimatedSection } from '../../components/public/ui/AnimatedSection';
 import { StaggerGrid } from '../../components/public/ui/StaggerGrid';
 import { SectionLabel } from '../../components/public/ui/SectionLabel';
 import { Divider } from '../../components/public/ui/Divider';
+import { Button } from '../../components/public/ui/Button';
 import { api } from '../../api/public';
 
 const ALLOWED_TYPES = [
@@ -42,14 +43,11 @@ const schema = z.object({
 
 const inputBase = {
   background: 'rgba(13,18,32,0.70)',
-  border: '1px solid var(--color-border)',
   color: 'var(--color-text-primary)',
   borderRadius: 'var(--radius-md)',
   fontFamily: 'Inter, system-ui, sans-serif',
   fontSize: '14px',
   width: '100%',
-  transition: 'border-color 175ms, box-shadow 175ms',
-  outline: 'none',
 };
 
 const handleFocus = (e) => {
@@ -89,9 +87,9 @@ function GroupLabel({ children }) {
 
 function OpeningCard({ opening, onApply }) {
   const requirements = opening.requirements
-  ?.split('\n')
-  .map(r => r.trim())
-  .filter(Boolean) ?? [];
+    ?.split('\n')
+    .map(r => r.trim())
+    .filter(Boolean) ?? [];
 
   return (
     <div
@@ -159,17 +157,13 @@ function OpeningCard({ opening, onApply }) {
         </div>
       )}
 
-      <div className="mt-auto pt-2">
-        <a
-          href="#apply"
-          onClick={() => onApply(opening.title)}
-          className="inline-flex items-center gap-2 font-mono text-mono-sm transition-colors duration-[175ms]"
-          style={{ color: 'var(--color-accent)' }}
+      <div className="mt-auto">
+        <Button variant="ghost" size='sm' as="a" href="#apply" onClick={() => onApply(opening.title)}
+          className="font-mono text-mono-sm"
           onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--color-accent-hover)')}
-          onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--color-accent)')}
-        >
-          Apply Now →
-        </a>
+          onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--color-accent)')}>
+          Apply Now
+        </Button>
       </div>
     </div>
   );
@@ -251,20 +245,20 @@ function ApplicationForm({ openings, defaultPosition }) {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div>
               <Label required>Full Name</Label>
-              <input type="text" className={inputCls} style={inputBase} placeholder="Jane Smith"
-                {...register('name')} onFocus={handleFocus} onBlur={handleBlur} />
+              <input type="text" className={`${inputCls} form-field`} style={inputBase} placeholder="Jane Smith"
+                {...register('name')} />
               <FieldError message={errors.name?.message} />
             </div>
             <div>
               <Label required>Email</Label>
-              <input type="email" className={inputCls} style={inputBase} placeholder="jane@example.com"
-                {...register('email')} onFocus={handleFocus} onBlur={handleBlur} />
+              <input type="email" className={`${inputCls} form-field`} style={inputBase} placeholder="jane@example.com"
+                {...register('email')} />
               <FieldError message={errors.email?.message} />
             </div>
             <div className="md:col-span-2">
               <Label required>Phone</Label>
-              <input type="tel" className={inputCls} style={inputBase} placeholder="+91 98765 43210"
-                {...register('phone')} onFocus={handleFocus} onBlur={handleBlur} />
+              <input type="tel" className={`${inputCls} form-field`} style={inputBase} placeholder="+91 98765 43210"
+                {...register('phone')} />
               <FieldError message={errors.phone?.message} />
             </div>
           </div>
@@ -280,13 +274,11 @@ function ApplicationForm({ openings, defaultPosition }) {
               <Label required>Role</Label>
               <div className="relative">
                 <select
-                  className={inputCls}
+                  className={`${inputCls} form-field`}
                   style={{ ...inputBase, appearance: 'none', paddingRight: '36px' }}
                   {...register('position')}
-                  onFocus={handleFocus}
-                  onBlur={handleBlur}
                 >
-                  <option value="">Select a position…</option>
+                  <option value="" disabled selected>Select a position…</option>
                   {openings.map((o) => (
                     <option key={o.id} value={o.title}>{o.title}</option>
                   ))}
@@ -301,14 +293,14 @@ function ApplicationForm({ openings, defaultPosition }) {
             </div>
             <div>
               <Label required>Education Level</Label>
-              <input type="text" className={inputCls} style={inputBase} placeholder="B.Tech / M.Tech / B.Sc…"
-                {...register('education')} onFocus={handleFocus} onBlur={handleBlur} />
+              <input type="text" className={`${inputCls} form-field`} style={inputBase} placeholder="B.Tech / M.Tech / B.Sc…"
+                {...register('education')} />
               <FieldError message={errors.education?.message} />
             </div>
             <div>
               <Label required>Institution</Label>
-              <input type="text" className={inputCls} style={inputBase} placeholder="University or college name"
-                {...register('university')} onFocus={handleFocus} onBlur={handleBlur} />
+              <input type="text" className={`${inputCls} form-field`} style={inputBase} placeholder="University or college name"
+                {...register('university')} />
               <FieldError message={errors.university?.message} />
             </div>
           </div>
@@ -322,16 +314,16 @@ function ApplicationForm({ openings, defaultPosition }) {
           <div className="flex flex-col gap-5">
             <div>
               <Label required>Skills</Label>
-              <textarea rows={3} className={textareaCls} style={inputBase}
+              <textarea rows={3} className={`${textareaCls} form-field`} style={inputBase}
                 placeholder="C/C++, Python, ESP32, PCB design, React…"
-                {...register('skills')} onFocus={handleFocus} onBlur={handleBlur} />
+                {...register('skills')} />
               <FieldError message={errors.skills?.message} />
             </div>
             <div>
               <Label>Experience</Label>
-              <textarea rows={3} className={textareaCls} style={inputBase}
+              <textarea rows={3} className={`${textareaCls} form-field`} style={inputBase}
                 placeholder="Relevant projects, internships, or coursework…"
-                {...register('experience')} onFocus={handleFocus} onBlur={handleBlur} />
+                {...register('experience')} />
             </div>
           </div>
         </div>
@@ -344,9 +336,9 @@ function ApplicationForm({ openings, defaultPosition }) {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div>
               <Label>Portfolio / GitHub</Label>
-              <input type="url" className={inputCls} style={inputBase}
+              <input type="url" className={`${inputCls} form-field`} style={inputBase}
                 placeholder="https://github.com/yourhandle"
-                {...register('portfolio')} onFocus={handleFocus} onBlur={handleBlur} />
+                {...register('portfolio')} />
               <FieldError message={errors.portfolio?.message} />
             </div>
             <div>
@@ -376,9 +368,9 @@ function ApplicationForm({ openings, defaultPosition }) {
             </div>
             <div className="md:col-span-2">
               <Label>Cover Note</Label>
-              <textarea rows={3} className={textareaCls} style={inputBase}
+              <textarea rows={3} className={`${textareaCls} form-field`} style={inputBase}
                 placeholder="Anything else you'd like us to know…"
-                {...register('message')} onFocus={handleFocus} onBlur={handleBlur} />
+                {...register('message')} />
             </div>
           </div>
         </div>
@@ -390,14 +382,9 @@ function ApplicationForm({ openings, defaultPosition }) {
               {submitError}
             </p>
           )}
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className="h-12 px-8 rounded-md font-body font-semibold text-label text-white transition-opacity duration-[175ms] disabled:opacity-50 disabled:cursor-not-allowed self-start"
-            style={{ background: 'var(--gradient-brand-button)' }}
-          >
+          <Button type="submit" variant="primary" disabled={isSubmitting}>
             {isSubmitting ? 'Submitting…' : 'Submit Application'}
-          </button>
+          </Button>
         </div>
 
       </div>
@@ -494,7 +481,6 @@ export default function CareersPage() {
               Apply Now
             </h2>
           </AnimatedSection>
-          
 
           <AnimatedSection delay={0.05}>
             <ApplicationForm openings={openings} defaultPosition={defaultPosition} />
