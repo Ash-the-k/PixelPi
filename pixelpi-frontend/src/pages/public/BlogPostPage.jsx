@@ -6,6 +6,7 @@ import { useBlogPost } from '../../hooks/useBlogPost';
 import { Badge } from '../../components/public/ui/Badge';
 import { formatDate } from '../../utils/formatDate';
 import { getGalleryImageUrl } from '../../utils/getImageUrl';
+import { Divider } from '../../components/public/ui/Divider';
 
 // ── File-local components (used only here, too small to extract) ─────────────
 
@@ -91,9 +92,7 @@ export default function BlogPostPage() {
   if (error || !post?.title) return <PostNotFound />;
 
   const coverSrc = post.cover_image
-    ? post.cover_image.startsWith('http')
-      ? post.cover_image
-      : getGalleryImageUrl(post.cover_image)
+    ? getGalleryImageUrl(post.cover_image)
     : null;
 
   const sanitizedContent = post.content
@@ -193,12 +192,7 @@ export default function BlogPostPage() {
         </header>
 
         {/* ── Divider ── */}
-        <div
-          className="content-container"
-          style={{ maxWidth: 'var(--max-width-article)' }}
-        >
-          <div style={{ height: '1px', background: 'var(--color-border)' }} />
-        </div>
+        <Divider />
 
         {/* ── Cover image ── */}
         {coverSrc && (

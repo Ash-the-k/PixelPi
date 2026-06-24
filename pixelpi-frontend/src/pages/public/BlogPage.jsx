@@ -8,6 +8,7 @@ import { SectionLabel } from '../../components/public/ui/SectionLabel';
 import { BlogCard } from '../../components/public/blog/BlogCard';
 import { BlogCardSkeleton } from '../../components/public/blog/BlogCardSkeleton';
 import { CategoryFilter } from '../../components/public/blog/CategoryFilter';
+import { Divider } from '../../components/public/ui/Divider';
 
 
 export default function BlogPage() {
@@ -115,13 +116,7 @@ export default function BlogPage() {
             </AnimatedSection>
 
             {/* Divider — provides visual separation without double padding */}
-            <div
-              style={{
-                height: '1px',
-                background: 'var(--color-border)',
-                margin: '1rem 0',
-              }}
-            />
+            <Divider />
 
             {/* Search + category filter */}
             <AnimatedSection className="mb-6">
@@ -191,18 +186,14 @@ export default function BlogPage() {
             {/* Grid */}
             {!isLoading && !error && posts.length > 0 && (
               <>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {posts.map((post, i) => (
-                    <AnimatedSection key={post.id ?? post.slug} delay={i * 0.05}>
-                      <BlogCard post={post} />
-                    </AnimatedSection>
-                  ))}
-                </div>
-                <Pagination
-                  currentPage={currentPage}
-                  totalPages={totalPages}
-                  onPageChange={setPage}
-                />
+                <AnimatedSection>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {posts.map((post) => (
+                      <BlogCard key={post.id ?? post.slug} post={post} />
+                    ))}
+                  </div>
+                </AnimatedSection>
+                <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setPage} />
               </>
             )}
 
