@@ -1,29 +1,15 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import {
-  MapPin, Clock, Users, CheckCircle,
-  Zap, TrendingUp, Users2, Briefcase, Award, Lightbulb,
-} from 'lucide-react';
+import { MapPin, Clock, Users, CheckCircle, ChevronDown } from 'lucide-react';
 import { useCareerOpenings } from '../../hooks/useCareerOpenings';
 import { AnimatedSection } from '../../components/public/ui/AnimatedSection';
 import { StaggerGrid } from '../../components/public/ui/StaggerGrid';
 import { SectionLabel } from '../../components/public/ui/SectionLabel';
 import { Divider } from '../../components/public/ui/Divider';
 import { api } from '../../api/public';
-
-// ── Data ─────────────────────────────────────────────────────────────────────
-
-const BENEFITS = [
-  { icon: Zap, title: 'Innovative Projects', desc: 'Real IoT, embedded, and space work — not tutorial-level tasks.' },
-  { icon: TrendingUp, title: 'Learning & Growth', desc: 'Mentorship, structured code reviews, and clear technical progression.' },
-  { icon: Users2, title: 'Collaborative Culture', desc: 'A team environment where every idea is considered and shipped work is credited.' },
-  { icon: Briefcase, title: 'Career Opportunities', desc: 'Internships that convert. We hire from within first.' },
-  { icon: Award, title: 'Recognition', desc: 'Your contributions are visible and credited — no anonymous work.' },
-  { icon: Lightbulb, title: 'Creative Freedom', desc: 'Bring your own approach. Engineering judgment is respected here.' },
-];
 
 const ALLOWED_TYPES = [
   'application/pdf',
@@ -101,18 +87,15 @@ function GroupLabel({ children }) {
 
 // ── Opening card ──────────────────────────────────────────────────────────────
 
-function OpeningCard({ opening }) {
+function OpeningCard({ opening, onApply }) {
   const requirements = opening.requirements
-    ? typeof opening.requirements === 'string'
-      ? opening.requirements.split('\n').filter(Boolean).slice(0, 3)
-      : Array.isArray(opening.requirements)
-        ? opening.requirements.slice(0, 3)
-        : []
-    : [];
+  ?.split('\n')
+  .map(r => r.trim())
+  .filter(Boolean) ?? [];
 
   return (
     <div
-      className="flex flex-col gap-5 p-7 rounded-lg"
+      className="flex flex-col gap-5 p-7 rounded-lg h-full"
       style={{
         background: 'var(--color-bg-elevated)',
         border: '1px solid var(--color-border)',
@@ -164,7 +147,11 @@ function OpeningCard({ opening }) {
           <ul className="flex flex-col gap-1.5">
             {requirements.map((r, i) => (
               <li key={i} className="flex items-start gap-2 text-body-sm" style={{ color: 'var(--color-text-secondary)' }}>
-                <span className="mt-1.5 flex-shrink-0 w-1 h-1 rounded-full" style={{ background: 'var(--color-accent)' }} />
+                {/* mt-[7px] centers the dot with the first line of 14px/1.6 text */}
+                <span
+                  className="flex-shrink-0 w-1.5 h-1.5 rounded-full"
+                  style={{ background: 'var(--color-accent)', marginTop: '8px' }}
+                />
                 {r}
               </li>
             ))}
@@ -175,6 +162,7 @@ function OpeningCard({ opening }) {
       <div className="mt-auto pt-2">
         <a
           href="#apply"
+          onClick={() => onApply(opening.title)}
           className="inline-flex items-center gap-2 font-mono text-mono-sm transition-colors duration-[175ms]"
           style={{ color: 'var(--color-accent)' }}
           onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--color-accent-hover)')}
@@ -189,7 +177,7 @@ function OpeningCard({ opening }) {
 
 // ── Application form ──────────────────────────────────────────────────────────
 
-function ApplicationForm({ openings }) {
+function ApplicationForm({ openings, defaultPosition }) {
   const [submitted, setSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState('');
   const [resumeLabel, setResumeLabel] = useState('');
@@ -197,9 +185,15 @@ function ApplicationForm({ openings }) {
   const {
     register,
     handleSubmit,
+    setValue,
     reset,
     formState: { errors, isSubmitting },
   } = useForm({ resolver: zodResolver(schema) });
+
+  // Pre-select position when "Apply Now" is clicked on an opening card
+  useEffect(() => {
+    if (defaultPosition) setValue('position', defaultPosition);
+  }, [defaultPosition, setValue]);
 
   const resumeReg = register('resume');
 
@@ -215,9 +209,10 @@ function ApplicationForm({ openings }) {
       setSubmitted(true);
       reset();
       setResumeLabel('');
-    } catch (error) {
+    } catch (err) {
       setSubmitError(
-        error.response?.data?.error ||
+        err.response?.data?.error ||
+        err.response?.data?.message ||
         'Something went wrong. Please try again or email us at info@pixelpitechnologies.in'
       );
     }
@@ -283,13 +278,25 @@ function ApplicationForm({ openings }) {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div className="md:col-span-2">
               <Label required>Role</Label>
-              <select className={inputCls} style={{ ...inputBase, appearance: 'none' }}
-                {...register('position')} onFocus={handleFocus} onBlur={handleBlur}>
-                <option value="">Select a position…</option>
-                {openings.map((o) => (
-                  <option key={o.id} value={o.title}>{o.title}</option>
-                ))}
-              </select>
+              <div className="relative">
+                <select
+                  className={inputCls}
+                  style={{ ...inputBase, appearance: 'none', paddingRight: '36px' }}
+                  {...register('position')}
+                  onFocus={handleFocus}
+                  onBlur={handleBlur}
+                >
+                  <option value="">Select a position…</option>
+                  {openings.map((o) => (
+                    <option key={o.id} value={o.title}>{o.title}</option>
+                  ))}
+                </select>
+                <ChevronDown
+                  size={14}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none"
+                  style={{ color: 'var(--color-text-muted)' }}
+                />
+              </div>
               <FieldError message={errors.position?.message} />
             </div>
             <div>
@@ -348,7 +355,10 @@ function ApplicationForm({ openings }) {
                 className="h-11 flex items-center gap-3 px-4 rounded-md relative cursor-pointer"
                 style={{ border: '1px solid var(--color-border)', background: 'rgba(13,18,32,0.70)' }}
               >
-                <span className="text-body-sm flex-1 truncate" style={{ color: resumeLabel ? 'var(--color-text-primary)' : 'var(--color-text-muted)' }}>
+                <span
+                  className="text-body-sm flex-1 truncate"
+                  style={{ color: resumeLabel ? 'var(--color-text-primary)' : 'var(--color-text-muted)' }}
+                >
                   {resumeLabel || 'PDF, DOC, DOCX — max 5MB'}
                 </span>
                 <input
@@ -399,6 +409,7 @@ function ApplicationForm({ openings }) {
 
 export default function CareersPage() {
   const { data: openings = [], isLoading, error } = useCareerOpenings();
+  const [defaultPosition, setDefaultPosition] = useState('');
 
   return (
     <>
@@ -411,7 +422,7 @@ export default function CareersPage() {
       </Helmet>
 
       {/* ── Section 1: Hero + Openings ── */}
-      <section className="section-padding" style={{ paddingTop: '136px' }}>
+      <section className="section-padding pt-[138px] lg:pt-[10rem]">
         <div className="content-container">
 
           <AnimatedSection>
@@ -433,7 +444,7 @@ export default function CareersPage() {
 
           <Divider />
 
-          <AnimatedSection className="mb-8">
+          <AnimatedSection className="mb-10">
             <SectionLabel>OPEN POSITIONS</SectionLabel>
             <h2 className="font-display text-display-md mt-3" style={{ color: 'var(--color-text-primary)' }}>
               Current Openings
@@ -459,58 +470,22 @@ export default function CareersPage() {
             </p>
           )}
           {!isLoading && !error && openings.length > 0 && (
-            <StaggerGrid className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {openings.map((o) => <OpeningCard key={o.id} opening={o} />)}
+            <StaggerGrid className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+              {openings.map((o) => (
+                <OpeningCard key={o.id} opening={o} onApply={setDefaultPosition} />
+              ))}
             </StaggerGrid>
           )}
 
         </div>
       </section>
 
-      {/* ── Section 2: Benefits ──
-      <section className="section-padding" style={{ background: 'var(--color-bg-subtle)' }}>
-        <div className="content-container">
-
-          <AnimatedSection className="mb-14">
-            <SectionLabel>WHY US</SectionLabel>
-            <h2 className="font-display text-display-md mt-3" style={{ color: 'var(--color-text-primary)' }}>
-              Why Work With PixelPi
-            </h2>
-          </AnimatedSection>
-
-          <StaggerGrid className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {BENEFITS.map(({ icon: Icon, title, desc }) => (
-              <div
-                key={title}
-                className="flex flex-col gap-5 p-7 rounded-lg"
-                style={{
-                  background: 'var(--color-bg-elevated)',
-                  border: '1px solid var(--color-border)',
-                }}
-              >
-                <div
-                  className="w-10 h-10 rounded-md flex items-center justify-center flex-shrink-0"
-                  style={{ background: 'var(--color-accent-subtle)' }}
-                >
-                  <Icon size={18} strokeWidth={1.5} style={{ color: 'var(--color-accent-hover)' }} />
-                </div>
-                <div className="flex flex-col gap-2">
-                  <h3 className="font-display font-semibold text-display-sm" style={{ color: 'var(--color-text-primary)' }}>
-                    {title}
-                  </h3>
-                  <p className="text-body-sm" style={{ color: 'var(--color-text-secondary)', lineHeight: 1.65 }}>
-                    {desc}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </StaggerGrid>
-
-        </div>
-      </section> */}
-
-      {/* ── Section 3: Application Form ── */}
-      <section className="section-padding" id="apply" style={{ scrollMarginTop: '80px', background: 'var(--color-bg-subtle)' }}>
+      {/* Application Form — bg-subtle */}
+      <section
+        className="section-padding"
+        id="apply"
+        style={{ background: 'var(--color-bg-subtle)', scrollMarginTop: '80px' }}
+      >
         <div className="content-container">
 
           <AnimatedSection className="mb-10">
@@ -519,11 +494,11 @@ export default function CareersPage() {
               Apply Now
             </h2>
           </AnimatedSection>
+          
 
           <AnimatedSection delay={0.05}>
-            <ApplicationForm openings={openings} />
+            <ApplicationForm openings={openings} defaultPosition={defaultPosition} />
           </AnimatedSection>
-
         </div>
       </section>
     </>
