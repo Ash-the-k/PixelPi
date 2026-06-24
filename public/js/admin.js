@@ -691,7 +691,7 @@ async function loadCareerOpenings() {
     <tr>
       <td><strong>${o.title}</strong></td>
       <td>${o.department || '—'}</td>
-      <td>${o.type || 'full-time'}</td>
+      <td>${o.type || 'Full-time'}</td>
       <td>${o.location || '—'}</td>
       <td>${statusBadge(o.is_active ? 'active' : 'archived')}</td>
       <td>
@@ -708,7 +708,7 @@ function openCareerModal(opening = null) {
   el('cfTitle').value = opening?.title || '';
   el('cfDept').value = opening?.department || '';
   el('cfLoc').value = opening?.location || 'Bangalore, India';
-  el('cfType').value = opening?.type || 'full-time';
+  el('cfType').value = opening?.type || 'Full-time';
   el('cfExp').value = opening?.experience || '';
   el('cfDesc').value = opening?.description || '';
   el('cfReq').value = opening?.requirements || '';

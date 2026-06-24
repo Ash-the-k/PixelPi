@@ -439,7 +439,7 @@ async function initializeDatabase() {
         title VARCHAR(255) NOT NULL,
         department VARCHAR(100),
         location VARCHAR(200) DEFAULT 'Bangalore, India',
-        type ENUM('full-time','part-time','internship','contract') DEFAULT 'full-time',
+        type ENUM('full-time','part-time','Internship','contract') DEFAULT 'full-time',
         experience VARCHAR(100),
         description TEXT,
         requirements TEXT,
@@ -459,7 +459,7 @@ async function initializeDatabase() {
           'Embedded Systems Intern', 
           'Engineering', 
           'Bangalore / Remote', 
-          'internship', 
+          'Internship', 
           '0-1 years', 
           'Work on cutting-edge IoT and electronics projects, developing firmware for ESP32, Arduino, STM32, and Raspberry Pi platforms. Contribute to real-world projects in smart devices, automation, and embedded solutions.',
           'Currently pursuing Bachelor''s/Master''s in ECE, EEE, CS or related field; Basic knowledge of C/C++ programming; Understanding of microcontrollers and electronics; Familiarity with Arduino/Raspberry Pi is a plus; Passion for embedded systems and IoT',
@@ -469,7 +469,7 @@ async function initializeDatabase() {
           'Application Developer Intern', 
           'Software Development', 
           'Bangalore / Remote', 
-          'internship', 
+          'Internship', 
           '0-1 years', 
           'Develop web and cloud applications for IoT dashboards, automation systems, and internal tools. Work with modern technologies to create user-friendly interfaces and robust backend systems.',
           'Currently pursuing Bachelor''s/Master''s in CS, IT or related field; Knowledge of HTML, CSS, JavaScript; Basic understanding of databases; Familiarity with React/Node.js is a plus; Problem-solving skills and creativity',
@@ -883,7 +883,11 @@ app.post('/api/careers/apply', upload.single('resume'), async (req, res) => {
       console.log('✅ Application saved to JSON file:', applicationId);
       savedSuccessfully = true;
     }
-
+    return res.status(201).json({
+      success: true,
+      applicationId,
+      message: 'Application submitted successfully'
+    });
   } catch (error) {
     console.error('❌ Career application error:', error.message);
 
@@ -909,7 +913,7 @@ app.post('/api/careers/apply', upload.single('resume'), async (req, res) => {
       });
     }
 
-    res.status(500).json({
+    return res.status(500).json({
       error: 'Failed to submit application. Please try again later.',
       success: false,
       details: process.env.NODE_ENV === 'development' ? error.message : undefined
@@ -2222,7 +2226,7 @@ app.get('/api/career-openings', async (req, res) => {
       const conn = await pool.getConnection();
       await conn.execute(`CREATE TABLE IF NOT EXISTS career_openings (
         id INT AUTO_INCREMENT PRIMARY KEY, title VARCHAR(255) NOT NULL, department VARCHAR(100),
-        location VARCHAR(200) DEFAULT 'Bangalore, India', type ENUM('full-time','part-time','internship','contract') DEFAULT 'full-time',
+        location VARCHAR(200) DEFAULT 'Bangalore, India', type ENUM('Full-time','Part-time','Internship','Contract') DEFAULT 'Full-time',
         experience VARCHAR(100), description TEXT, requirements TEXT, is_active BOOLEAN DEFAULT true,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
       )`);
