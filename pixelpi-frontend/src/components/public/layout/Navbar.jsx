@@ -6,7 +6,8 @@ import { LogoMark } from '../ui/LogoMark';
 import { cn } from '../../../utils/cn';
 
 const NAV_LINKS = [
-    { label: 'About', to: '/about' },
+    // { label: 'About', to: '/about' },
+    { label: 'Home', to: '/' },
     { label: 'Projects', to: '/projects' },
     { label: 'Blog', to: '/blog' },
     { label: 'Careers', to: '/careers' },
