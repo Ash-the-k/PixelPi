@@ -469,6 +469,7 @@ export default function CareersPage() {
       </section>
 
       {/* Application Form — bg-subtle */}
+      {!isLoading && !error && openings.length > 0 && (
       <section
         className="section-padding"
         id="apply"
@@ -488,6 +489,7 @@ export default function CareersPage() {
           </AnimatedSection>
         </div>
       </section>
+      )}
     </>
   );
 }
