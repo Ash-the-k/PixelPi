@@ -341,11 +341,11 @@ function ApplicationForm({ openings, defaultPosition }) {
                 {...register('portfolio')} />
               <FieldError message={errors.portfolio?.message} />
             </div>
+
             <div>
               <Label required>Resume</Label>
               <div
-                className="h-11 flex items-center gap-3 px-4 rounded-md relative cursor-pointer"
-                style={{ border: '1px solid var(--color-border)', background: 'rgba(13,18,32,0.70)' }}
+                className="form-field h-11 flex items-center gap-3 px-4 rounded-md relative cursor-pointer"
               >
                 <span
                   className="text-body-sm flex-1 truncate"
@@ -366,6 +366,7 @@ function ApplicationForm({ openings, defaultPosition }) {
               </div>
               <FieldError message={errors.resume?.message} />
             </div>
+
             <div className="md:col-span-2">
               <Label>Cover Note</Label>
               <textarea rows={3} className={`${textareaCls} form-field`} style={inputBase}
