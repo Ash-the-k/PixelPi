@@ -1,11 +1,6 @@
 # Dependencies
 node_modules/
 
-# Environment Variables
-.env
-.env.local
-.env.production
-
 # Logs
 *.log
 logs/
@@ -18,18 +13,6 @@ Thumbs.db
 .vscode/
 .idea/
 
-# Runtime Uploads
-uploads/resumes/*
-uploads/gallery/*
-
-# Keep folders tracked
-!uploads/resumes/.gitkeep
-!uploads/gallery/.gitkeep
-
-# Fallback DB files
-data/*.json
-!data/.gitkeep
-
 # Temporary Files
 tmp/
 temp/
@@ -39,7 +22,3 @@ npm-debug.log*
 
 # Coverage
 coverage/
-
-# Build
-dist/
-build/
