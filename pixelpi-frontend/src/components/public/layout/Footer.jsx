@@ -5,7 +5,7 @@ import { LogoMark } from '../ui/LogoMark';
 // ─── Data ────────────────────────────────────────────────────────────────────
 
 const COMPANY_LINKS = [
-  { label: 'About', to: '/about' },
+  { label: 'Home', to: '/' },
   { label: 'Projects', to: '/projects' },
   { label: 'Blog', to: '/blog' },
   { label: 'Careers', to: '/careers' },
@@ -42,15 +42,17 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer style={{ borderTop: '1px solid var(--color-border)', background: 'var(--color-bg-elevated)' }}>
-
+    <footer
+      style={{
+        borderTop: '1px solid var(--color-border)',
+        background: 'var(--color-bg-elevated)',
+      }}
+    >
       {/* ── Main grid ── */}
       <div className="content-container py-16">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
-
           {/* ── Column 1 — Brand ── */}
           <div className="flex flex-col gap-6">
-
             {/* Logo mark + wordmark — links to homepage */}
             {/* Mobile */}
             <div className="block lg:hidden">
@@ -77,7 +79,6 @@ export function Footer() {
 
             {/* Social icons */}
             <SocialIconLinks />
-
           </div>
 
           {/* ── Column 2 — Company ── */}
@@ -90,6 +91,14 @@ export function Footer() {
                     <Link
                       to={link.to}
                       className="footer-link font-body text-body-sm"
+                      onClick={() => {
+                        
+                          window.scrollTo({
+                            top: 0,
+                            behavior: 'smooth',
+                          });
+                        
+                      }}
                     >
                       {link.label}
                     </Link>
@@ -122,7 +131,6 @@ export function Footer() {
           <div className="flex flex-col gap-5">
             <FooterColumnHeading>Get In Touch</FooterColumnHeading>
             <div className="flex flex-col gap-3">
-
               {/* Location */}
               <address className="not-italic flex flex-col gap-0.5">
                 <span
@@ -156,17 +164,23 @@ export function Footer() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 font-body text-body-sm transition-colors duration-fast w-fit"
                 style={{ color: 'var(--color-whatsapp)' }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--color-whatsapp-hover)')}
-                onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--color-whatsapp)')}
+                onMouseEnter={(e) =>
+                  (e.currentTarget.style.color = 'var(--color-whatsapp-hover)')
+                }
+                onMouseLeave={(e) =>
+                  (e.currentTarget.style.color = 'var(--color-whatsapp)')
+                }
               >
-                <IconWhatsApp size={15} aria-hidden="true" className="flex-shrink-0" />
+                <IconWhatsApp
+                  size={15}
+                  aria-hidden="true"
+                  className="flex-shrink-0"
+                />
                 <span>WhatsApp</span>
                 <span aria-hidden="true">→</span>
               </a>
-
             </div>
           </div>
-
         </div>
       </div>
 
@@ -187,7 +201,6 @@ export function Footer() {
           </a>
         </div>
       </div>
-
     </footer>
   );
 }
