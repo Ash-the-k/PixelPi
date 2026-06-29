@@ -4,8 +4,15 @@ export function ProjectCard({ item, onClick }) {
   const src = getGalleryImageUrl(item.filename);
 
   return (
-    <button
-      onClick={() => onClick(item)}
+    // <button
+    //   onClick={() => onClick(item)}
+    //   className="card-interactive group w-full text-left rounded-lg overflow-hidden flex flex-col h-full"
+    //   style={{
+    //     background: 'var(--color-bg-elevated)',
+    //     border: '1px solid var(--color-border)',
+    //   }}
+    // >
+    <div
       className="card-interactive group w-full text-left rounded-lg overflow-hidden flex flex-col h-full"
       style={{
         background: 'var(--color-bg-elevated)',
@@ -44,6 +51,7 @@ export function ProjectCard({ item, onClick }) {
           </p>
         )}
       </div>
-    </button>
+    </div>
+    // </button>
   );
 }
