@@ -1,0 +1,74 @@
+<!-- Body partial: collaboration/admin-body.html
+     Layout variables:  BANNER_HEADLINE
+     Partial variables: EYEBROW, USER_NAME, USER_EMAIL, USER_COMPANY, COLLAB_TYPE, USER_MESSAGE, ACK_STATUS
+-->
+<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+
+  <!-- Eyebrow -->
+  <tr>
+    <td style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; text-transform: uppercase; color: #4F6BCC; font-weight: 600; letter-spacing: 0.15em; padding-bottom: 16px;">
+      {{EYEBROW}}
+    </td>
+  </tr>
+
+  <!-- Body copy -->
+  <tr>
+    <td style="font-family: 'Inter', system-ui, sans-serif; font-size: 15px; line-height: 1.65; color: #111827; padding-bottom: 24px;">
+      You have received a new collaboration inquiry from the website. The details provided by the sender are recorded below.
+    </td>
+  </tr>
+
+  <!-- Submission data record box -->
+  <tr>
+    <td style="padding-bottom: 12px;">
+      <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #F8F9FB; border: 1px solid #E2E6EE; border-radius: 4px; border-collapse: separate;">
+        <tr>
+          <!-- Left accent bar -->
+          <td width="4" bgcolor="#3C4D93" style="width: 4px; background-image: linear-gradient(180deg, #332055, #3C4D93); border-top-left-radius: 3px; border-bottom-left-radius: 3px; font-size: 1px; line-height: 1px;">&nbsp;</td>
+          <td style="padding: 20px 24px;">
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+              <tr>
+                <td style="font-family: 'Inter', system-ui, sans-serif; font-size: 13px; color: #111827; line-height: 1.5; padding-bottom: 14px; border-bottom: 1px solid #E2E6EE;">
+                  <strong>Form Submission Details:</strong>
+                </td>
+              </tr>
+              <tr>
+                <td style="padding-top: 14px;">
+                  <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                    <tr>
+                      <td valign="top" style="width: 25%; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #9CA3AF; padding-bottom: 12px;">TYPE</td>
+                      <td valign="top" style="font-family: 'Inter', system-ui, sans-serif; font-size: 13px; font-weight: 600; color: #111827; padding-bottom: 12px;">{{COLLAB_TYPE}}</td>
+                    </tr>
+                    <tr>
+                      <td valign="top" style="width: 25%; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #9CA3AF; padding-bottom: 12px;">NAME</td>
+                      <td valign="top" style="font-family: 'Inter', system-ui, sans-serif; font-size: 13px; color: #4B5563; padding-bottom: 12px;">{{USER_NAME}}</td>
+                    </tr>
+                    <tr>
+                      <td valign="top" style="width: 25%; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #9CA3AF; padding-bottom: 12px;">EMAIL</td>
+                      <td valign="top" style="font-family: 'Inter', system-ui, sans-serif; font-size: 13px; padding-bottom: 12px;">
+                        <a href="mailto:{{USER_EMAIL}}" style="color: #4F6BCC; text-decoration: none; font-weight: 500;">{{USER_EMAIL}}</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td valign="top" style="width: 25%; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #9CA3AF; padding-bottom: 12px;">COMPANY</td>
+                      <td valign="top" style="font-family: 'Inter', system-ui, sans-serif; font-size: 13px; color: #4B5563; padding-bottom: 12px;">{{USER_COMPANY}}</td>
+                    </tr>
+                    <tr>
+                      <td valign="top" style="width: 25%; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #9CA3AF; padding-bottom: 12px;">MESSAGE</td>
+                      <td valign="top" style="font-family: 'Inter', system-ui, sans-serif; font-size: 13px; color: #4B5563; line-height: 1.5; padding-bottom: 12px;">{{USER_MESSAGE}}</td>
+                    </tr>
+                    <tr>
+                      <td valign="top" style="width: 25%; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #9CA3AF;">ACK EMAIL</td>
+                      <td valign="top" style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #4B5563;">{{ACK_STATUS}}</td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+
+</table>

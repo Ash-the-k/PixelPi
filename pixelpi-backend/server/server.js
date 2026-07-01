@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const nodemailer = require('nodemailer');
+// const nodemailer = require('nodemailer');
 const multer = require('multer');
 const fs = require('fs');
 const path = require('path');
@@ -13,6 +13,8 @@ const MySQLStore = require('express-mysql-session')(session);
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 require('dotenv').config();
+
+const { sendTemplatedMail } = require('./services/emailService');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -565,33 +567,6 @@ const upload = multer({
   }
 });
 
-// ====================
-// EMAIL CONFIGURATION
-// ====================
-let transporter;
-try {
-  transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS
-    },
-    pool: true,
-    maxConnections: 5,
-    maxMessages: 100
-  });
-
-  transporter.verify((error, success) => {
-    if (error) {
-      console.error('✗ Email configuration error:', error.message);
-    } else {
-      console.log('✓ Email server is ready to send messages');
-    }
-  });
-} catch (emailError) {
-  console.error('✗ Failed to create email transporter:', emailError.message);
-  transporter = null;
-}
 
 // ====================
 // HELPER FUNCTIONS
@@ -890,10 +865,47 @@ app.post('/api/careers/apply', upload.single('resume'), async (req, res) => {
       console.log('✅ Application saved to JSON file:', applicationId);
       savedSuccessfully = true;
     }
+
+    const ackResult = await sendTemplatedMail({
+      to: email,
+      subject: 'We received your application — Pixel Pi Technologies',
+      bodyPartial: 'careers/user-body.html',
+      data: {
+        BANNER_HEADLINE: 'Your application has been received.',
+        EYEBROW: '// APPLICATION_RECORDED',
+        USER_NAME: name,
+        POSITION: position,
+        APPLICATION_ID: applicationId
+      }
+    });
+
+    sendTemplatedMail({
+      to: process.env.ADMIN_EMAIL,
+      subject: `New Application: ${position} — ${name}`,
+      bodyPartial: 'careers/admin-body.html',
+      data: {
+        BANNER_HEADLINE: `New Application: ${position}`,
+        EYEBROW: '// APPLICATION_RECEIVED',
+        POSITION: position,
+        USER_NAME: name,
+        USER_EMAIL: email,
+        USER_PHONE: cleanPhone,
+        APPLICATION_ID: applicationId,
+        RESUME_FILENAME: file.filename,
+        ACK_STATUS: ackResult.success
+          ? 'Sent successfully'
+          : `Failed: ${ackResult.error || 'unknown error'}`
+      }
+    }).catch(() => { });
+
     return res.status(201).json({
       success: true,
       applicationId,
-      message: 'Application submitted successfully'
+      message: 'Application submitted successfully',
+      emailSent: ackResult.success,
+      emailMessage: ackResult.success
+        ? 'Confirmation email sent.'
+        : 'Your application was received, but we could not send a confirmation email.'
     });
   } catch (error) {
     console.error('❌ Career application error:', error.message);
@@ -1299,8 +1311,50 @@ app.post('/api/contact', async (req, res) => {
       });
       await writeJsonFile('contacts.json', contacts);
     }
+
     await logAudit(null, 'system', 'contact_submit', 'contact', null, `Contact from ${email}`, ip);
-    res.json({ success: true, message: 'Message sent successfully! We will get back to you soon.' });
+
+    // Send user acknowledgement — awaited so emailSent reflects the real outcome.
+    const ackResult = await sendTemplatedMail({
+      to: email,
+      subject: 'We received your message — Pixel Pi Technologies',
+      bodyPartial: 'contact/user-body.html',
+      data: {
+        BANNER_HEADLINE: 'We\'ve received your message.',
+        EYEBROW: '// SUBMISSION_CONFIRMED',
+        USER_NAME: name,
+        FORM_TYPE: 'Contact Inquiry',
+        USER_MESSAGE: message
+      }
+    });
+
+    // Admin notification — fire-and-forget, carries ack outcome.
+    sendTemplatedMail({
+      to: process.env.ADMIN_EMAIL,
+      subject: `New Contact Submission: ${subject}`,
+      bodyPartial: 'contact/admin-body.html',
+      data: {
+        BANNER_HEADLINE: 'New Contact Submission',
+        EYEBROW: '// NEW_INQUIRY_RECEIVED',
+        FORM_TYPE: 'Contact Inquiry',
+        USER_NAME: name,
+        USER_EMAIL: email,
+        USER_SUBJECT: subject,
+        USER_MESSAGE: message,
+        ACK_STATUS: ackResult.success
+          ? 'Sent successfully'
+          : `Failed: ${ackResult.error || 'unknown error'}`
+      }
+    }).catch(() => { });
+
+    return res.json({
+      success: true,
+      message: 'Message sent successfully! We will get back to you soon.',
+      emailSent: ackResult.success,
+      emailMessage: ackResult.success
+        ? 'Confirmation email sent.'
+        : 'Your message was received, but we could not send a confirmation email.'
+    });
   } catch (error) {
     console.error('Contact error:', error);
     res.status(500).json({ error: 'Failed to send message', success: false });
@@ -1381,7 +1435,46 @@ app.post('/api/collaboration', async (req, res) => {
       });
       await writeJsonFile('collaborations.json', collabs);
     }
-    res.json({ success: true, message: 'Collaboration inquiry submitted! Our team will review and contact you.' });
+
+    const ackResult = await sendTemplatedMail({
+      to: email,
+      subject: 'We received your collaboration inquiry — Pixel Pi Technologies',
+      bodyPartial: 'collaboration/user-body.html',
+      data: {
+        BANNER_HEADLINE: 'We\'ve received your collaboration inquiry.',
+        EYEBROW: '// INQUIRY_LOGGED',
+        USER_NAME: name,
+        COLLAB_TYPE: type,
+        USER_MESSAGE: message
+      }
+    });
+
+    sendTemplatedMail({
+      to: process.env.ADMIN_EMAIL,
+      subject: `New Collaboration Inquiry: ${company}`,
+      bodyPartial: 'collaboration/admin-body.html',
+      data: {
+        BANNER_HEADLINE: 'New Collaboration Inquiry',
+        EYEBROW: '// NEW_INQUIRY_RECEIVED',
+        USER_NAME: name,
+        USER_EMAIL: email,
+        USER_COMPANY: company,
+        COLLAB_TYPE: type,
+        USER_MESSAGE: message,
+        ACK_STATUS: ackResult.success
+          ? 'Sent successfully'
+          : `Failed: ${ackResult.error || 'unknown error'}`
+      }
+    }).catch(() => { });
+
+    return res.json({
+      success: true,
+      message: 'Collaboration inquiry submitted! Our team will review and contact you.',
+      emailSent: ackResult.success,
+      emailMessage: ackResult.success
+        ? 'Confirmation email sent.'
+        : 'Your inquiry was received, but we could not send a confirmation email.'
+    });
   } catch (error) {
     console.error('Collaboration error:', error);
     res.status(500).json({ error: 'Failed to submit inquiry', success: false });
