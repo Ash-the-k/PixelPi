@@ -866,13 +866,13 @@ app.post('/api/careers/apply', upload.single('resume'), async (req, res) => {
       savedSuccessfully = true;
     }
 
+
     const ackResult = await sendTemplatedMail({
       to: email,
       subject: 'We received your application — Pixel Pi Technologies',
       bodyPartial: 'careers/user-body.html',
       data: {
         BANNER_HEADLINE: 'Your application has been received.',
-        EYEBROW: '// APPLICATION_RECORDED',
         USER_NAME: name,
         POSITION: position,
         APPLICATION_ID: applicationId
@@ -884,8 +884,7 @@ app.post('/api/careers/apply', upload.single('resume'), async (req, res) => {
       subject: `New Application: ${position} — ${name}`,
       bodyPartial: 'careers/admin-body.html',
       data: {
-        BANNER_HEADLINE: `New Application: ${position}`,
-        EYEBROW: '// APPLICATION_RECEIVED',
+        BANNER_HEADLINE: `New Application — ${position}`,
         POSITION: position,
         USER_NAME: name,
         USER_EMAIL: email,
@@ -904,7 +903,7 @@ app.post('/api/careers/apply', upload.single('resume'), async (req, res) => {
       message: 'Application submitted successfully',
       emailSent: ackResult.success,
       emailMessage: ackResult.success
-        ? 'Confirmation email sent.'
+        ? 'A confirmation email has been sent to your address.'
         : 'Your application was received, but we could not send a confirmation email.'
     });
   } catch (error) {
@@ -1312,31 +1311,26 @@ app.post('/api/contact', async (req, res) => {
       await writeJsonFile('contacts.json', contacts);
     }
 
+
     await logAudit(null, 'system', 'contact_submit', 'contact', null, `Contact from ${email}`, ip);
 
-    // Send user acknowledgement — awaited so emailSent reflects the real outcome.
     const ackResult = await sendTemplatedMail({
       to: email,
       subject: 'We received your message — Pixel Pi Technologies',
       bodyPartial: 'contact/user-body.html',
       data: {
-        BANNER_HEADLINE: 'We\'ve received your message.',
-        EYEBROW: '// SUBMISSION_CONFIRMED',
+        BANNER_HEADLINE: "We've received your message.",
         USER_NAME: name,
-        FORM_TYPE: 'Contact Inquiry',
         USER_MESSAGE: message
       }
     });
 
-    // Admin notification — fire-and-forget, carries ack outcome.
     sendTemplatedMail({
       to: process.env.ADMIN_EMAIL,
-      subject: `New Contact Submission: ${subject}`,
+      subject: `New Contact Inquiry: ${subject}`,
       bodyPartial: 'contact/admin-body.html',
       data: {
-        BANNER_HEADLINE: 'New Contact Submission',
-        EYEBROW: '// NEW_INQUIRY_RECEIVED',
-        FORM_TYPE: 'Contact Inquiry',
+        BANNER_HEADLINE: 'New Contact Inquiry',
         USER_NAME: name,
         USER_EMAIL: email,
         USER_SUBJECT: subject,
@@ -1352,7 +1346,7 @@ app.post('/api/contact', async (req, res) => {
       message: 'Message sent successfully! We will get back to you soon.',
       emailSent: ackResult.success,
       emailMessage: ackResult.success
-        ? 'Confirmation email sent.'
+        ? 'A confirmation email has been sent to your address.'
         : 'Your message was received, but we could not send a confirmation email.'
     });
   } catch (error) {
@@ -1361,12 +1355,15 @@ app.post('/api/contact', async (req, res) => {
   }
 });
 
+
 app.post('/api/newsletter', async (req, res) => {
   try {
     const { email } = req.body;
     if (!email) return res.status(400).json({ error: 'Email is required', success: false });
+
     const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
     const ua = req.headers['user-agent'];
+
     if (dbAvailable && pool) {
       const conn = await pool.getConnection();
       try {
@@ -1377,7 +1374,12 @@ app.post('/api/newsletter', async (req, res) => {
       } catch (e) {
         if (e.code === 'ER_DUP_ENTRY') {
           conn.release();
-          return res.json({ success: true, message: 'You are already subscribed!' });
+          // Already subscribed — no email sent, emailSent omitted intentionally
+          // (no email action occurred, so the field would be misleading)
+          return res.json({
+            success: true,
+            message: 'You are already subscribed!'
+          });
         }
         throw e;
       }
@@ -1385,7 +1387,10 @@ app.post('/api/newsletter', async (req, res) => {
     } else {
       const newsletters = await readJsonFile('newsletters.json');
       if (newsletters.some(n => n.email === email)) {
-        return res.json({ success: true, message: 'You are already subscribed!' });
+        return res.json({
+          success: true,
+          message: 'You are already subscribed!'
+        });
       }
       newsletters.push({
         id: Date.now(),
@@ -1397,7 +1402,40 @@ app.post('/api/newsletter', async (req, res) => {
       });
       await writeJsonFile('newsletters.json', newsletters);
     }
-    res.json({ success: true, message: 'Successfully subscribed to our newsletter!' });
+
+    // New subscriber — send welcome email
+    const ackResult = await sendTemplatedMail({
+      to: email,
+      subject: "You're subscribed — Pixel Pi Technologies",
+      bodyPartial: 'newsletter/user-body.html',
+      data: {
+        BANNER_HEADLINE: "You're now subscribed.",
+        USER_EMAIL: email
+      }
+    });
+
+    sendTemplatedMail({
+      to: process.env.ADMIN_EMAIL,
+      subject: 'New Newsletter Subscriber',
+      bodyPartial: 'newsletter/admin-body.html',
+      data: {
+        BANNER_HEADLINE: 'New Newsletter Subscriber',
+        USER_EMAIL: email,
+        ACK_STATUS: ackResult.success
+          ? 'Sent successfully'
+          : `Failed: ${ackResult.error || 'unknown error'}`
+      }
+    }).catch(() => { });
+
+    return res.json({
+      success: true,
+      message: 'Successfully subscribed to our newsletter!',
+      emailSent: ackResult.success,
+      emailMessage: ackResult.success
+        ? 'A welcome email has been sent to your address.'
+        : 'You are subscribed, but we could not send a confirmation email.'
+    });
+
   } catch (error) {
     console.error('Newsletter error:', error);
     res.status(500).json({ error: 'Failed to subscribe', success: false });
@@ -1436,13 +1474,13 @@ app.post('/api/collaboration', async (req, res) => {
       await writeJsonFile('collaborations.json', collabs);
     }
 
+
     const ackResult = await sendTemplatedMail({
       to: email,
       subject: 'We received your collaboration inquiry — Pixel Pi Technologies',
       bodyPartial: 'collaboration/user-body.html',
       data: {
-        BANNER_HEADLINE: 'We\'ve received your collaboration inquiry.',
-        EYEBROW: '// INQUIRY_LOGGED',
+        BANNER_HEADLINE: "We've received your collaboration inquiry.",
         USER_NAME: name,
         COLLAB_TYPE: type,
         USER_MESSAGE: message
@@ -1455,7 +1493,6 @@ app.post('/api/collaboration', async (req, res) => {
       bodyPartial: 'collaboration/admin-body.html',
       data: {
         BANNER_HEADLINE: 'New Collaboration Inquiry',
-        EYEBROW: '// NEW_INQUIRY_RECEIVED',
         USER_NAME: name,
         USER_EMAIL: email,
         USER_COMPANY: company,
@@ -1472,7 +1509,7 @@ app.post('/api/collaboration', async (req, res) => {
       message: 'Collaboration inquiry submitted! Our team will review and contact you.',
       emailSent: ackResult.success,
       emailMessage: ackResult.success
-        ? 'Confirmation email sent.'
+        ? 'A confirmation email has been sent to your address.'
         : 'Your inquiry was received, but we could not send a confirmation email.'
     });
   } catch (error) {

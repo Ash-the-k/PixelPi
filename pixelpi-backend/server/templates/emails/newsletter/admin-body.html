@@ -1,27 +1,24 @@
-<!-- contact/admin-body.html
-     Variables: BANNER_HEADLINE (layout), USER_NAME, USER_EMAIL, USER_SUBJECT, USER_MESSAGE, ACK_STATUS
+<!-- newsletter/admin-body.html
+     Variables: BANNER_HEADLINE (layout), USER_EMAIL, ACK_STATUS
 -->
 <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
 
-  <!-- Eyebrow label -->
   <tr>
     <td style="font-family: 'IBM Plex Mono', 'Courier New', Courier, monospace;
                font-size: 11px; font-weight: 500; color: #4F6BCC;
                text-transform: uppercase; letter-spacing: 0.13em;
                padding-bottom: 14px; line-height: 1.4;">
-      New Contact Inquiry
+      New Subscriber
     </td>
   </tr>
 
-  <!-- Body copy -->
   <tr>
     <td style="font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
                font-size: 15px; line-height: 1.7; color: #111827; padding-bottom: 24px;">
-      A new contact inquiry has been submitted through the website. The details are below.
+      A new subscriber has joined the newsletter.
     </td>
   </tr>
 
-  <!-- Submission data box -->
   <tr>
     <td>
       <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%"
@@ -41,29 +38,12 @@
                     style="font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
                            font-size: 12px; font-weight: 600; color: #111827;
                            padding-bottom: 12px; border-bottom: 1px solid #E2E6EE; line-height: 1.4;">
-                  Submission Details
+                  Subscriber Details
                 </td>
               </tr>
               <tr>
                 <td colspan="2" height="12"
                     style="height: 12px; font-size: 12px; line-height: 12px; mso-line-height-rule: exactly;">&nbsp;</td>
-              </tr>
-
-              <tr>
-                <td class="field-label" width="96" valign="top"
-                    style="width: 96px; padding-right: 16px; padding-bottom: 10px;
-                           font-family: 'IBM Plex Mono', 'Courier New', Courier, monospace;
-                           font-size: 11px; font-weight: 500; color: #9CA3AF;
-                           text-transform: uppercase; letter-spacing: 0.1em;
-                           white-space: nowrap; line-height: 1.5;">
-                  Name
-                </td>
-                <td class="field-value" valign="top"
-                    style="padding-bottom: 10px;
-                           font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-                           font-size: 13px; color: #4B5563; line-height: 1.55;">
-                  {{USER_NAME}}
-                </td>
               </tr>
 
               <tr>
@@ -81,40 +61,6 @@
                            font-size: 13px; line-height: 1.55;">
                   <a href="mailto:{{USER_EMAIL}}"
                      style="color: #4F6BCC; text-decoration: none; font-weight: 500;">{{USER_EMAIL}}</a>
-                </td>
-              </tr>
-
-              <tr>
-                <td class="field-label" width="96" valign="top"
-                    style="width: 96px; padding-right: 16px; padding-bottom: 10px;
-                           font-family: 'IBM Plex Mono', 'Courier New', Courier, monospace;
-                           font-size: 11px; font-weight: 500; color: #9CA3AF;
-                           text-transform: uppercase; letter-spacing: 0.1em;
-                           white-space: nowrap; line-height: 1.5;">
-                  Subject
-                </td>
-                <td class="field-value" valign="top"
-                    style="padding-bottom: 10px;
-                           font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-                           font-size: 13px; color: #4B5563; line-height: 1.55;">
-                  {{USER_SUBJECT}}
-                </td>
-              </tr>
-
-              <tr>
-                <td class="field-label" width="96" valign="top"
-                    style="width: 96px; padding-right: 16px; padding-bottom: 10px;
-                           font-family: 'IBM Plex Mono', 'Courier New', Courier, monospace;
-                           font-size: 11px; font-weight: 500; color: #9CA3AF;
-                           text-transform: uppercase; letter-spacing: 0.1em;
-                           white-space: nowrap; line-height: 1.5;">
-                  Message
-                </td>
-                <td class="field-value" valign="top"
-                    style="padding-bottom: 10px;
-                           font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-                           font-size: 13px; color: #4B5563; line-height: 1.55;">
-                  {{USER_MESSAGE}}
                 </td>
               </tr>
 

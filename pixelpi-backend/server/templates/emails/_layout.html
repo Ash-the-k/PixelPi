@@ -1,128 +1,323 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="x-apple-disable-message-reformatting">
+
+  <!--
+    Opt out of dark mode remapping. Apple Mail, iOS Mail, Outlook (Mac/iOS/
+    Android modern) respect it. Gmail's support is inconsistent across app
+    versions — some builds honor it, some still force a white/near-white
+    background on your body-card regardless. Nothing more to be done there.
+  -->
+  <meta name="color-scheme" content="light only">
+  <meta name="supported-color-schemes" content="light only">
+
   <title>Pixel Pi Technologies</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+
   <!--[if mso]>
-  <style>* { font-family: sans-serif !important; }</style>
+  <style type="text/css">
+    body, table, td, p, a, div {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+    }
+    .gradient-header {
+      background-color: #0D1220 !important;
+    }
+  </style>
   <![endif]-->
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
-    @media screen and (max-width: 600px) {
-      .email-container { width: 100% !important; padding: 12px !important; }
-      .body-card { padding: 36px 20px !important; }
-      .banner-title { font-size: 26px !important; }
+
+  <style type="text/css">
+    body {
+      margin: 0 !important;
+      padding: 0 !important;
+      width: 100% !important;
+    }
+
+    table {
+      border-collapse: collapse;
+      mso-table-lspace: 0pt;
+      mso-table-rspace: 0pt;
+    }
+
+    img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    /* Gmail-only hook (u + .body is only matched by Gmail's engine).
+       Defense-in-depth against Gmail dark mode auto-inverting the logo.
+       The real fix is re-exporting logo.png as a flattened, fully
+       opaque PNG with #0D1220 baked in — this is a backstop only. */
+    u+.body .brand-logo {
+      filter: none !important;
+      -webkit-filter: none !important;
+    }
+
+    /* Footer visibility */
+    .footer-desktop {
+      display: table;
+    }
+
+    .footer-mobile {
+      display: none;
+    }
+
+    /* ── Mobile ───────────────────────────────────────────────────────────── */
+    @media only screen and (max-width: 620px) {
+      body {
+        background: #ffffff !important;
+      }
+
+      .email-wrapper {
+        padding: 10px 0 18px !important;
+        background: #ffffff !important;
+      }
+
+      .email-container {
+        width: 100% !important;
+      }
+
+      .header-cell {
+        padding: 28px 22px 30px 22px !important;
+      }
+
+      .body-card {
+        padding: 30px 22px 34px 22px !important;
+      }
+
+      .footer-cell {
+        padding: 28px 18px 18px !important;
+      }
+
+      .banner-title {
+        font-size: 21px !important;
+        line-height: 1.2 !important;
+        text-align: left !important;
+      }
+
+      .body-card,
+      .body-card td,
+      .body-card p,
+      .body-card li {
+        font-size: 14px !important;
+        line-height: 1.55 !important;
+      }
+
+      .field-label {
+        display: block !important;
+        width: 100% !important;
+        padding-right: 0 !important;
+        padding-bottom: 2px !important;
+        white-space: normal !important;
+      }
+
+      .field-value {
+        display: block !important;
+        width: 100% !important;
+        padding-bottom: 14px !important;
+      }
+
+      .footer-desktop {
+        display: none !important;
+        font-size: 0 !important;
+        line-height: 0 !important;
+        max-height: 0 !important;
+        overflow: hidden !important;
+        mso-hide: all !important;
+      }
+
+      .footer-mobile {
+        display: table !important;
+        width: 100% !important;
+        mso-hide: none !important;
+      }
     }
   </style>
 </head>
-<body style="margin: 0; padding: 0; width: 100% !important; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; background-color: #F8F9FB;">
 
-  <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #F8F9FB;">
+<body class="body"
+  style="margin: 0; padding: 0; width: 100% !important; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; background-color: #EDEEF2;">
+
+  <u
+    style="display:none;font-size:0;line-height:0;max-height:0;max-width:0;opacity:0;overflow:hidden;mso-hide:all;">&zwnj;</u>
+
+  <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" bgcolor="#EDEEF2"
+    style="background-color: #EDEEF2;">
     <tr>
-      <td align="center" style="padding: 40px 16px 60px 16px;">
+      <td class="email-wrapper" align="center" style="padding:48px 20px 60px 20px;">
 
         <!--[if (gte mso 9)|(IE)]>
         <table align="center" border="0" cellspacing="0" cellpadding="0" width="600"><tr><td>
         <![endif]-->
-        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" class="email-container" style="max-width: 600px; margin: 0 auto;">
 
-          <!-- ── BRAND GRADIENT HEADER BANNER ── -->
+        <table role="presentation" cellspacing="0" cellpadding="0" border="0" class="email-container" width="600"
+          style="max-width: 600px; width: 100%; margin: 0 auto;">
+
+          <!-- HEADER -->
           <tr>
-            <td align="center" bgcolor="#080C14" style="background-color: #080C14; background-image: radial-gradient(ellipse at 30% 50%, rgba(51, 32, 85, 0.45) 0%, transparent 65%), radial-gradient(ellipse at 70% 50%, rgba(60, 77, 147, 0.35) 0%, transparent 65%), radial-gradient(ellipse at 15% 0%, rgba(51, 32, 85, 0.15) 0%, transparent 100%), radial-gradient(ellipse at 85% 0%, rgba(60, 77, 147, 0.12) 0%, transparent 100%); border-top-left-radius: 16px; border-top-right-radius: 16px; padding: 44px 40px; border-left: 1px solid rgba(255, 255, 255, 0.08); border-right: 1px solid rgba(255, 255, 255, 0.08); border-top: 1px solid rgba(255, 255, 255, 0.08);">
-              <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+            <td class="gradient-header header-cell" bgcolor="#0D1220" style="background-color: #0D1220;
+                       background-image:
+                         radial-gradient(ellipse at 25% 60%, rgba(51,32,85,0.55) 0%, transparent 62%),
+                         radial-gradient(ellipse at 78% 35%, rgba(60,77,147,0.42) 0%, transparent 58%);
+                       border-top-left-radius: 12px;
+                       border-top-right-radius: 12px;
+                       padding: 34px 36px 34px 36px;
+                       border-top: 1px solid rgba(255,255,255,0.06);
+                       border-left: 1px solid rgba(255,255,255,0.06);
+                       border-right: 1px solid rgba(255,255,255,0.06);">
 
-                <!-- Logo row -->
+              <!-- Logo lockup: a single row, cells set to white-space:nowrap
+                   so it can NEVER wrap into two lines, on any screen width,
+                   with or without CSS being honored. No hide/show classes
+                   = nothing to break on forward. -->
+              <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center"
+                style="margin: 0 auto 28px auto; padding-bottom: 22px; width: 100%;">
                 <tr>
-                  <td style="padding-bottom: 32px; border-bottom: 1px solid rgba(255, 255, 255, 0.08);">
-                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                  <td align="center">
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="left">
                       <tr>
-                        <td align="left" valign="middle">
-                          <table role="presentation" cellspacing="0" cellpadding="0" border="0">
-                            <tr>
-                              <td style="padding-right: 8px;" valign="middle">
-                                <img src="https://pixelpitechnologies.in/logo.png" alt="" width="32" height="32" border="0" style="display: block; width: 32px; height: 32px;">
-                              </td>
-                              <td valign="middle" style="line-height: 1;">
-                                <div style="font-family: 'Space Grotesk', system-ui, sans-serif; font-weight: 600; font-size: 20px; line-height: 1;">
-                                  <span style="color: #F0F2F8;">Pixel</span><span style="color: #6B8CFF;">Pi</span>
-                                </div>
-                                <div style="font-family: 'Inter', system-ui, sans-serif; font-size: 9.5px; font-weight: 500; color: rgba(240, 242, 248, 0.70); margin-top: 4px; line-height: 1;">
-                                  Technologies
-                                </div>
-                              </td>
-                            </tr>
-                          </table>
+                        <td style="padding-right: 4px; white-space: nowrap;" valign="middle">
+                          <img src="https://pixelpitechnologies.in/logo.png" alt="" width="40" height="40" border="0"
+                            class="brand-logo" style="display: block; width: 40px; height: 40px;">
                         </td>
-                        <td align="right" valign="middle" style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: rgba(240, 242, 248, 0.45); letter-spacing: 0.15em; text-transform: uppercase;">
-                          STATUS // RECORDED
+                        <td valign="middle" style="line-height: 1; white-space: nowrap;">
+                          <div
+                            style="font-family: 'Space Grotesk', system-ui, sans-serif; font-weight: 600; font-size: 23px; line-height: 1; white-space: nowrap;">
+                            <span style="color: #F0F2F8;">Pixel</span><span style="color: #6B8CFF;">Pi</span>
+                          </div>
+                          <div
+                            style="font-family: 'Inter', system-ui, sans-serif; font-size: 11.5px; font-weight: 500; color: rgba(240, 242, 248, 0.70); line-height: 1; white-space: nowrap;">
+                            Technologies
+                          </div>
                         </td>
                       </tr>
                     </table>
                   </td>
                 </tr>
-
-                <!-- Headline row — {{BANNER_HEADLINE}} -->
-                <tr>
-                  <td align="left" style="padding-top: 32px;">
-                    <div class="banner-title" style="font-family: 'Space Grotesk', system-ui, sans-serif; font-size: 30px; font-weight: 700; line-height: 1.15; color: #F0F2F8; letter-spacing: -0.02em;">
-                      {{BANNER_HEADLINE}}
-                    </div>
-                  </td>
-                </tr>
-
               </table>
+
+              <!-- Headline -->
+              <div class="banner-title" style="font-family: 'Space Grotesk', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+                          font-size: 24px;
+                          font-weight: 700;
+                          line-height: 1.28;
+                          color: #F0F2F8;
+                          letter-spacing: -0.01em;
+                          margin: 0;
+                          mso-line-height-rule: exactly;
+                          text-align: left;">
+                {{BANNER_HEADLINE}}
+              </div>
+
             </td>
           </tr>
 
-          <!-- ── TECHNICAL HAIRLINE DIVIDER ── -->
           <tr>
-            <td height="1" bgcolor="#1D2333" style="background-color: rgba(255, 255, 255, 0.08); height: 1px; line-height: 1px; font-size: 1px;">&nbsp;</td>
+            <td bgcolor="#1C2438" height="1"
+              style="background-color: #1C2438; height: 1px; line-height: 1px; font-size: 1px; mso-line-height-rule: exactly;">
+              &nbsp;</td>
           </tr>
 
-          <!-- ── BODY CARD — body partial injected here ── -->
           <tr>
-            <td class="body-card" style="background-color: #FFFFFF; border-bottom-left-radius: 16px; border-bottom-right-radius: 16px; padding: 48px 40px; box-shadow: 0 4px 24px rgba(8, 12, 20, 0.04); border-left: 1px solid #E2E6EE; border-right: 1px solid #E2E6EE; border-bottom: 1px solid #E2E6EE;">
+            <td class="body-card" bgcolor="#FFFFFF" style="background-color: #FFFFFF;
+                       border-bottom-left-radius: 12px;
+                       border-bottom-right-radius: 12px;
+                       padding: 38px 36px 38px 36px;
+                       border-left: 1px solid #D8DCE8;
+                       border-right: 1px solid #D8DCE8;
+                       border-bottom: 1px solid #D8DCE8;">
               {{BODY_CONTENT}}
             </td>
           </tr>
 
-          <!-- ── FOOTER ── -->
+          <!-- FOOTER -->
           <tr>
-            <td align="center" style="padding: 40px 16px 0 16px;">
-              <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+            <td class="footer-cell" style="padding:28px 4px 0 4px;">
+
+              <!-- Desktop Footer -->
+              <table class="footer-desktop" role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
                 <tr>
-                  <td align="left" style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 500; text-transform: uppercase; color: #9CA3AF; letter-spacing: 0.15em; padding-bottom: 16px; border-bottom: 1px solid #E2E6EE;">
-                    From Prototype to Production &bull; Hardware Through Software
+
+                  <td valign="top" style="font-family:'Inter','Helvetica Neue',Helvetica,Arial,sans-serif;
+                 font-size:12px;
+                 line-height:1.6;
+                 color:#6B7280;">
+
+                    &copy; 2026 Pixel Pi Technologies LLP. All rights reserved.<br>
+
+                    <span style="font-size:11px;color:#9CA3AF;">
+                      This is an automated message — please do not reply directly to this email.
+                    </span>
+
                   </td>
-                </tr>
-                <tr>
-                  <td style="padding-top: 16px;">
-                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
-                      <tr>
-                        <td align="left" valign="top" style="font-family: 'Inter', system-ui, sans-serif; font-size: 12px; line-height: 1.6; color: #6B7280; padding-bottom: 12px;">
-                          &copy; 2026 Pixel Pi Technologies. All rights reserved.<br>
-                          <span style="font-size: 11px; color: #9CA3AF;">Automated transmission protocol. Please do not reply directly to this mail grid channel.</span>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td align="right" valign="top" style="font-family: 'Inter', system-ui, sans-serif; font-size: 12px; white-space: nowrap;">
-                          <a href="https://pixelpitechnologies.in" target="_blank" style="color: #4F6BCC; text-decoration: none; font-weight: 600;">
-                            pixelpitechnologies.in &rarr;
-                          </a>
-                        </td>
-                      </tr>
-                    </table>
+
+                  <td valign="top" align="right" style="font-family:'Inter','Helvetica Neue',Helvetica,Arial,sans-serif;
+                 font-size:12px;
+                 font-weight:600;
+                 white-space:nowrap;
+                 padding-left:16px;">
+
+                    <a href="https://pixelpitechnologies.in" target="_blank" rel="noopener noreferrer"
+                      style="color:#4F6BCC;text-decoration:none;">
+
+                      pixelpitechnologies.in &rarr;
+
+                    </a>
+
                   </td>
+
                 </tr>
               </table>
+
+              <!-- Mobile Footer -->
+              <table class="footer-mobile" role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+
+                <tr>
+                  <td align="center" style="font-family:'Inter','Helvetica Neue',Helvetica,Arial,sans-serif;
+                 font-size:10px;
+                 line-height:1.6;
+                 color:#6B7280;">
+
+                    &copy; 2026 Pixel Pi Technologies LLP.<br>
+                    All rights reserved.
+
+                    <br><br>
+
+                    <span style="font-size:10px;color:#9CA3AF;">
+                      This is an automated message — please do not reply directly to this email.
+                    </span>
+
+                    <br><br>
+
+                    <a href="https://pixelpitechnologies.in" target="_blank" rel="noopener noreferrer" style="color:#4F6BCC;
+                   text-decoration:none;
+                   font-weight:600;">
+
+                      pixelpitechnologies.in &rarr;
+
+                    </a>
+
+                  </td>
+                </tr>
+
+              </table>
+
             </td>
           </tr>
 
-        </table>
-        <!--[if (gte mso 9)|(IE)]>
+          <!--[if (gte mso 9)|(IE)]>
         </td></tr></table>
         <![endif]-->
 
@@ -131,4 +326,5 @@
   </table>
 
 </body>
+
 </html>
